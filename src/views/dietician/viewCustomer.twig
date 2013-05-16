@@ -1,0 +1,20 @@
+{# extend the parent tpl #}
+{% extends 'consoleDietician.twig' %}
+
+{# set the pagetitle in the parent tpl #}
+{% set pageTitle = 'Dietist | Klant' %}
+{% set contentId = 'dieticianViewCustomer' %}
+{# set javascript = 'dieticianViewCustomer' #}
+{% set jsPlugin = 'jquery.numeric' %}
+
+{# set variables in the console tpl #}
+{% set customersActive = 'activeCustomers' %}
+
+{% block consolePageContent %}
+
+<div id="subheader">
+    <h3>{{ customer.name }}</h3>
+</div>
+
+
+{% endblock %}

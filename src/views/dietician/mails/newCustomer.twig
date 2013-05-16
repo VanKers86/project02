@@ -1,0 +1,13 @@
+{% block content %}
+Beste {{ customer.name }},
+
+Ik heb zojuist een account voor u aangemaakt op dieetopvolging.be.
+
+U kan inloggen met uw e-mail adres ({{ customer.email }}) en het paswoord {{ customer.password }}.
+
+
+Vriendelijke groeten,
+
+{{ dietician.name }}
+   
+{% endblock %}

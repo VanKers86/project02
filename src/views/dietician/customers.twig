@@ -1,0 +1,32 @@
+{# extend the parent tpl #}
+{% extends 'consoleDietician.twig' %}
+
+
+{# set the pagetitle in the parent tpl #}
+{% set pageTitle = 'Dietist | Console' %}
+{% set contentId = 'dieticianConsole' %}
+{% set javascript = 'dietician' %}
+
+{# set variables in the console tpl #}
+{% set customersActive = 'activeCustomers' %}
+
+
+{% block consolePageContent %}
+<div id="subheader">
+    <h3>Klanten</h3>
+</div>
+
+<div id="customers">
+    <ul>
+        {% if customers %}
+            {% for customer in customers %}
+            <li><a href="{{ app.request.baseUrl }}/dietist/klanten/{{ customer.id }}">{{ customer.name }}</a></li>
+            {% endfor %}
+        {% else %}
+        <p>Geen klanten</p>
+        {% endif %}
+    </ul>
+    <a href="{{ app.request.baseUrl }}/dietist/klanten/nieuw">Voeg nieuwe klant toe</a>   
+</div>
+
+{% endblock %}

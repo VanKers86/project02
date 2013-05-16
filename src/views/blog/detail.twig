@@ -1,0 +1,20 @@
+{# extend the parent tpl #}
+{% extends 'layout.twig' %}
+
+
+{# set the pagetitle in the parent tpl #}
+{% set pageTitle = 'My Blog &raquo; Blogposts &raquo; Detail' %}
+
+{% block pageContent %}
+	<p class="breadcrumb"><a href="{{ app.request.baseUrl }}/">Home</a> &raquo; <a href="{{ app.request.baseUrl }}/blog">Blogposts</a> &raquo; {{ blogpost.title }}</p>
+
+	<section class="blogpost">
+		<article>
+			<h1>{{ blogpost.title }}</h1>
+			<footer><p>Written by <em><a href="{{ app.request.baseUrl }}/authors/{{ blogpost.author_id }}">{{ blogpost.firstname }} {{ blogpost.lastname }}</a></em> on <em>{{ blogpost.date }}</em></p></footer>
+			<blockquote>{{ blogpost.content|raw }}</blockquote>
+			<p>Comments: <a href="{{ app.request.baseUrl }}/blog/{{ blogpost.id }}/comments">{{ blogpost.numcomments }}</a></p>
+		</article>
+	</section>
+	<p><a href="{{ app.request.baseUrl }}/blog">&larr; Back to blog overview</a></p>
+{% endblock %}

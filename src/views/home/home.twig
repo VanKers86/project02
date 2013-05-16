@@ -1,0 +1,25 @@
+{# extend the parent tpl #}
+{% extends 'layout.twig' %}
+
+
+{# set the pagetitle in the parent tpl #}
+{% set pageTitle = 'Dieetopvolging.be' %}
+{% set contentId = 'home' %}
+
+{% block pageHeader %}
+<header id="large">
+    <section class="center">
+        <h1 id="large"><a data-stretch="logo.png" href="{{ app.request.baseUrl }}">Dieetopvolging</a></h1>
+    </section>
+</header>
+{% endblock %}
+
+{% block pageContent %}
+<div class="linkLoginDiv" id="customerDiv">
+    <a class="buttonLink green" id="linkCustomer" href="{{ app.request.baseUrl }}/klant/login">Aanmelden als klant</a>
+</div>
+<div class="linkLoginDiv" id="dieticianDiv">
+    <a class="buttonLink blue" id="linkDietician" href="{{ app.request.baseUrl }}/dietist/login">Aanmelden als di&euml;tist</a>
+</div>
+
+{% endblock %}

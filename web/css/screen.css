@@ -1,0 +1,469 @@
+/**
+ * Stylesheet for Dieetopvolging.be
+ *
+ * @media	screen, projection
+ * @author	Jasper Van Kerschaver <jasper.vankerschaver@kahosl.be>
+ */
+
+/**
+* CSS Clearfix
+* @see http://www.positioniseverything.net/easyclearing.html
+*/
+.clearfix:after {
+        content: ".";
+        display: block;
+        height: 0;
+        clear: both;
+        visibility: hidden;
+}
+
+.ie6 .clearfix {
+        display: inline-block;
+}
+
+.ie7 .clearfix {
+        zoom: 1;
+}
+
+/**
+* General Page Structure
+*/
+
+html, body {
+        height: 100%;
+}
+
+body {
+    font-family: "Segoe UI", sans-serif;
+    font-weight: 300;
+    color: #333;
+    font-size: 13px;
+    line-height: 1;
+    width: 100%;
+    font-weight: 100;
+    background-image: url('../img/backgroundfr.jpg');
+    background-repeat: no-repeat;
+    background-size: 250px;
+    background-position: bottom right;
+    background-attachment: fixed;
+}
+
+input {
+    font-family: "Segoe UI";
+    font-size: 1.230769230769231em;
+    line-height: 1.538461538461538em;
+    margin-bottom: 0.7em;
+}
+
+input[type=submit] {
+    background-color: #71d01c;
+    border: 0 none;
+    color: white;
+    font-family: "Segoe UI";
+    font-size: 1.230769230769231em;
+    min-width: 6em;
+    padding: 3px 12px 5px;
+}
+
+input[type=submit]:hover {
+    background-color: #ddd;
+    color: #333;
+    cursor: pointer;
+}
+
+.error {
+    margin-bottom: 1em;
+    color: white;
+    background: url('../img/icons/error.png') no-repeat;
+    float: left;
+    width: 100%;
+    line-height: 24px;
+    padding-left: 30px;
+}
+
+ul#menu {
+    float: left;
+    width: 100%;
+}
+
+a {
+    color: #009ACD;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #00688B;
+}
+
+h2 {
+    font-size: 2em;
+    font-weight: 100;
+    margin-bottom: 0.8em;
+    color: #333;
+}
+
+h3 {
+    font-size: 3em;
+    font-weight: 100;
+    color: #333;
+}
+
+header#large {
+    background-color: #71d01c;
+    color: #000;
+    height: 11.53846153846154em;
+    border-bottom: 3px solid #64b919;
+    width: 100%;
+    margin-bottom: 1.5em;
+}
+
+header#small {
+    background-color: #71d01c;
+    color: #000;
+    height: 11.53846153846154em;
+    border-bottom: 3px solid #64b919;
+    width: 100%;
+    margin-bottom: 1.5em; 
+}
+
+header h1 {
+    font-size: 1em;
+}
+
+header#large h1 a {
+    margin: 0 auto;
+    font-size: 1em;
+    background-image: url(../img/logo.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    display: block;
+    text-indent: -9999px;
+    height: 11.53846153846154em;
+}
+
+header#small h1 a {
+    margin: 0 auto;
+    font-size: 1em;
+    background-image: url(../img/logosmall.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    display: block;
+    text-indent: -9999px;
+    height: 6.923076923076923em;
+}
+
+header#small ul#menu {
+    float: left;
+    width: 100%;
+}
+
+header#small ul#menu li {
+    width: 33.3333333333333333%;
+    float: left;
+}
+
+header#small ul#menu li a {
+    display: block;
+    float: left;
+    margin-top: 0.3846153846153846em;
+    height: 4.230769230769231em;    
+    text-indent: -9999px;
+    width: 33.33333333333%;
+    margin-left: 33.33333333333%;
+    margin-right: 33.3333333333333%;
+    background-size: 55px;
+    background-repeat: no-repeat;
+    background-position: bottom center;   
+    margin-bottom: 0.3846153846153846em;    
+}
+
+header#small ul#menu li a.activeDashboard, header#small ul#menu li a.passiveDashboard:hover {
+    background-image: url('../img/icons/homeactive.png') !important;
+}
+
+header#small ul#menu li a.passiveDashboard {
+    background-image: url('../img/icons/homepassive.png');
+}
+
+header#small ul#menu li a.activeCustomers, header#small ul#menu li a.passiveCustomers:hover {
+    background-image: url('../img/icons/customersactive.png') !important;
+}
+
+header#small ul#menu li a.passiveCustomers {
+    background-image: url('../img/icons/customerspassive.png');
+}
+
+a.buttonLink {
+    display: block;
+    color: white;
+    padding: 1.538461538461538em;
+    font-size: 2em;
+    text-align: center;
+    -webkit-box-shadow: 5px 5px 20px 0px #000;
+    box-shadow: 5px 5px 20px 0px #000;     
+}
+
+a.buttonLink:hover {
+    
+}
+
+textarea {
+    resize: none;
+}
+
+section.center {
+    width: 34.61538461538462em;
+    margin: 0 auto;
+}    
+
+section#home {
+    margin: 0 auto;
+    max-width: 1024px;
+}
+
+section#home div.linkLoginDiv {
+    float: left;
+    width: 90%;
+    max-width: 580px;
+    margin: 1em 5% 1em 5%;
+}
+
+form#login {
+    width: 90%;
+    padding: 1em 5% 1em 5%;
+    max-width: 450px;
+    -webkit-box-shadow: 5px 5px 20px 0px #000;
+    box-shadow: 5px 5px 20px 0px #000;       
+}
+
+form#login div#form label {
+    font-size: 1.230769230769231em;
+    color: white;
+    width: 100%;
+    float: left;
+    margin-bottom: 0.2em;
+}
+
+form#login div#form input {
+    float: left;
+    width: 350px;
+}
+
+form#login div#form {
+    float: left;
+    width: 100%;
+}
+
+
+.white {
+    background-color: rgba(255, 255, 255, 0.95);
+}
+
+.blue {
+    background-color: rgba(0, 143, 197, 0.95); 
+}
+
+.green {
+    background-color: rgba(113, 208, 28, 0.95);
+}
+
+section#home a#linkCustomer {
+
+}
+
+section#home a#linkDietician {
+
+}
+
+                
+form#newCustomer div.inputFields {
+    float: left;
+    width: 50%;
+}
+
+form#newCustomer div.infoFromInput {
+    float: left;
+    width: 50%;
+}
+
+form#newCustomer div.inputFields div.input label {
+    float: left;
+    width: 100%;
+}
+
+form#newCustomer div.submitField {
+    float: left;
+    width: 100%;
+}
+
+form#newCustomer div.infoFromInput div.input label {
+    float: left;
+    width: 100%;
+}
+
+#bmiSpan {
+    display: block;
+}
+
+.bmi1 {
+    background-color: #FFCC00;
+}
+
+.bmi2 {
+    background-color: #009900;
+}
+
+.bmi3 {
+    background-color: #FFA500;
+}
+
+.bmi4 {
+    background-color: #C10015;
+}
+
+.bmi5 {
+    background-color: #880011;
+}
+
+ul#bmiList {
+    float: left;
+    width: 100%;
+}
+
+ul#bmiList li {
+    float: left;
+    width: 20%;
+    text-align: center;
+    font-size: 12px;
+    color: #333;
+    height: 30px;
+    line-height: 30px;
+}
+
+
+.ui-tooltip, .arrow:after {
+    background: black;
+    border: 2px solid white;
+}
+.ui-tooltip {
+    padding: 10px 20px;
+    color: white;
+    font: bold 8px "Helvetica Neue", Sans-Serif;
+    /*box-shadow: 0 0 7px black;*/
+}
+.arrow {
+    width: 70px;
+    height: 16px;
+    overflow: hidden;
+    position: absolute;
+    left: 50%;
+    margin-left: -35px;
+    bottom: -16px;
+}
+.arrow.top {
+    top: -16px;
+    bottom: auto;
+}
+.arrow.left {
+    left: 20%;
+}
+.arrow:after {
+    content: "";
+    position: absolute;
+    left: 20px;
+    top: -20px;
+    width: 25px;
+    height: 25px;
+    box-shadow: 6px 5px 9px -9px black;
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    tranform: rotate(45deg);
+}
+.arrow.top:after {
+    bottom: -20px;
+    top: auto;
+}
+
+div.input {
+    float: left;
+    width: 100%;
+}
+
+
+
+
+@media (min-width: 481px) {
+    body {
+        background-size: 320px;
+    }
+    
+    section.center {
+        width: 34.69230769230769em;
+    }
+}
+
+@media (min-width: 750px) {
+    body {
+        background-size: 400px;
+    }
+    
+    section.center {
+        width: 57.69230769230769em;
+        height: 100%;
+    }
+    
+    div#siteWrapper {
+        height: 100%;
+    }
+    
+    header#small {
+        width: 250px;
+        float: left;
+        height: 100%;
+    }
+   
+    header#small ul#menu {
+        float: left;
+        width: 100%;
+        padding-top: 1em;
+        margin-top: 1em;
+        border-top: 1px solid white;
+    }
+
+    header#small ul#menu li {
+        width: 100%;
+        float: left;
+    }
+
+    header#small ul#menu li a {
+        text-indent: 0; 
+        width: 54%;
+        padding-left: 26%;
+        margin-left: 10%;
+        margin-right: 10%;
+        background-position: left;
+        font-size: 1.538461538461538em;
+        height: 2.75em;
+        line-height: 3em; 
+        color: white;
+    }
+    
+    header#small ul#menu li a.activeDashboard, header#small ul#menu li a.passiveDashboard:hover {
+        color: #333 !important;
+    }
+
+    header#small ul#menu li a.activeCustomers, header#small ul#menu li a.passiveCustomers:hover {
+        color: #333 !important;
+    }
+
+}
+
+@media (min-width: 1024px) {
+    section.center {
+        width: 78.76923076923077em;
+    } 
+}
+
+/*EOF*/

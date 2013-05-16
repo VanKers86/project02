@@ -1,0 +1,33 @@
+{# extend the parent tpl #}
+{% extends 'layout.twig' %}
+
+
+{# set the pagetitle in the parent tpl #}
+{% set pageTitle = 'Dietist | Login' %}
+{% set contentId = 'dieticianLogin' %}
+
+{% block pageHeader %}
+<header id="large">
+    <section class="center">
+        <h1><a href="/">Dieetopvolging</a></h1>
+    </section>
+</header>
+{% endblock %}
+
+{% block pageContent %}
+<section class="center clearfix">
+
+        <h2>Aanmelden als di&euml;tist</h2>
+
+        <form class="blue clearfix" id="login" method="post">
+            {{ form_widget(form) }}
+            {% if error is defined %}
+            <div class="error clearfix">
+                {{error}}
+            </div>
+            {% endif %} 
+            <input type="submit" name="submit" value="Aanmelden"/>           
+        </form>
+</section>
+
+{% endblock %}

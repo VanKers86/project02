@@ -1,0 +1,23 @@
+{# extend the parent tpl #}
+{% extends 'consoleDietician.twig' %}
+
+
+{# set the pagetitle in the parent tpl #}
+{% set pageTitle = 'Dietist | Console' %}
+{% set contentId = 'dieticianConsole' %}
+{% set javascript = 'dietician' %}
+
+{# set variables in the console tpl #}
+{% set dashboardActive = 'activeDashboard' %}
+
+
+{% block consolePageContent %}
+<div id="subheader">
+    <h3>Welkom {{ dietician.name }}</h3>
+</div>
+
+
+<div id="calender">
+    <h4>Agenda</h4>
+</div>
+{% endblock %}
