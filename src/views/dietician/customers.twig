@@ -9,12 +9,11 @@
 
 {# set variables in the console tpl #}
 {% set customersActive = 'activeCustomers' %}
-
+{% block subheader %}
+    Klanten
+{% endblock %}
 
 {% block consolePageContent %}
-<div id="subheader">
-    <h3>Klanten</h3>
-</div>
 
 <div id="customers">
     <ul>

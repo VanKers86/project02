@@ -15,7 +15,10 @@
 
 {% block pageContent %}
 <div id="consoleContent" class="clearfix">
-    <a href="{{ app.request.baseUrl }}/dietist/logout">Afmelden</a>    
+    <div id="subheader" class="clearfix">
+        <h3>{% block subheader %}{% endblock %}</h3>
+        <a id="logout"  class="blue" href="{{ app.request.baseUrl }}/dietist/logout">Afmelden</a>
+    </div>
     {% block consolePageContent %}
 
     {% endblock %}

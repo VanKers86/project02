@@ -123,7 +123,7 @@ header#small {
     height: 11.53846153846154em;
     border-bottom: 3px solid #64b919;
     width: 100%;
-    margin-bottom: 1.5em; 
+    margin-bottom: 0.5em; 
 }
 
 header h1 {
@@ -212,7 +212,8 @@ textarea {
 }
 
 section.center {
-    width: 34.61538461538462em;
+    min-width: 34.61538461538462em;
+    width: 100%;
     margin: 0 auto;
 }    
 
@@ -279,11 +280,16 @@ div#consoleContent, section#console {
     float: left;
 }            
 
-section#console {
+div#consoleContent {
     width: 100%;
+}
+
+section#console {
+    padding: 0.5em 1% 0 1%;
+    width: 98%;
     height: 100%;   
     background-color: rgba(255, 255, 255, 0.90);
-    
+    position: relative;
 }
 
 form#newCustomer div.inputFields {
@@ -401,11 +407,42 @@ div.input {
     width: 100%;
 }
 
+div#subheader a#logout {
+    background-image: url('../img/icons/logout.png');
+    display: block;
+    max-width: 7em;
+    padding: 0.7em 1em;
+    background-repeat: no-repeat;
+    background-size: 26px;
+    background-position: 7em center;
+    font-size: 1.2em;
+    color: white;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    width: 20%;
+}
+
+div#subheader h3 {
+    width: 75%;
+}
+
+div#subheader {
+    margin-top: 0.5em;
+    position: relative;
+    float: left;
+    width: 100%;
+    height: 5em;
+    border-bottom: 1px solid green;
+}
+
 
 @media (min-width: 481px) {
     section.center {
-        width: 34.69230769230769em;
+        min-width: 34.69230769230769em;
+        width: 100%;
     }
+   
 }
 
 @media (min-width: 750px) {
@@ -430,7 +467,7 @@ div.input {
     }
     
     section#console {
-        width: 66.666666666%;
+        width: 64.666666666%;
     }
    
     header#small ul#menu {
@@ -479,7 +516,7 @@ div.input {
     }
     
     section#console {
-        width: 75.5859375%;
+        width: 73.5859375%;
     }
     
 }

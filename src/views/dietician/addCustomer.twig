@@ -9,13 +9,11 @@
 
 {# set variables in the console tpl #}
 {% set customersActive = 'activeCustomers' %}
+{% block subheader %}
+    Nieuwe klant toevoegen
+{% endblock %}
 
 {% block consolePageContent %}
-<div id="subheader">
-    <h3>Nieuwe klant toevoegen</h3>
-</div>
-
-
 
 <div id="addCustomer" class="clearfix">
     <form id="newCustomer" method="POST" class="clearfix">

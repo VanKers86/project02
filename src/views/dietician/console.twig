@@ -10,14 +10,16 @@
 {# set variables in the console tpl #}
 {% set dashboardActive = 'activeDashboard' %}
 
+{% block subheader %}
+    Welkom {{ dietician.name }}
+{% endblock %}
+
 
 {% block consolePageContent %}
-<div id="subheader">
-    <h3>Welkom {{ dietician.name }}</h3>
-</div>
-
 
 <div id="calender">
     <h4>Agenda</h4>
+    <p>Klant xxx heeft een nieuwe afspraak verzoek</p>
+    <p>Geen nieuwe afspraak verzoeken</p>
 </div>
 {% endblock %}

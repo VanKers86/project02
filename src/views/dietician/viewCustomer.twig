@@ -9,12 +9,11 @@
 
 {# set variables in the console tpl #}
 {% set customersActive = 'activeCustomers' %}
+{% block subheader %}
+    {{ customer.name }}
+{% endblock %}
 
 {% block consolePageContent %}
-
-<div id="subheader">
-    <h3>{{ customer.name }}</h3>
-</div>
 
 
 {% endblock %}
