@@ -41,11 +41,13 @@ body {
     line-height: 1;
     width: 100%;
     font-weight: 100;
-    background-image: url('../img/backgroundfr.jpg');
+    background-image: url('../img/Summer_Times_by_pycc_wallpaper.jpg');
     background-repeat: no-repeat;
-    background-size: 250px;
-    background-position: bottom right;
+    background-position: center center;
     background-attachment: fixed;
+    background-size: 100% 100%;
+/*    background-color: #71D01C;*/
+
 }
 
 input {
@@ -102,6 +104,18 @@ h2 {
     color: #333;
 }
 
+input.watermark {
+    color: #666;
+}
+
+form h2 {
+    color: white;
+}
+
+form#login label {
+    display: none;
+}
+
 h3 {
     font-size: 3em;
     font-weight: 100;
@@ -123,11 +137,11 @@ header#small {
     height: 11.53846153846154em;
     border-bottom: 3px solid #64b919;
     width: 100%;
-    margin-bottom: 0.5em; 
 }
 
 header h1 {
     font-size: 1em;
+    width: 100%;
 }
 
 header#large h1 a {
@@ -139,6 +153,8 @@ header#large h1 a {
     display: block;
     text-indent: -9999px;
     height: 11.53846153846154em;
+    background-size: 100%;
+    max-width: 400px
 }
 
 header#small h1 a {
@@ -174,7 +190,7 @@ header#small ul#menu li a {
     background-size: 55px;
     background-repeat: no-repeat;
     background-position: bottom center;   
-    margin-bottom: 0.3846153846153846em;    
+    margin-bottom: 0.3846153846153846em;
 }
 
 header#small ul#menu li a.activeDashboard, header#small ul#menu li a.passiveDashboard:hover {
@@ -212,7 +228,7 @@ textarea {
 }
 
 section.center {
-    min-width: 34.61538461538462em;
+/*    min-width: 34.61538461538462em;*/
     width: 100%;
     margin: 0 auto;
 }    
@@ -284,11 +300,33 @@ div#consoleContent {
     width: 100%;
 }
 
+div#breadcrumb {
+    float: left;
+    width: 100%;
+    padding: 0.5em 0;
+    border-bottom: 1px solid #64B919;
+    font-size: 0.8461538461538462em;
+}
+
+div#breadrcrumb a {
+    color: blue;
+}
+
+div#breadcrumb a:hover {
+    text-decoration: underline;
+}
+
+div#breadcrumb a:after {
+    content: "›";
+    display: inline-block;
+    padding: 0 6px 0 10px;    
+}
+
 section#console {
     padding: 0.5em 1% 0 1%;
     width: 98%;
     height: 100%;   
-    background-color: rgba(255, 255, 255, 0.90);
+    background-color: rgba(255, 255, 255, 0.85);
     position: relative;
 }
 
@@ -414,8 +452,8 @@ div#subheader a#logout {
     padding: 0.7em 1em;
     background-repeat: no-repeat;
     background-size: 26px;
-    background-position: 7em center;
-    font-size: 1.2em;
+    background-position: 6.8em center;
+    font-size: 1em;
     color: white;
     position: absolute;
     top: 0px;
@@ -423,8 +461,15 @@ div#subheader a#logout {
     width: 20%;
 }
 
+div#subheader a#logout:hover {
+    background-image: url('../img/icons/logoutblack.png');
+    background-color: #DDD;
+    color: #333;
+}
+
 div#subheader h3 {
     width: 75%;
+    margin-bottom: 0.2em;
 }
 
 div#subheader {
@@ -432,8 +477,8 @@ div#subheader {
     position: relative;
     float: left;
     width: 100%;
-    height: 5em;
-    border-bottom: 1px solid green;
+    min-height: 7.45em;
+    border-bottom: 1px solid #64B919;
 }
 
 
@@ -447,7 +492,7 @@ div#subheader {
 
 @media (min-width: 750px) {
     body {
-        background-size: 400px;
+/*        background-size: 400px;*/
     }
     
     section.center {
@@ -460,10 +505,12 @@ div#subheader {
     }
     
     header#small {
+        padding: 0.5em 0 0 0;
         width: 33.333333333%;
         float: left;
         height: 100%;
         margin-bottom: 0;
+        border-bottom: none;
     }
     
     section#console {

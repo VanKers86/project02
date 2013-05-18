@@ -17,9 +17,8 @@
 {% block pageContent %}
 <section class="center clearfix">
 
-        <h2>Aanmelden als di&euml;tist</h2>
-
         <form class="blue clearfix" id="login" method="post">
+            <h2>Aanmelden als di&euml;tist</h2>
             {{ form_widget(form) }}
             {% if error is defined %}
             <div class="error clearfix">

@@ -12,6 +12,11 @@
 {% block subheader %}
     Nieuwe klant toevoegen
 {% endblock %}
+    
+{% set breadcrumb = true %}    
+{% block breadcrumb %}
+    <a href="{{ app.request.baseUrl }}/dietist/klanten">Klanten</a> <span class="current">Nieuwe klant toevoegen</span>
+{% endblock %}
 
 {% block consolePageContent %}
 

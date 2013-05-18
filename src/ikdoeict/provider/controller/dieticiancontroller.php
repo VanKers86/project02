@@ -37,8 +37,8 @@ class DieticianController implements ControllerProviderInterface {
             $error;
 
             $form = $app['form.factory']->createBuilder('form')
-                ->add('Email', 'email')
-                ->add('Paswoord', 'password')
+                ->add('Email', 'text')
+                ->add('Paswoord', 'text')
                 ->getForm();
 
             if ($request->isMethod('POST')) {

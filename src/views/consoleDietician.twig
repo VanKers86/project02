@@ -19,6 +19,11 @@
         <h3>{% block subheader %}{% endblock %}</h3>
         <a id="logout"  class="blue" href="{{ app.request.baseUrl }}/dietist/logout">Afmelden</a>
     </div>
+    {% if breadcrumb is defined %}
+        <div id="breadcrumb">
+            {% block breadcrumb %}{% endblock %}
+        </div>    
+    {% endif %}
     {% block consolePageContent %}
 
     {% endblock %}
