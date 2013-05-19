@@ -25,6 +25,7 @@ class DieticianController implements ControllerProviderInterface {
                 $controllers->match('/klanten', array($this, 'customers'));
                 $controllers->match('/klanten/nieuw', array($this, 'addCustomer'));
                 $controllers->match('/klanten/{customerId}', array($this, 'customerDetail'))->assert('customerId', '\d+');
+                $controllers->match('/klanten/{customerId}/consultatie', array($this, 'customerConsultation'))->assert('customerId', '\d+');
                 
 		return $controllers;
 
@@ -178,8 +179,16 @@ class DieticianController implements ControllerProviderInterface {
             if (!$customer) {
                 return $app->redirect('/dietist/console');
             }
+            
+            $activeConsultation = $app['dietician']->getActiveConsultation($customerId);
+            $previousConsultations = $app['dietician']->getPreviousConsultations($customerId);
+            
 
-            return $app['twig']->render('dietician/viewCustomer.twig', array('dietician' => $dietician, 'customer' => $customer));
+            return $app['twig']->render('dietician/viewCustomer.twig', array('dietician' => $dietician, 
+                                                                            'customer' => $customer, 
+                                                                            'activeConsultation' => $activeConsultation,
+                                                                            'previousConsultations' => $previousConsultations
+                    ));
 	}
         
         public function logout(Application $app, Request $request) {
@@ -198,5 +207,18 @@ class DieticianController implements ControllerProviderInterface {
             return $pass;
 
         }
+        
+        public function customerConsultation(Application $app, $customerId) {
+            if (!$app['session']->get('dietician')) {
+                return $app->redirect('/');
+            }
+            $dietician = $app['session']->get('dietician');
+            $customer = $app['dietician']->getDietistCustomer($dietician['id'], $customerId);
+            if (!$customer) {
+                return $app->redirect('/dietist/console');
+            }
+
+            return $app['twig']->render('dietician/customerConsultation.twig', array('dietician' => $dietician, 'customer' => $customer));
+	}        
 
 }

@@ -1,0 +1,24 @@
+{# extend the parent tpl #}
+{% extends 'consoleDietician.twig' %}
+
+{# set the pagetitle in the parent tpl #}
+{% set pageTitle = 'Dietist | Nieuwe klant' %}
+{% set contentId = 'console' %}
+{% set javascript = 'dieticianCustomerConsultation' %}
+
+{# set variables in the console tpl #}
+{% set customersActive = true %}
+
+{% block subheader %}
+    <h1>Nieuwe consultatie voor {{ customer.name }}</h1>
+{% endblock %}
+    
+{% set breadcrumb = true %}    
+{% block breadcrumb %}
+    <a title="Klanten" href="{{ app.request.baseUrl }}/dietist/klanten">Klanten</a> <a title="{{ customer.name }}" href="{{ app.request.baseUrl }}/dietist/klanten/{{ customer.id }}">{{ customer.name}}</a><span class="current">Nieuwe consultatie</span>
+{% endblock %}
+
+{% block consolePageContent %}
+
+
+{% endblock %}

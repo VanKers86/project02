@@ -5,13 +5,12 @@
 {% set pageTitle = 'Dietist | Nieuwe klant' %}
 {% set contentId = 'console' %}
 {% set javascript = 'dieticianNewCustomer' %}
-{% set jsPlugin = 'jquery.numeric' %}
 
 {# set variables in the console tpl #}
 {% set customersActive = true %}
 
 {% block subheader %}
-    Nieuwe klant toevoegen
+    <h1>Nieuwe klant toevoegen</h1>
 {% endblock %}
     
 {% set breadcrumb = true %}    
@@ -24,7 +23,7 @@
 <div id="addCustomer" class="clearfix">
     <form id="newCustomer" method="POST" class="clearfix">
         <div class="inputFields">
-            <h3>Klant gegevens</h3>
+            <h2>Klant gegevens</h2>
             <div class="input">
                 <label>Geslacht</label>
                 <div class="radio"><input type="radio" id="genderMale" name="gender" value="M" checked="checked">Man</div>
@@ -77,8 +76,8 @@
             </div>
         </div>
         <div class="infoFromInput">
-            <h3>Body Mass Index</h3>
-            <div class="input">
+            <h2>Body Mass Index</h2>
+            <div class="input inputBMI">
                 <label id="BMI"><span id="bmiSpan">&nbsp;</span></label>
                 <ul id="bmiList">
                     <li class="bmi1 tooltip" title="Ondergewicht">&lt; 18.5</li>
@@ -89,7 +88,7 @@
                 </ul>
                 <input type="hidden" name="bmi" value="">
             </div>
-            <h3>Aanbevolen dagelijkse hoeveelheden</h3>
+            <h2>Aanbevolen dagelijkse hoeveelheden</h2>
             <div class="input auto">
                 <label class="energy" id="kcal">Energie</label>
                 <p id="kcalSpan">

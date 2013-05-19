@@ -4,14 +4,15 @@
 {# set the pagetitle in the parent tpl #}
 {% set pageTitle = 'Dietist | Klant' %}
 {% set contentId = 'console' %}
-{# set javascript = 'dieticianViewCustomer' #}
+{% set javascript = 'dieticianViewCustomer' %}
 {% set jsPlugin = 'jquery.numeric' %}
 
 {# set variables in the console tpl #}
 {% set customersActive = true %}
 
 {% block subheader %}
-    {{ customer.name }}
+    <h1>{{ customer.name }}</h1>
+    <p>Toegevoegd op {{ customer.dateFormat }}</p>
 {% endblock %}
 
 {% set breadcrumb = true %}    
@@ -20,6 +21,128 @@
 {% endblock %}
 
 {% block consolePageContent %}
-
-
+    
+    <div class="subfield shown" id="consults">
+        <h2>Consultaties</h2>
+        <h3>
+            <span id="headerConsult">Recentste consultatie</span> 
+            <select autocomplete="off" id="previousConsults">
+                <option value="cons{{ activeConsultation.id }}">{{ activeConsultation.dateFormat }}</option>
+                {% for previousConsultation in previousConsultations %}
+                <option value="cons{{ previousConsultation.id}}">{{ previousConsultation.dateFormat }}</option>
+                {% endfor %}
+            </select>
+        </h3>            
+        <ul id="cons{{ activeConsultation.id }}" class="consult shownConsult">
+            <li class="weight">
+                Gewicht:
+                {{ activeConsultation.weight }} kg
+            </li>
+            <li class="bmi">
+                BMI:
+                {{ activeConsultation.bmi }}
+            </li>          
+            <li class="energy">
+                Energie:
+                {{ activeConsultation.kcal }} kcal
+            </li>
+            <li class="carbs">
+                Koolhydraten:
+                {{ activeConsultation.carbohydrates }} g
+            </li>
+            <li class="sugar">
+                Suikers:
+                {{ activeConsultation.sugars }} g
+            </li>
+            <li class="protein">
+                Eiwitten:
+                {{ activeConsultation.proteins }} g
+            </li>
+            <li class="fat">
+                Vetten:
+                {{ activeConsultation.fats }} g
+            </li>
+            <li class="cholesterol">
+                Cholesterol (max):
+                {{ activeConsultation.cholesterol }} g
+            </li>
+            <li class="fibre">
+                Vezels (min):
+                {{ activeConsultation.fibres }} mg
+            </li>
+            <li class="salt">
+                Natrium (min):
+                {{ activeConsultation.sodium }} mg
+            </li>
+            {% if activeConsultation.comments %}
+            <li class="comments blue">
+                {{ activeConsultation.comments }}
+            </li>
+            {% endif %}
+        </ul>
+        {% if previousConsultations %}
+            {% for previousConsultation in previousConsultations %}
+            <ul id="cons{{ previousConsultation.id }}" class="consult hidden">
+                <li class="weight">
+                    Gewicht:
+                    {{ previousConsultation.weight }} kg
+                </li>
+                <li class="bmi">
+                    BMI:
+                    {{ previousConsultation.bmi }}
+                </li>          
+                <li class="energy">
+                    Energie:
+                    {{ previousConsultation.kcal }} kcal
+                </li>
+                <li class="carbs">
+                    Koolhydraten:
+                    {{ previousConsultation.carbohydrates }} g
+                </li>
+                <li class="sugar">
+                    Suikers:
+                    {{ previousConsultation.sugars }} g
+                </li>
+                <li class="protein">
+                    Eiwitten:
+                    {{ previousConsultation.proteins }} g
+                </li>
+                <li class="fat">
+                    Vetten:
+                    {{ previousConsultation.fats }} g
+                </li>
+                <li class="cholesterol">
+                    Cholesterol (max):
+                    {{ previousConsultation.cholesterol }} g
+                </li>
+                <li class="fibre">
+                    Vezels (min):
+                    {{ previousConsultation.fibres }} mg
+                </li>
+                <li class="salt">
+                    Natrium (min):
+                    {{ previousConsultation.sodium }} mg
+                </li>
+                {% if previousConsultation.comments %}
+                <li class="comments">
+                    {{ previousConsultation.comments }}
+                </li>   
+                {% endif %}
+            </ul>
+            {% endfor %}
+        {% endif %}
+        
+        <a class="smallButtonLink" href="{{ app.request.baseUrl }}/dietist/klanten/{{ customer.id }}/consultatie">Nieuwe consultatie toevoegen</a>   
+    </div>   
+    
+    <div class="subfield shown" id="progression">
+        <h2>Progressie</h2>
+        <p>Statistieken, gewicht, gda / inname per dag</p>
+    </div>
+    
+    <div class="subfield shown" id="meals">
+        <h2>Maaltijden</h2>
+        <p>Per datum</p>
+    </div> 
+    
 {% endblock %}

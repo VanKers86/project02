@@ -5,28 +5,37 @@
 {# set the pagetitle in the parent tpl #}
 {% set pageTitle = 'Dietist | Console' %}
 {% set contentId = 'console' %}
-{% set javascript = 'dietician' %}
+{% set javascript = 'dieticianCustomers' %}
 
 {# set variables in the console tpl #}
 {% set customersActive = true %}
 
 {% block subheader %}
-    Klanten
+    <h1>Klanten</h1>
+    <a class="smallButtonLink" href="{{ app.request.baseUrl }}/dietist/klanten/nieuw">Voeg nieuwe klant toe</a>   
 {% endblock %}
 
 {% block consolePageContent %}
 
 <div id="customers">
-    <ul>
+    <div id="filterCustomers">
+        <input type="text" />
+    </div>
+    <ul id="customersList">
         {% if customers %}
             {% for customer in customers %}
-            <li><a href="{{ app.request.baseUrl }}/dietist/klanten/{{ customer.id }}">{{ customer.name }}</a></li>
+            <li>
+                <a href="{{ app.request.baseUrl }}/dietist/klanten/{{ customer.id }}">
+                    <span class="customerName">{{ customer.name }}</span>
+                    <span class="newItems">xxx nieuwe ingaves</span>
+                </a>
+                    
+            </li>
             {% endfor %}
         {% else %}
         <p>Geen klanten</p>
         {% endif %}
     </ul>
-    <a href="{{ app.request.baseUrl }}/dietist/klanten/nieuw">Voeg nieuwe klant toe</a>   
 </div>
 
 {% endblock %}

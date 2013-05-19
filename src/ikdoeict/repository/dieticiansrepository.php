@@ -24,11 +24,19 @@ class DieticiansRepository extends \Knp\Repository {
         }
         
         public function findCustomers($dieticianId) {
-            return $this->db->fetchAll('SELECT c.* FROM customers AS c WHERE c.dietician_id = ?', array($dieticianId));
+            return $this->db->fetchAll('SELECT c.*, DATE_FORMAT(c.date_added,"%d-%m-%Y") AS dateFormat FROM customers AS c WHERE c.dietician_id = ?', array($dieticianId));
         }
         
         public function getDietistCustomer($dieticianId, $customerId) {
-            return $this->db->fetchAssoc('SELECT c.* FROM customers AS c WHERE c.dietician_id = ? AND c.id = ?', array($dieticianId, $customerId));
+            return $this->db->fetchAssoc('SELECT c.*, DATE_FORMAT(c.date_added,"%d-%m-%Y") AS dateFormat FROM customers AS c WHERE c.dietician_id = ? AND c.id = ?', array($dieticianId, $customerId));
+        }
+        
+        public function getActiveConsultation($customerId) {
+            return $this->db->fetchAssoc('SELECT c.*, DATE_FORMAT(c.date,"%d-%m-%Y") AS dateFormat FROM customer_data AS c WHERE c.customer_id = ? ORDER BY c.date DESC limit 0,1', array($customerId));
+        }
+        
+        public function getPreviousConsultations($customerId) {
+            return $this->db->fetchAll('SELECT *, DATE_FORMAT(c.date,"%d-%m-%Y") AS dateFormat FROM customer_data AS c WHERE c.customer_id = ? ORDER BY c.date DESC limit 1,9999', array($customerId));
         }
 
 }

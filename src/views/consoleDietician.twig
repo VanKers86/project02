@@ -16,7 +16,7 @@
     {% block pageContent %}
     <div id="consoleContent" class="clearfix">
         <div id="subheader" class="clearfix">
-            <h1>{% block subheader %}{% endblock %}</h1>
+            {% block subheader %}{% endblock %}
             <a id="logout"  class="blue" href="{{ app.request.baseUrl }}/dietist/logout">Afmelden</a>
         </div>
         {% if breadcrumb is defined %}

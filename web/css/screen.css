@@ -40,7 +40,7 @@ body {
     font-family: "Segoe UI", sans-serif;
     font-weight: 300;
     color: #333;
-    font-size: 13px;
+    font-size: 11px;
     line-height: 1;
     width: 100%;
     font-weight: 100;
@@ -101,7 +101,7 @@ a:hover {
 }
 
 h2 {
-    font-size: 2em;
+    font-size: 1.6em;
     font-weight: 100;
     margin-bottom: 0.8em;
     color: #333;
@@ -282,18 +282,35 @@ header#small ul#menu li a.passiveStats {
     background-image: url('../img/icons/statspassive.png');  
 }
 
-a.buttonLink {
+.buttonLink {
+    float: left;
     display: block;
     color: white;
-    padding: 1.538461538461538em;
+    padding: 1.538461538461538em 0;
     font-size: 2em;
     text-align: center;
     -webkit-box-shadow: 5px 5px 20px 0px #000;
-    box-shadow: 5px 5px 20px 0px #000;     
+    box-shadow: 5px 5px 20px 0px #000;   
 }
 
-a.buttonLink:hover {
+.buttonLink:hover {
     
+}
+
+.smallButtonLink {
+    float: left;
+    display: block;
+    color: white;
+    padding: 0.5em 1em;
+    font-size: 1.23077em;
+    text-align: center;
+    background-color: #71D01C;
+}
+
+.smallButtonLink:hover {
+    background-color: #DDD;
+    color: #333;
+    cursor: pointer;
 }
 
 textarea {
@@ -322,6 +339,10 @@ section#home div.linkLoginDiv {
     width: 90%;
     max-width: 580px;
     margin: 1em 5% 1em 5%;
+}
+
+section#home div.linkLoginDiv a {
+    width: 100%;
 }
 
 form#login {
@@ -450,16 +471,18 @@ form#newCustomer label {
     font-weight: 200;
 }
 
-form#newCustomer h3 {
-    color: #71D01C;
-    font-size: 1.9em;
-    border-bottom: 1px solid #009ACD;
-    line-height: 1.5em;
+form#newCustomer h2 {
+    padding-bottom: 0.5em;
+    padding-top: 0.3em;
+    background-color: #008FC5;
+    color: white;
+    margin-bottom: 0;
+    padding-left: 3%;
+    padding-right: 3%;
     margin-bottom: 0.5em;
-    float: left;
-    width: 100%;
     margin-top: 0.5em;
-    font-weight: normal;
+    float: left;
+    width: 94%;
 }
 
 
@@ -590,9 +613,15 @@ textarea[name=comments] {
 
 div.input {
     float: left;
-    width: 100%;
+    width: 97%;
+    margin-left: 3%;
     margin-bottom: 0.35em;
     padding-bottom: 0.35em;
+}
+
+div.inputBMI {
+    margin-left: 0 !important;
+    width: 100% !important;
 }
 
 div#subheader a#logout {
@@ -630,22 +659,149 @@ div#subheader {
     position: relative;
     float: left;
     width: 100%;
-    min-height: 7.45em;
+    min-height: 6.95em;
+    padding-bottom: 0.5em;
     border-bottom: 1px solid #008fc5;
 }
 
+
+ul#customersList {
+    float: left;
+    width: 100%;
+    margin-top: 1em;
+}
+
+ul#customersList li {
+    float: left;
+    width: 100%;
+}
+
+ul#customersList li a {
+    float: left;
+    width: 90%;
+    padding: 1em 5%;
+    margin-bottom: 0.5em;
+    background-color: #008FC5;
+}
+
+
+ul#customersList li a:hover {
+    background-color: #71D01C;
+}
+
+ul#customersList li a span.customerName {
+    float: left;
+    font-size: 1.5em;
+    width: 100%;
+    color: white;
+    margin-bottom: 0.4em;
+}
+
+ul#customersList li a span.newItems {
+    float: left;
+    width: 100%;
+    color: #222;
+}
+
+div#filterCustomers {
+    float: left;
+    margin-top: 1em;
+    width: 100%;
+    padding-bottom: 1em;
+}
+
+div#filterCustomers input {
+    width: 80%;
+}
+
+div.subfield {
+    float: left;
+    width: 100%;
+    margin-bottom: 0.5em;
+    padding-bottom: 0.5em;
+}
+
+div.subfield h2 {
+    padding-bottom: 0.5em;
+    padding-top: 0.3em;
+    background-color: #008FC5;
+    color: white;
+    margin-bottom: 0;
+    padding-left: 3%;
+    padding-right: 3%;
+}
+div.subfield h2:hover {
+    cursor: pointer;
+}
+
+ul.consult {
+    float: left;
+    padding-bottom: 1em;
+    margin-bottom: 0.5em;
+    width: 97%;
+    margin-left: 3%;
+    font-size: 1.2em;
+    line-height: 1.2em;
+    box-sizing: border-box;   
+    border-top: 1px solid #008FC5;
+    border-bottom: 1px solid #008FC5;
+    background-color: #71d01c;
+    color: white;
+}
+
+ul.consult li {
+    float: left;
+    margin: 0.5em 1%;
+    width: 42%;
+    padding: 0.2em 0 0.2em 6%;
+}
+
+ul.consult li.weight, ul.consult li.bmi, ul.consult li.comments {
+    float: left;
+    width: 100%;
+    padding: 0;
+}
+
+ul.consult li.comments {
+    font-size: 1em;
+    padding: 1em 6%;
+    width: 86%;
+    background-image: url('../img/icons/quote.png');
+    background-position: left top;
+    background-repeat: no-repeat;
+    background-size: 1.8em; 
+}
+
+div#consults h3 {
+    font-size: 1.4em;
+    font-weight: normal;
+    padding: 0.5em 0 0 3%;
+}
+
+div#consults h3 select {
+    font-size: 0.8em;
+    float: right;
+}
+
+div#consults a {
+    float: right;
+}
 
 @media (min-width: 481px) {
     section.center {
         min-width: 34.69230769230769em;
         width: 100%;
     }
+    
+    body {
+        font-size: 12px;
+    }
    
 }
 
 @media (min-width: 750px) {
     body {
-/*        background-size: 400px;*/
+        font-size: 13px;
     }
     
     section.center {
@@ -697,22 +853,6 @@ div#subheader {
         line-height: 3em; 
         color: white;
     }
-    
-/*    header#small ul#menu li a.activeDashboard, header#small ul#menu li a.passiveDashboard:hover {
-        color: #333 !important;
-    }
-
-    header#small ul#menu li a.activeCustomers, header#small ul#menu li a.passiveCustomers:hover {
-        color: #333 !important;
-    }
-    
-    header#small ul#menu li a.activeFood, header#small ul#menu li a.passiveFood:hover {
-        color: #333 !important;
-    }   
-    
-    header#small ul#menu li a.activeFood, header#small ul#menu li a.passiveFood:hover {
-        color: #333 !important;
-    }   */
     
     form#newCustomer div.inputFields, form#newCustomer div.infoFromInput {
         width: 48%;
