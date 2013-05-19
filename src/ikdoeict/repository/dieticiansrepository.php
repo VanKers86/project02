@@ -14,6 +14,7 @@ class DieticiansRepository extends \Knp\Repository {
 	}
         
         public function addCustomer($customerInfo) {
+            $customerInfo['password'] = (string) md5($customerInfo['password']);
             $this->db->insert('customers', $customerInfo);
             return $this->db->lastInsertId();
         }

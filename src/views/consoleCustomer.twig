@@ -6,9 +6,9 @@
     <header id="small" class="clearfix">
         <h1><a href="/">Dieetopvolging</a></h1>
         <ul id="menu">
-            <li><a title="Console" id="dashboard" href="/dietist/console" class="{% if dashboardActive is defined %}activeDashboard{% endif %} passiveDashboard">Dashboard</a></li>
-            <li><a title="Klanten" id="customers" href="/dietist/klanten" class="{% if customersActive is defined %}activeCustomers{% endif %} passiveCustomers">Klanten</a></li>
-            <li><a href="#">Link 3</a></li>
+            <li><a title="Console" id="dashboard" href="/klant/console" class="{% if dashboardActive is defined %}activeDashboard{% endif %} passiveDashboard">Dashboard</a></li>
+            <li><a title="Maaltijden" id="meals" href="/klant/maaltijden" class="{% if foodActive is defined %}activeFood{% endif %} passiveFood">Maaltijden</a></li>            
+            <li><a title="Progressie" id="stats" href="/klant/progressie" class="{% if statsActive is defined %}activeStats{% endif %} passiveStats">Progressie</a></li>     
         </ul>
     </header>
     {% endblock %}
@@ -17,7 +17,7 @@
     <div id="consoleContent" class="clearfix">
         <div id="subheader" class="clearfix">
             <h1>{% block subheader %}{% endblock %}</h1>
-            <a id="logout"  class="blue" href="{{ app.request.baseUrl }}/dietist/logout">Afmelden</a>
+            <a id="logout"  class="blue" href="{{ app.request.baseUrl }}/klant/logout">Afmelden</a>
         </div>
         {% if breadcrumb is defined %}
             <div id="breadcrumb">

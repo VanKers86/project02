@@ -8,14 +8,15 @@
 {% set jsPlugin = 'jquery.numeric' %}
 
 {# set variables in the console tpl #}
-{% set customersActive = 'activeCustomers' %}
+{% set customersActive = true %}
+
 {% block subheader %}
     Nieuwe klant toevoegen
 {% endblock %}
     
 {% set breadcrumb = true %}    
 {% block breadcrumb %}
-    <a href="{{ app.request.baseUrl }}/dietist/klanten">Klanten</a> <span class="current">Nieuwe klant toevoegen</span>
+    <a title="Klanten" href="{{ app.request.baseUrl }}/dietist/klanten">Klanten</a> <span class="current">Nieuwe klant toevoegen</span>
 {% endblock %}
 
 {% block consolePageContent %}
@@ -26,8 +27,8 @@
             <h3>Klant gegevens</h3>
             <div class="input">
                 <label>Geslacht</label>
-                <input type="radio" id="genderMale" name="gender" value="M" checked="checked">Man<br />
-                <input type="radio" id="genderFemale" name="gender" value="F">Vrouw<br />
+                <div class="radio"><input type="radio" id="genderMale" name="gender" value="M" checked="checked">Man</div>
+                <div class="radio"><input type="radio" id="genderFemale" name="gender" value="F">Vrouw</div>
             </div>
             <div class="input">
                 <label>Naam</label>
@@ -55,6 +56,9 @@
                 </select>
             </div>
             <div class="input">
+                <label id="age">Leeftijd <span id="ageSpan">&nbsp;</span></label>
+            </div>            
+            <div class="input">
                 <label>Email</label>
                 <input type="email" name="email" required>
             </div>
@@ -68,100 +72,98 @@
             </div>
             <div class="input">
                 <label>PAL <span class="infoInput">(Physical Activity Level)</span></label>
-                <input id="PALInput" type="range" name="pal" max="3" min="1" step="1" value="2"><span id="PAL">&nbsp;</span>
+                <input id="PALInput" type="range" name="pal" max="3" min="1" step="1" value="2"><br />
+                <span id="PAL">&nbsp;</span>
             </div>
         </div>
         <div class="infoFromInput">
-            <h3>Dieetgegevens</h3>
+            <h3>Body Mass Index</h3>
             <div class="input">
-                <label id="age">Leeftijd <span id="ageSpan">&nbsp;</span></label>
-            </div>
-            <div class="input">
-                <label id="BMI">BMI <span class="infoInput">(Body Mass Index)</span> <span id="bmiSpan">&nbsp;</span></label>
+                <label id="BMI"><span id="bmiSpan">&nbsp;</span></label>
                 <ul id="bmiList">
-                    <li class="bmi1" title="Ondergewicht">&lt; 18.5</li>
-                    <li class="bmi2" title="Gezond gewicht">18.6 &ndash; 25.0</li>
-                    <li class="bmi3" title="Overgewicht">25.1 &ndash; 30.0</li>
-                    <li class="bmi4" title="Obesitas">30.1 &ndash; 35.0</li>
-                    <li class="bmi5" title="Extreme obesitas">&gt; 35.1</li>
+                    <li class="bmi1 tooltip" title="Ondergewicht">&lt; 18.5</li>
+                    <li class="bmi2 tooltip" title="Gezond gewicht">18.6 &ndash; 25.0</li>
+                    <li class="bmi3 tooltip" title="Overgewicht">25.1 &ndash; 30.0</li>
+                    <li class="bmi4 tooltip" title="Obesitas">30.1 &ndash; 35.0</li>
+                    <li class="bmi5 tooltip" title="Extreme obesitas">&gt; 35.1</li>
                 </ul>
                 <input type="hidden" name="bmi" value="">
             </div>
-            <h4>Aanbevolen dagelijkse hoeveelheid</h4>
-            <div class="input">
-                <label id="kcal">Energie</label>
+            <h3>Aanbevolen dagelijkse hoeveelheden</h3>
+            <div class="input auto">
+                <label class="energy" id="kcal">Energie</label>
                 <p id="kcalSpan">
                     <span class="value">0</span>
                     <input class="number" type="hidden" name="kcal" value="">
-                    kcal 
-                    <span class="editData">Wijzig</span> <span class="editOk">Ok</span>
+                    <span>kcal</span>
+                    <span title="Wijzig" class="editData tooltip">Wijzig</span> <span title="Bewaar" class="editOk tooltip">Ok</span>
                 </p>
             </div>
-            <div class="input">
-                <label id="carbs">Koolhydraten</label>
+            <div class="input auto">
+                <label class="carbs" id="carbs">Koolhydraten</label>
                 <p id="carbsSpan">
                     <span class="value">0</span>
                     <input class="number" type="hidden" name="carbs" value="0">
-                    g
-                    <span class="editData">Wijzig</span> <span class="editOk">Ok</span>
+                    <span>g</span>
+                    <span title="Wijzig" class="editData tooltip">Wijzig</span> <span title="Bewaar" class="editOk tooltip">Ok</span>
                 </p>
             </div>            
-            <div class="input">
-                <label id="sugars">Suikers</label>
+            <div class="input auto">
+                <label class="sugar" id="sugars">Suikers</label>
                 <p id="sugarsSpan">
                     <span class="value">0</span>
                     <input class="number" type="hidden" name="sugars" value="0">
-                    g
-                    <span class="editData">Wijzig</span> <span class="editOk">Ok</span>
+                    <span>g</span>
+                    <span title="Wijzig" class="editData tooltip">Wijzig</span> <span title="Bewaar" class="editOk tooltip">Ok</span>
                 </p>
             </div>
-            <div class="input">
-                <label id="proteins">Eiwitten</label>
+            <div class="input auto">
+                <label class="protein" id="proteins">Eiwitten</label>
                 <p id="proteinsSpan">
                     <span class="value">0</span>
                     <input class="number" type="hidden" name="proteins" value="0">
-                    g
-                    <span class="editData">Wijzig</span> <span class="editOk">Ok</span>
+                    <span>g</span>
+                    <span title="Wijzig" class="editData tooltip">Wijzig</span> <span title="Bewaar" class="editOk tooltip">Ok</span>
                 </p>
             </div>
-            <div class="input">
-                <label id="fats">Vetten</label>
+            <div class="input auto">
+                <label class="fat" id="fats">Vetten</label>
                 <p id="fatsSpan">
                     <span class="value">0</span>
                     <input class="number" type="hidden" name="fats" value="0">
-                    g
-                    <span class="editData">Wijzig</span> <span class="editOk">Ok</span>
+                    <span>g</span>
+                    <span title="Wijzig" class="editData tooltip">Wijzig</span> <span title="Bewaar" class="editOk tooltip">Ok</span>
                 </p>
             </div>
-            <div class="input">
-                <label id="cholesterol">Cholesterol</label>
+            <div class="input auto">
+                <label class="cholesterol" id="cholesterol">Cholesterol (max)</label>
                 <p id="cholesterolSpan">
-                    max <span class="value">300</span>
+                    <span class="value">300</span>
                     <input class="number" type="hidden" name="cholesterol" value="300">
-                    mg
-                    <span class="editData">Wijzig</span> <span class="editOk">Ok</span>
+                    <span>mg</span>
+                    <span title="Wijzig" class="editData tooltip">Wijzig</span> <span title="Bewaar" class="editOk tooltip">Ok</span>
                 </p>
             </div>
-            <div class="input">
-                <label id="fibres">Vezels</label>
+            <div class="input auto">
+                <label class="fibre" id="fibres">Vezels (min)</label>
                 <p id="fibresSpan">
-                    min <span class="value">30</span>
+                    <span class="value">30</span>
                     <input class="number" type="hidden" name="fibres" value="30">
-                    g
-                    <span class="editData">Wijzig</span> <span class="editOk">Ok</span>
+                    <span>g</span>
+                    <span title="Wijzig" class="editData tooltip">Wijzig</span> <span title="Bewaar" class="editOk tooltip">Ok</span>
                 </p>
             </div>
-            <div class="input">
-                <label id="sodium">Natrium</label>
+            <div class="input auto">
+                <label class="salt" id="sodium">Natrium (min)</label>
                 <p id="sodiumSpan">
-                    min <span class="value">600</span>
+                    <span class="value">600</span>
                     <input class="number" type="hidden" name="sodium" value="600">
-                    mg
-                    <span class="editData">Wijzig</span> <span class="editOk">Ok</span>
+                    <span>mg</span>
+                    <span title="Wijzig" class="editData tooltip">Wijzig</span> <span title="Bewaar" class="editOk tooltip">Ok</span>
                 </p>
             </div>
             <div class="input">
-                <label id="comments">Opmerkingen / Commentaar</label>
+                <label id="comments">Opmerkingen</label>
                 <textarea name="comments"></textarea>
             </div> 
             

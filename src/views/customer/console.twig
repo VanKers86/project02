@@ -1,17 +1,17 @@
 {# extend the parent tpl #}
-{% extends 'consoleDietician.twig' %}
+{% extends 'consoleCustomer.twig' %}
 
 
 {# set the pagetitle in the parent tpl #}
-{% set pageTitle = 'Dietist | Console' %}
+{% set pageTitle = 'Klant | Console' %}
 {% set contentId = 'console' %}
-{% set javascript = 'dietician' %}
+{% set javascript = 'customer' %}
 
 {# set variables in the console tpl #}
 {% set dashboardActive = true %}
 
 {% block subheader %}
-    Welkom {{ dietician.name }}
+    Welkom {{ customer.name }}
 {% endblock %}
 
 
@@ -19,7 +19,7 @@
 
 <div id="calender">
     <h4>Agenda</h4>
-    <p>Klant xxx heeft een nieuwe afspraak verzoek</p>
+    <p>Dietist xxx heeft een nieuwe afspraak verzoek</p>
     <p>Geen nieuwe afspraak verzoeken</p>
 </div>
 {% endblock %}

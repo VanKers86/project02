@@ -118,12 +118,13 @@ class DieticianController implements ControllerProviderInterface {
             }
 
             if ($request->isMethod('POST')) {
-                $customerInfo['name'] = $_POST['name'];
-                $customerInfo['email'] = $_POST['email'];
+                $customerInfo['name'] = htmlentities($_POST['name']);
+                $customerInfo['email'] = htmlentities($_POST['email']);
                 $customerInfo['dietician_id'] = $dietician['id'];
                 $customerInfo['gender'] = $_POST['gender'];
                 $customerInfo['birthdate'] = $_POST['year'] . '-' . $_POST['month'] . '-' . $_POST['day'];
                 $customerInfo['password'] = $this->RandomPass();
+                $customerInfo['date_added'] = date("Y-m-d H:i:s");
                 $customerId = $app['dietician']->addCustomer($customerInfo);
                 $customerData['customer_id'] = $customerId;
                 $customerData['weight'] = $_POST['weight'];
@@ -149,7 +150,7 @@ class DieticianController implements ControllerProviderInterface {
                 $customerData['cholesterol'] = $_POST['cholesterol'];
                 $customerData['fibres'] = $_POST['fibres'];
                 $customerData['sodium'] = $_POST['sodium'];
-                $customerData['comments'] = $_POST['comments'];
+                $customerData['comments'] = htmlentities($_POST['comments']);
                 $customerData['bmi'] = $_POST['bmi'];
                 $customerData['date'] = date("Y-m-d H:i:s");
                 $app['dietician']->addCustomerData($customerData);
@@ -162,7 +163,7 @@ class DieticianController implements ControllerProviderInterface {
 
                 $app['mailer']->send($message);
                 
-                return $app->redirect('/dietist/console');
+                return $app->redirect('/dietist/klanten');
             }
             
             return $app['twig']->render('dietician/addCustomer.twig', array('dietician' => $dietician, 'days' => $days, 'months' => $months, 'years' => $years));
@@ -191,7 +192,7 @@ class DieticianController implements ControllerProviderInterface {
             $length = $length < 6 ? 6 : $length;
 
             for ($a = 0; $a < $length; $a++) {
-                @$pass .= chr(rand(33, 126));
+                @$pass .= chr(rand(65, 90));
             }
 
             return $pass;

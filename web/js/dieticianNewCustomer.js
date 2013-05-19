@@ -8,23 +8,8 @@ $(function($) {
     $("form :input").on("keypress", function(e) {
         return e.keyCode !== 13;
     });
-
-//    $(document).tooltip({
-//        position: {
-//            my: "center bottom+20",
-//            at: "center top",
-//            using: function( position, feedback ) {
-//                $( this ).css( position );
-//                $( "<div>" )
-//                .addClass( "arrow" )
-//                .addClass( feedback.vertical )
-//                .addClass( feedback.horizontal )
-//                .appendTo( this );
-//            }
-//        }
-//    });
     
-    $('input[name="length"]').numeric();
+    $('input[name="height"]').numeric();
     $('input[name="weight"]').numeric();
     $('input.number').numeric();
     $('input.spinner').spinner({

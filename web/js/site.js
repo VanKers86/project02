@@ -1,4 +1,11 @@
 $(function($) {
+    $('.tooltip').tooltip({
+        position: {
+            my: "center bottom",
+            at: "center top"
+        }
+    });
+    
     var paswVal = 'Paswoord';
     var emailVal = 'you@yourdomain.com';
     $('input#form_Paswoord').val(paswVal).addClass('watermark');
@@ -32,4 +39,33 @@ $(function($) {
             $(this).val('').removeClass('watermark');
         }
     });     
+    
+    
+    if ($(window).width() > 750 && $('header#small').height() < $('section#console').height()) {
+        $('header#small').height($('section#console').height());
+    }
+    
+    $(window).resize(function() {
+        if ($(window).width() > 750 && $('header#small').height() < $('section#console').height()) {
+            $('header#small').height($('section#console').height());
+        }
+        else if ($(window).width() < 750) {
+            $('header#small').height('auto');
+        }
+    });
+//    if ($(window).width() > 750 && $(window).resize()) {
+//        var headerLeft = $('header#small');
+//        var consoleRight = $('section#console');
+//
+//        var hh = headerLeft.height();
+//        var hs = consoleRight.height();
+//
+//        if (hh > hs) {
+//            consoleRight.height(hh);
+//        }
+//        else {
+//            headerLeft.height(hs);
+//        }
+//    }
+
 });

@@ -22,37 +22,77 @@ class CustomerController implements ControllerProviderInterface {
 		$controllers->match('/login', array($this, 'login'));
                 $controllers->match('/console', array($this, 'console'));
                 $controllers->match('/logout', array($this, 'logout'));
+                $controllers->match('/maaltijden', array($this, 'meals'));
+                $controllers->match('/progressie', array($this, 'progression'));
 
 		return $controllers;
 
 	}
 
         public function login(Application $app, Request $request) {
-            $data = array(
-                'Email' => '',
-                'Paswoord' => '',
-            );
+            if ($app['session']->get('customer')) {
+                return $app->redirect('console');
+            }            
+            $error;
 
-
-            $form = $app['form.factory']->createBuilder('form', $data)
-                ->add('Email', 'email')
-                ->add('Paswoord', 'password')
+            $form = $app['form.factory']->createBuilder('form')
+                ->add('Email', 'text')
+                ->add('Paswoord', 'text')
                 ->getForm();
 
             if ($request->isMethod('POST')) {
                 $form->bind($request);
 
                 if ($form->isValid()) {
-                    $form = $form->getData();
-                    
-                    // do something with the data
-  
-                    //return $app->redirect('blog');
+                    $formData = $form->getData();
+                    $customer = $app['customer']->findCustomer($formData['Email'], $formData['Paswoord']);
+                    if ($customer) {
+                        $app['session']->set('customer', $customer);
+                        return $app->redirect('console');
+                    }
+                    else {
+                        $error = "Foutieve combinatie e-mailadres/wachtwoord";
+                        return $app['twig']->render('customer/login.twig', array('form' => $form->createView(), 'error' => $error));
+                    }
                 }
             }
 
             return $app['twig']->render('customer/login.twig', array('form' => $form->createView()));
         }
 
+        public function console(Application $app, Request $request) {
+            if (!$app['session']->get('customer')) {
+                return $app->redirect('/');
+            }
 
+            $customer = $app['session']->get('customer');
+            
+            return $app['twig']->render('customer/console.twig', array('customer' => $customer));
+        }
+        
+        public function logout(Application $app, Request $request) {
+            $app['session']->remove('customer');
+            return $app->redirect('/');
+        }
+        
+        public function meals(Application $app, Request $request) {
+            if (!$app['session']->get('customer')) {
+                return $app->redirect('/');
+            }
+
+            $customer = $app['session']->get('customer');
+            
+            return $app['twig']->render('customer/meals.twig', array('customer' => $customer));
+        }
+        
+        public function progression(Application $app, Request $request) {
+            if (!$app['session']->get('customer')) {
+                return $app->redirect('/');
+            }
+
+            $customer = $app['session']->get('customer');
+            
+            return $app['twig']->render('customer/progression.twig', array('customer' => $customer));
+        }        
 }
+        

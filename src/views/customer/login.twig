@@ -17,10 +17,13 @@
 {% block pageContent %}
 <section class="center clearfix">
         <form id="login" class="blue clearfix" action="#" method="post">
-            <h2>Aanmelden als klant</h2>
-            
+            <h2>Aanmelden als klant</h2>         
             {{ form_widget(form) }}
-
+            {% if error is defined %}
+            <div class="error clearfix">
+                {{error}}
+            </div>
+            {% endif %} 
             <input type="submit" name="submit" value="Aanmelden"/>
         </form>
 </section>

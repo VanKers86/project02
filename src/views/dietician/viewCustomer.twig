@@ -8,14 +8,15 @@
 {% set jsPlugin = 'jquery.numeric' %}
 
 {# set variables in the console tpl #}
-{% set customersActive = 'activeCustomers' %}
+{% set customersActive = true %}
+
 {% block subheader %}
     {{ customer.name }}
 {% endblock %}
 
 {% set breadcrumb = true %}    
 {% block breadcrumb %}
-    <a href="{{ app.request.baseUrl }}/dietist/klanten">Klanten</a> <span class="current">{{ customer.name }}</span>
+    <a title="Klanten" href="{{ app.request.baseUrl }}/dietist/klanten">Klanten</a> <span class="current">{{ customer.name }}</span>
 {% endblock %}
 
 {% block consolePageContent %}

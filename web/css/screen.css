@@ -29,6 +29,9 @@
 * General Page Structure
 */
 
+html {  
+}
+
 html, body {
         height: 100%;
 }
@@ -50,12 +53,12 @@ body {
 
 }
 
-input {
+input, textarea, select {
     font-family: "Segoe UI";
     font-size: 1.230769230769231em;
     line-height: 1.538461538461538em;
-    margin-bottom: 0.7em;
 }
+
 
 input[type=submit] {
     background-color: #71d01c;
@@ -116,10 +119,60 @@ form#login label {
     display: none;
 }
 
-h3 {
-    font-size: 3em;
-    font-weight: 100;
-    color: #333;
+.energy {
+    display: block;
+    background-image: url('../img/icons/energy.png');
+    background-size: 20px 20px;
+    background-repeat: no-repeat;
+}
+
+.carbs {
+    display: block;
+    background-image: url('../img/icons/carbs.png');
+    background-size: 20px 20px;
+    background-repeat: no-repeat;
+}
+
+.sugar {
+    display: block;
+    background-image: url('../img/icons/sugar.png');
+    background-size: 20px 20px;
+    background-repeat: no-repeat; 
+}
+
+.protein {
+    display: block;
+    background-image: url('../img/icons/protein.png');
+    background-size: 20px;
+    background-repeat: no-repeat; 
+}
+
+.fat {
+    display: block;
+    background-image: url('../img/icons/fat.png');
+    background-size: 20px;
+    background-repeat: no-repeat; 
+}
+
+.cholesterol {
+    display: block;
+    background-image: url('../img/icons/cholesterol.png');
+    background-size: 19px 19px;
+    background-repeat: no-repeat; 
+}
+
+.fibre {
+    display: block;
+    background-image: url('../img/icons/fibres.png');
+    background-size: 20px 20px;
+    background-repeat: no-repeat; 
+}
+
+.salt {
+    display: block;
+    background-image: url('../img/icons/salt.png');
+    background-size: 20px 20px;
+    background-repeat: no-repeat; 
 }
 
 header#large {
@@ -134,7 +187,6 @@ header#large {
 header#small {
     background-color: #71d01c;
     color: #000;
-    height: 11.53846153846154em;
     border-bottom: 3px solid #64b919;
     width: 100%;
 }
@@ -184,17 +236,19 @@ header#small ul#menu li a {
     margin-top: 0.3846153846153846em;
     height: 4.230769230769231em;    
     text-indent: -9999px;
-    width: 33.33333333333%;
-    margin-left: 33.33333333333%;
-    margin-right: 33.3333333333333%;
+    width: 50%;
+    margin-left: 25%;
+    margin-right: 25%;
     background-size: 55px;
     background-repeat: no-repeat;
     background-position: bottom center;   
     margin-bottom: 0.3846153846153846em;
+    background-size: 45px 45px;    
 }
 
 header#small ul#menu li a.activeDashboard, header#small ul#menu li a.passiveDashboard:hover {
     background-image: url('../img/icons/homeactive.png') !important;
+    color: #333 !important;    
 }
 
 header#small ul#menu li a.passiveDashboard {
@@ -203,10 +257,29 @@ header#small ul#menu li a.passiveDashboard {
 
 header#small ul#menu li a.activeCustomers, header#small ul#menu li a.passiveCustomers:hover {
     background-image: url('../img/icons/customersactive.png') !important;
+    color: #333 !important;
 }
 
 header#small ul#menu li a.passiveCustomers {
     background-image: url('../img/icons/customerspassive.png');
+}
+
+header#small ul#menu li a.activeFood, header#small ul#menu li a.passiveFood:hover {
+    background-image: url('../img/icons/foodactive.png') !important;
+    color: #333 !important;    
+}
+
+header#small ul#menu li a.passiveFood {    
+    background-image: url('../img/icons/foodpassive.png');  
+}
+
+header#small ul#menu li a.activeStats, header#small ul#menu li a.passiveStats:hover {
+    background-image: url('../img/icons/statsactive.png') !important;
+    color: #333 !important;  
+}
+
+header#small ul#menu li a.passiveStats {    
+    background-image: url('../img/icons/statspassive.png');  
 }
 
 a.buttonLink {
@@ -231,6 +304,12 @@ section.center {
 /*    min-width: 34.61538461538462em;*/
     width: 100%;
     margin: 0 auto;
+}
+
+section#consoleSection {
+    -webkit-box-shadow: 0px 18px 24px rgba(0, 0, 0, 0.76);
+    -moz-box-shadow:    0px 18px 24px rgba(0, 0, 0, 0.76);
+    box-shadow:         0px 18px 24px rgba(0, 0, 0, 0.76); 
 }    
 
 section#home {
@@ -246,8 +325,10 @@ section#home div.linkLoginDiv {
 }
 
 form#login {
-    width: 90%;
-    padding: 1em 5% 1em 5%;
+    width: 80%;
+    margin-left: 5%;
+    margin-right: 5%;
+    padding: 1em 5% 1.5em 5%;
     max-width: 450px;
     -webkit-box-shadow: 5px 5px 20px 0px #000;
     box-shadow: 5px 5px 20px 0px #000;       
@@ -263,7 +344,9 @@ form#login div#form label {
 
 form#login div#form input {
     float: left;
-    width: 350px;
+    max-width: 350px;
+    width: 80%;
+    margin-bottom: 0.7em;
 }
 
 form#login div#form {
@@ -304,8 +387,9 @@ div#breadcrumb {
     float: left;
     width: 100%;
     padding: 0.5em 0;
-    border-bottom: 1px solid #64B919;
+    border-bottom: 1px solid #008fc5;
     font-size: 0.8461538461538462em;
+    margin-bottom: 0.5em;
 }
 
 div#breadrcrumb a {
@@ -323,40 +407,145 @@ div#breadcrumb a:after {
 }
 
 section#console {
-    padding: 0.5em 1% 0 1%;
-    width: 98%;
-    height: 100%;   
-    background-color: rgba(255, 255, 255, 0.85);
+    padding: 0.5em 1% 1em 1%;
+    width: 98%; 
     position: relative;
 }
 
-form#newCustomer div.inputFields {
+form#newCustomer {
     float: left;
-    width: 50%;
 }
 
-form#newCustomer div.infoFromInput {
+form#newCustomer div.inputFields, form#newCustomer div.infoFromInput {
     float: left;
-    width: 50%;
+    width: 98%;
+    padding: 0 0 0.5em 0;
+    margin: 0 2% 0 0;
+}
+
+form#newCustomer div.inputFields div.input {
+    margin-bottom: 0.8em;
 }
 
 form#newCustomer div.inputFields div.input label {
     float: left;
     width: 100%;
+    margin-bottom: 0.3em;
 }
 
 form#newCustomer div.submitField {
     float: left;
     width: 100%;
+    text-align: right;
+    padding-top: 1em;
+    border-top: 1px solid #009ACD;
 }
 
-form#newCustomer div.infoFromInput div.input label {
+form#newCustomer label {
     float: left;
     width: 100%;
+    color: #333;
+    font-size: 1.2em;
+    margin-bottom: 0.5em;
+    font-weight: 200;
+}
+
+form#newCustomer h3 {
+    color: #71D01C;
+    font-size: 1.9em;
+    border-bottom: 1px solid #009ACD;
+    line-height: 1.5em;
+    margin-bottom: 0.5em;
+    float: left;
+    width: 100%;
+    margin-top: 0.5em;
+    font-weight: normal;
+}
+
+
+div.radio {
+    margin-right: 1em;
+    margin-bottom: 0.5em;
+}
+
+div.radio input {
+    margin: 0em 0.5em 0em 0;
+}
+
+form#newCustomer div.infoFromInput div.auto {
+    vertical-align: middle;
+    line-height: 1.5em;
+}
+
+form#newCustomer div.infoFromInput div.auto label {
+    float: left;
+    width: 38%;
+    padding-left: 7%;
+}
+
+form#newCustomer div.infoFromInput div.auto p {
+    float: left;
+    width: 55%;
+    font-size: 1.2em;
+}
+
+span#PAL {
+    font-size: 1.2em;
+}
+
+p span {
+    float: left;
+    margin-right: 3px;
+}
+div.auto p input {
+    float: left;
+}
+
+form#newCustomer div.infoFromInput div.auto input {
+    width: 50%;
+    font-size: 0.9em;
+    float: left;
+}
+
+span.editData {
+    float: right;
+    display: block;
+    text-indent: -9999px;
+    width: 22px;
+    background-image: url('../img/icons/editblue.png');
+    background-size: 20px;
+    background-repeat: no-repeat;
+}
+
+span.editData:hover {
+    background-image: url('../img/icons/edit.png');
+    cursor: pointer;
+}
+
+span.editOk {
+    float: right;
+    display: block;
+    text-indent: -9999px;
+    width: 22px;
+    background-image: url('../img/icons/savegreen.png');
+    background-size: 21px;
+    background-repeat: no-repeat;
+    height: 22px;
+}
+
+span.editOk:hover {
+    background-image: url('../img/icons/save.png');
+    cursor: pointer;    
+}
+
+label#BMI {
+    margin-bottom: 0 !important;
 }
 
 #bmiSpan {
     display: block;
+    padding: 0.5em;
+    color: white;
 }
 
 .bmi1 {
@@ -382,6 +571,7 @@ form#newCustomer div.infoFromInput div.input label {
 ul#bmiList {
     float: left;
     width: 100%;
+    color: #222;
 }
 
 ul#bmiList li {
@@ -389,60 +579,20 @@ ul#bmiList li {
     width: 20%;
     text-align: center;
     font-size: 12px;
-    color: #333;
     height: 30px;
     line-height: 30px;
 }
 
-
-.ui-tooltip, .arrow:after {
-    background: black;
-    border: 2px solid white;
-}
-.ui-tooltip {
-    padding: 10px 20px;
-    color: white;
-    font: bold 8px "Helvetica Neue", Sans-Serif;
-    /*box-shadow: 0 0 7px black;*/
-}
-.arrow {
-    width: 70px;
-    height: 16px;
-    overflow: hidden;
-    position: absolute;
-    left: 50%;
-    margin-left: -35px;
-    bottom: -16px;
-}
-.arrow.top {
-    top: -16px;
-    bottom: auto;
-}
-.arrow.left {
-    left: 20%;
-}
-.arrow:after {
-    content: "";
-    position: absolute;
-    left: 20px;
-    top: -20px;
-    width: 25px;
-    height: 25px;
-    box-shadow: 6px 5px 9px -9px black;
-    -webkit-transform: rotate(45deg);
-    -moz-transform: rotate(45deg);
-    -ms-transform: rotate(45deg);
-    -o-transform: rotate(45deg);
-    tranform: rotate(45deg);
-}
-.arrow.top:after {
-    bottom: -20px;
-    top: auto;
+textarea[name=comments] {
+    width: 90%;
+    height: 5em;
 }
 
 div.input {
     float: left;
     width: 100%;
+    margin-bottom: 0.35em;
+    padding-bottom: 0.35em;
 }
 
 div#subheader a#logout {
@@ -467,9 +617,12 @@ div#subheader a#logout:hover {
     color: #333;
 }
 
-div#subheader h3 {
+div#subheader h1 {
     width: 75%;
     margin-bottom: 0.2em;
+    font-size: 3em;
+    font-weight: 100;
+    color: #333;    
 }
 
 div#subheader {
@@ -478,7 +631,7 @@ div#subheader {
     float: left;
     width: 100%;
     min-height: 7.45em;
-    border-bottom: 1px solid #64B919;
+    border-bottom: 1px solid #008fc5;
 }
 
 
@@ -496,25 +649,28 @@ div#subheader {
     }
     
     section.center {
-        width: 57.69230769230769em;
-        height: 100%;
-    }
-    
-    div#siteWrapper {
-        height: 100%;
+        width: 57.69230769230769em; 
     }
     
     header#small {
-        padding: 0.5em 0 0 0;
-        width: 33.333333333%;
+        padding: 0.5em 0 1em 0;
+/*        width: 33.333333333%;*/
+        width: 20%;
         float: left;
-        height: 100%;
         margin-bottom: 0;
         border-bottom: none;
     }
     
+    header#small h1 a {
+        width: 90%;
+        max-width: 180px;
+        background-size: 100%;
+    }
+    
     section#console {
-        width: 64.666666666%;
+/*        width: 64.666666666%;*/
+        width: 78%;
+        
     }
    
     header#small ul#menu {
@@ -531,25 +687,36 @@ div#subheader {
     }
 
     header#small ul#menu li a {
-        text-indent: 0; 
         width: 54%;
         padding-left: 26%;
         margin-left: 10%;
         margin-right: 10%;
-        background-position: left;
+        background-position: center;
         font-size: 1.538461538461538em;
         height: 2.75em;
         line-height: 3em; 
         color: white;
     }
     
-    header#small ul#menu li a.activeDashboard, header#small ul#menu li a.passiveDashboard:hover {
+/*    header#small ul#menu li a.activeDashboard, header#small ul#menu li a.passiveDashboard:hover {
         color: #333 !important;
     }
 
     header#small ul#menu li a.activeCustomers, header#small ul#menu li a.passiveCustomers:hover {
         color: #333 !important;
     }
+    
+    header#small ul#menu li a.activeFood, header#small ul#menu li a.passiveFood:hover {
+        color: #333 !important;
+    }   
+    
+    header#small ul#menu li a.activeFood, header#small ul#menu li a.passiveFood:hover {
+        color: #333 !important;
+    }   */
+    
+    form#newCustomer div.inputFields, form#newCustomer div.infoFromInput {
+        width: 48%;
+    }    
 
 }
 
@@ -559,11 +726,16 @@ div#subheader {
     } 
     
     header#small {
-        width: 24.4140625%;
+        width: 22.4140625%;
     }
     
     section#console {
-        width: 73.5859375%;
+        width: 75.5859375%;
+    }
+    
+    header#small ul#menu li a {
+        text-indent: 0;
+        background-position: left;        
     }
     
 }
