@@ -164,16 +164,24 @@ class DieticianController implements ControllerProviderInterface {
 
                 $app['mailer']->send($message);
                 
-                return $app->redirect('/dietist/klanten');
+                return $app->redirect('/dietist/klanten/' . $customerId);
             }
             
             return $app['twig']->render('dietician/addCustomer.twig', array('dietician' => $dietician, 'days' => $days, 'months' => $months, 'years' => $years));
         }
         
-        public function customerDetail(Application $app, $customerId) {
+        public function customerDetail(Application $app, $customerId, Request $request) {
             if (!$app['session']->get('dietician')) {
                 return $app->redirect('/');
             }
+            
+            if ($request->isMethod('POST')) {
+                if ($_POST['delete'] === "deleteOk") {
+                    $app['dietician']->deleteCustomer($customerId);
+                    return $app->redirect('/dietist/klanten');
+                }
+            }
+            
             $dietician = $app['session']->get('dietician');
             $customer = $app['dietician']->getDietistCustomer($dietician['id'], $customerId);
             if (!$customer) {

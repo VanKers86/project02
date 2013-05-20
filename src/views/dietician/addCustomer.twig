@@ -26,8 +26,8 @@
             <h2>Klant gegevens</h2>
             <div class="input">
                 <label>Geslacht</label>
-                <div class="radio"><input type="radio" id="genderMale" name="gender" value="M" checked="checked">Man</div>
-                <div class="radio"><input type="radio" id="genderFemale" name="gender" value="F">Vrouw</div>
+                <div class="radio"><input type="radio" id="genderMale" name="gender" value="M" checked="checked"><span class="male">Man</span></div>
+                <div class="radio"><input type="radio" id="genderFemale" name="gender" value="F"><span class="female">Vrouw</span></div>
             </div>
             <div class="input">
                 <label>Naam</label>
@@ -62,15 +62,15 @@
                 <input type="email" name="email" required>
             </div>
             <div class="input">
-                <label>Lengte <span class="infoInput">(in cm)</span></label>
+                <label class="height">Lengte <span class="infoInput">(in cm)</span></label>
                 <input type="number" class="spinner" id="spinnerHeight" name="height" value="160" required>
             </div>
             <div class="input">
-                <label>Gewicht <span class="infoInput">(in kg)</span></label>
+                <label class="weight">Gewicht <span class="infoInput">(in kg)</span></label>
                 <input type="number" class="spinner" id="spinnerWeight" name="weight" value="60" required>
             </div>
             <div class="input">
-                <label>PAL <span class="infoInput">(Physical Activity Level)</span></label>
+                <label class="pal">PAL <span class="infoInput">(Physical Activity Level)</span></label>
                 <input id="PALInput" type="range" name="pal" max="3" min="1" step="1" value="2"><br />
                 <span id="PAL">&nbsp;</span>
             </div>

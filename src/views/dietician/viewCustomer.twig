@@ -12,7 +12,17 @@
 
 {% block subheader %}
     <h1>{{ customer.name }}</h1>
-    <p>Toegevoegd op {{ customer.dateFormat }}</p>
+    <p class="{% if customer.gender == "M" %}male{% elseif customer.gender == "F" %}female{% endif %}">&nbsp;</p>
+    <p><span class="age">Leeftijd: {{ customer.age }}</span><span class="birthdate">({{ customer.birthdateFormat }})</span></p>
+    <p class="addedDate">Toegevoegd op {{ customer.dateFormat }}</p>
+    <div id="deleteCustomer" class="clearfix">
+        <a href="#" class="smallButtonLink">Deze klant verwijderen</a>
+        <form id="deleteConfirmation" method="POST" class="clearfix">
+            <input type="hidden" name="delete" value="deleteOk">
+            <input type="submit" class="smallButtonLink" id="deleteConfirm" value="Verwijder">
+            <input type="submit" class="smallButtonLink" id="deleteAnnulation" value="Annuleer">
+        </form>
+    </div>
 {% endblock %}
 
 {% set breadcrumb = true %}    
@@ -38,10 +48,18 @@
                 Gewicht:
                 {{ activeConsultation.weight }} kg
             </li>
+            <li class="height">
+                Lengte (in cm):
+                {{ activeConsultation.height }} cm
+            </li>             
             <li class="bmi">
                 BMI:
                 {{ activeConsultation.bmi }}
-            </li>          
+            </li>              
+            <li class="pal">
+                PAL:
+                {{ activeConsultation.PAL }}
+            </li>         
             <li class="energy">
                 Energie:
                 {{ activeConsultation.kcal }} kcal
@@ -75,7 +93,7 @@
                 {{ activeConsultation.sodium }} mg
             </li>
             {% if activeConsultation.comments %}
-            <li class="comments blue">
+            <li class="comments">
                 {{ activeConsultation.comments }}
             </li>
             {% endif %}
@@ -87,10 +105,18 @@
                     Gewicht:
                     {{ previousConsultation.weight }} kg
                 </li>
+                <li class="height">
+                    Lengte (in cm):
+                    {{ previousConsultation.height }} cm
+                </li>             
                 <li class="bmi">
                     BMI:
                     {{ previousConsultation.bmi }}
-                </li>          
+                </li>              
+                <li class="pal">
+                    PAL:
+                    {{ previousConsultation.PAL }}
+                </li>            
                 <li class="energy">
                     Energie:
                     {{ previousConsultation.kcal }} kcal

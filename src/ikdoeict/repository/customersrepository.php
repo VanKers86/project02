@@ -10,7 +10,7 @@ class CustomersRepository extends \Knp\Repository {
         
         public function findCustomer($email, $password) {
             $password = (string) md5($password);
-            return $this->db->fetchAssoc('SELECT d.* FROM customers AS d WHERE d.email = ? AND d.password = ?', array($email, $password));
+            return $this->db->fetchAssoc('SELECT d.* FROM customers AS d WHERE d.email = ? AND d.password = ? and d.archive = "N"', array($email, $password));
 	}
         
 

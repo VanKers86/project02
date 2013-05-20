@@ -36,4 +36,16 @@ $(function($) {
             });
         }
     });
+    
+    $('div#deleteCustomer a').on('click', function(e) {
+       e.preventDefault();
+       $(this).hide();
+       $('form#deleteConfirmation').show();
+    });
+    
+    $('input#deleteAnnulation').on('click', function(e) {
+       e.preventDefault();
+       $(this).parent().hide();
+       $(this).parent().parent().find('a').show();
+    });
 });
