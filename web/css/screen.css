@@ -258,7 +258,7 @@ header#small ul#menu li a {
     background-repeat: no-repeat;
     background-position: bottom center;   
     margin-bottom: 0.3846153846153846em;
-    background-size: 45px 45px;    
+    background-size: 45px 45px;
 }
 
 header#small ul#menu li a.activeDashboard, header#small ul#menu li a.passiveDashboard:hover {
@@ -575,11 +575,11 @@ span.editOk {
     float: right;
     display: block;
     text-indent: -9999px;
-    width: 2em;
+    width: 1.5em;
     background-image: url('../img/icons/savegreen.png');
-    background-size: 2em;
+    background-size: 1.5em;
     background-repeat: no-repeat;
-    height: 2em;
+    height: 1.5em;
 }
 
 span.editOk:hover {
@@ -806,16 +806,24 @@ ul.consult li {
     line-height: 1.461538461538462em;
 }
 
-ul.consult li.bmi, ul.consult li.pal {
-    border-bottom: 1px solid white;
+
+ul.consult li.customerData {
+    float: left;
+    width: 92%;
+    font-size: 1.1em;
+    background-color: #008FC5;
+    margin-top: 1em;
+}
+
+ul.consult li.customerData:first-child {
+    margin-top: 0.4em !important;
 }
 
 ul.consult li.comments {
     float: left;
-    width: 100%;
     padding: 0;
     font-size: 1em;
-    padding: 1em 6%;
+    padding: 0em 6% 0.5em 6%;
     width: 86%;
     background-image: url('../img/icons/quote.png');
     background-position: left top;
@@ -930,7 +938,7 @@ div#deleteCustomer input, div#deleteCustomer a {
 
 @media (min-width: 1024px) {
     section.center {
-        width: 76.76923076923077em;
+        width: 78.76923076923077em;
     } 
     
     header#small {

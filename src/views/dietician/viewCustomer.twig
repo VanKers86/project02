@@ -35,7 +35,7 @@
     <div class="subfield shown" id="consults">
         <h2>Consultaties</h2>
         <h3>
-            <span id="headerConsult">Recentste consultatie</span> 
+            <span id="headerConsult">Recentste (blabla'e) consultatie</span> 
             <select autocomplete="off" id="previousConsults">
                 <option value="cons{{ activeConsultation.id }}">{{ activeConsultation.dateFormat }}</option>
                 {% for previousConsultation in previousConsultations %}
@@ -44,6 +44,7 @@
             </select>
         </h3>            
         <ul id="cons{{ activeConsultation.id }}" class="consult shownConsult">
+            <li class="customerData">Anamnetische gegevens</li>
             <li class="weight">
                 Gewicht:
                 {{ activeConsultation.weight }} kg
@@ -60,6 +61,7 @@
                 PAL:
                 {{ activeConsultation.PAL }}
             </li>         
+            <li class="customerData">Dagelijkse aanbevolen hoeveelheid</li>
             <li class="energy">
                 Energie:
                 {{ activeConsultation.kcal }} kcal
@@ -81,18 +83,19 @@
                 {{ activeConsultation.fats }} g
             </li>
             <li class="cholesterol">
-                Cholesterol (max):
-                {{ activeConsultation.cholesterol }} g
+                Cholesterol: <
+                {{ activeConsultation.cholesterol }} mg
             </li>
             <li class="fibre">
-                Vezels (min):
+                Vezels: >
                 {{ activeConsultation.fibres }} mg
             </li>
             <li class="salt">
-                Natrium (min):
+                Natrium: >
                 {{ activeConsultation.sodium }} mg
             </li>
             {% if activeConsultation.comments %}
+            <li class="customerData">Opmerkingen</li>
             <li class="comments">
                 {{ activeConsultation.comments }}
             </li>
@@ -101,6 +104,7 @@
         {% if previousConsultations %}
             {% for previousConsultation in previousConsultations %}
             <ul id="cons{{ previousConsultation.id }}" class="consult hidden">
+                <li class="customerData">Anamnetische gegevens</li>
                 <li class="weight">
                     Gewicht:
                     {{ previousConsultation.weight }} kg
@@ -117,6 +121,7 @@
                     PAL:
                     {{ previousConsultation.PAL }}
                 </li>            
+                <li class="customerData">Dagelijkse aanbevolen hoeveelheid</li>
                 <li class="energy">
                     Energie:
                     {{ previousConsultation.kcal }} kcal
@@ -138,18 +143,19 @@
                     {{ previousConsultation.fats }} g
                 </li>
                 <li class="cholesterol">
-                    Cholesterol (max):
+                    Cholesterol: <
                     {{ previousConsultation.cholesterol }} g
                 </li>
                 <li class="fibre">
-                    Vezels (min):
+                    Vezels: >
                     {{ previousConsultation.fibres }} mg
                 </li>
                 <li class="salt">
-                    Natrium (min):
+                    Natrium: >
                     {{ previousConsultation.sodium }} mg
                 </li>
                 {% if previousConsultation.comments %}
+                <li class="customerData">Opmerkingen</li>
                 <li class="comments">
                     {{ previousConsultation.comments }}
                 </li>   

@@ -15,10 +15,10 @@ $(function($) {
             }  
         });
         if (val === shownCons) {
-            $('h3 span#headerConsult').html('Recentste consultatie');
+            $('h3 span#headerConsult').html('Recentste (3E) consultatie');
         }
         else {
-            $('h3 span#headerConsult').html('Vorige consultatie');
+            $('h3 span#headerConsult').html('(1STE) consultatie');
         }     
     });
     
