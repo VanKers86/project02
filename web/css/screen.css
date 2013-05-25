@@ -254,11 +254,10 @@ header#small ul#menu li a {
     width: 50%;
     margin-left: 25%;
     margin-right: 25%;
-    background-size: 55px;
     background-repeat: no-repeat;
     background-position: bottom center;   
     margin-bottom: 0.3846153846153846em;
-    background-size: 45px 45px;
+    background-size: 40px 35px;
 }
 
 header#small ul#menu li a.activeDashboard, header#small ul#menu li a.passiveDashboard:hover {
@@ -449,7 +448,7 @@ section#console {
     position: relative;
 }
 
-form#newCustomer {
+form#newCustomer, form#newConsultation {
     float: left;
 }
 
@@ -499,6 +498,7 @@ form#newCustomer h2 {
     margin-top: 0.5em;
     float: left;
     width: 94%;
+    font-size: 1.353846153846154em;
 }
 
 
@@ -539,7 +539,9 @@ form#newCustomer div.infoFromInput div.auto p {
 }
 
 span#PAL {
+    float: left;
     font-size: 1.2em;
+    margin: 0.5em 0 0 1em;
 }
 
 p span {
@@ -575,11 +577,11 @@ span.editOk {
     float: right;
     display: block;
     text-indent: -9999px;
-    width: 1.5em;
+    width: 1.4em;
     background-image: url('../img/icons/savegreen.png');
-    background-size: 1.5em;
+    background-size: 1.4em;
     background-repeat: no-repeat;
-    height: 1.5em;
+    height: 1.4em;
 }
 
 span.editOk:hover {
@@ -654,16 +656,17 @@ div#subheader a#logout {
     background-image: url('../img/icons/logout.png');
     display: block;
     max-width: 7em;
-    padding: 0.7em 1em;
+    padding: 0.7em 0.2em;
     background-repeat: no-repeat;
     background-size: 2em;
-    background-position: 6.8em center;
+    background-position: center center;
     font-size: 1em;
     color: white;
     position: absolute;
     top: 0px;
     right: 0px;
-    width: 20%;
+    width: 2em;
+    text-indent: -9999px;
 }
 
 div#subheader a#logout:hover {
@@ -673,9 +676,9 @@ div#subheader a#logout:hover {
 }
 
 div#subheader h1 {
-    width: 75%;
+    width: 90%;
     margin-bottom: 0.2em;
-    font-size: 3em;
+    font-size: 2.5em;
     font-weight: 100;
     color: #333;    
 }
@@ -696,22 +699,19 @@ div#subheader p {
     padding-right: 1.384615384615385em;
 }
 
-div#subheader p span.age {
-    font-size: 1.2em;
-}
 
 div#subheader p span {
-    font-size: 0.8em;
-    padding-left: 0.5em;
+    font-size: 1em;
 }
 
 div#subheader p.male, div#subheader p.female {
-    min-width: 1.384615384615385em;
+
 }
 
 div#subheader p.addedDate {
     float: left;
     width: 100%;
+    padding: 0px;
 }
 
 ul#customersList {
@@ -792,16 +792,16 @@ ul.consult {
     font-size: 1.2em;
     line-height: 1.2em;
     box-sizing: border-box;   
-    border-top: 1px solid #008FC5;
+/*    border-top: 1px solid #008FC5;*/
     border-bottom: 1px solid #008FC5;
-    background-color: #71d01c;
-    color: white;
+/*    background-color: #71d01c;*/
+    color: black;
 }
 
 ul.consult li {
     float: left;
-    margin: 0.5em 1% 0em 1%;
-    width: 42%;
+    margin: 0.5em 1% 0em 0%;
+    width: 43%;
     padding: 0em 0 0em 6%;
     line-height: 1.461538461538462em;
 }
@@ -809,10 +809,12 @@ ul.consult li {
 
 ul.consult li.customerData {
     float: left;
-    width: 92%;
+    width: 94%;
     font-size: 1.1em;
     background-color: #008FC5;
     margin-top: 1em;
+    color: white;
+    margin-right: 0%;
 }
 
 ul.consult li.customerData:first-child {
@@ -837,8 +839,7 @@ div#consults h3 {
     padding: 0.5em 0 0 3%;
 }
 
-div#consults h3 select {
-    font-size: 0.8em;
+div#consults select {
     float: right;
 }
 
@@ -861,6 +862,76 @@ div#deleteCustomer input, div#deleteCustomer a {
     padding: 0.3em 1em !important;
     font-size: 1em;
     margin-left: 0.5em;
+}
+
+span.nr {
+    color: #71D01C;
+}
+
+form#newConsultation div h2 {
+    background-color: #008FC5;
+    color: white;
+    font-size: 1.320515384615385em;
+    float: left;
+    width: 97%;
+    margin-right: 0;
+    margin-top: 1em;
+    line-height: 1.46154em;
+    padding: 0 0 0 3%;
+}
+
+form#newConsultation div.input {
+    float: left;
+    width: 97%;
+}
+
+form#newConsultation div.input label {
+    font-size: 1.2em;
+}
+
+form#newConsultation div.inputFields {
+    border-bottom: 1px solid #008FC5;
+    margin-bottom: 0.5em;
+    padding-bottom: 0.5em;
+}
+
+form#newConsultation div.submitField {
+    float: right;
+}
+
+p#customerGender {
+    text-indent: -9999px;
+    margin-right: 0.5em;
+}
+
+div#palSlider {
+    float: left;
+    width: 66%;
+    margin-top: 0.5em;
+}
+
+form#newConsultation div.auto label {
+    padding-left: 7%;
+    width: 25%;
+    float: left;
+}
+
+form#newConsultation div.auto p {
+    float: left;
+    width: 60%;
+    font-size: 1.2em;
+    line-height: 1.38462em;
+}
+
+form#newConsultation div.auto input {
+    width: 120px;
+    font-size: 1em;
+    height: 1.292307692307692em;
+}
+
+form#newConsultation label#comments {
+    margin: 0.5em 0;
+    float: left;
 }
 
 @media (min-width: 481px) {
@@ -932,8 +1003,7 @@ div#deleteCustomer input, div#deleteCustomer a {
     
     form#newCustomer div.inputFields, form#newCustomer div.infoFromInput {
         width: 48%;
-    }    
-
+    }
 }
 
 @media (min-width: 1024px) {

@@ -2,7 +2,7 @@
 {% extends 'consoleDietician.twig' %}
 
 {# set the pagetitle in the parent tpl #}
-{% set pageTitle = 'Dietist | Nieuwe klant' %}
+{% set pageTitle = customer.name %}
 {% set contentId = 'console' %}
 {% set javascript = 'dieticianCustomerConsultation' %}
 
@@ -11,6 +11,9 @@
 
 {% block subheader %}
     <h1>Nieuwe consultatie voor {{ customer.name }}</h1>
+    <p id="customerGender" class="{% if customer.gender == "M" %}male{% elseif customer.gender == "F" %}female{% endif %}">{{ customer.gender }}</p>
+    <p><span class="age">Leeftijd: {{ customer.age }}</span><span class="birthdate">({{ customer.birthdateFormat }})</span></p>
+   
 {% endblock %}
     
 {% set breadcrumb = true %}    
@@ -19,6 +22,115 @@
 {% endblock %}
 
 {% block consolePageContent %}
-
-
+    <form id="newConsultation" method="POST" class="clearfix">
+        <div class="inputFields clearfix">
+            <h2>Anamnetische gegevens</h2>           
+            <div class="input">
+                <label class="height">Lengte</label>
+                <input type="number" class="spinner" id="spinnerHeight" name="height" value="{{ lastConsultation.height }}" required>
+            </div>
+            <div class="input">
+                <label class="weight">Gewicht</span></label>
+                <input type="number" class="spinner" id="spinnerWeight" name="weight" value="{{ lastConsultation.weight }}" required>
+            </div>
+            <div class="input inputBMI">
+                <label id="BMI"><span id="bmiSpan">BMI</span></label>
+                <ul id="bmiList">
+                    <li class="bmi1 tooltip" title="Ondergewicht">&lt; 18.5</li>
+                    <li class="bmi2 tooltip" title="Gezond gewicht">18.6 &ndash; 25.0</li>
+                    <li class="bmi3 tooltip" title="Overgewicht">25.1 &ndash; 30.0</li>
+                    <li class="bmi4 tooltip" title="Obesitas">30.1 &ndash; 35.0</li>
+                    <li class="bmi5 tooltip" title="Extreme obesitas">&gt; 35.1</li>
+                </ul>
+                <input type="hidden" name="bmi" value="">
+            </div>
+            <div class="input">
+                <label class="pal">PAL</label>
+                <input id="PALInput" type="hidden" name="pal" value="{{ lastConsultation.PAL }}">
+                <div id="palSlider"></div>
+                <span id="PAL">{{ lastConsultation.PAL }}</span>
+            </div>          
+            <h2>Aanbevolen dagelijkse hoeveelheden</h2>
+            <div class="input auto">
+                <label class="energy" id="kcal">Energie</label>
+                <p id="kcalSpan">
+                    <span class="value">{{ lastConsultation.kcal }}</span>
+                    <input autocomplete="off" class="number" type="hidden" name="kcal" value="{{ lastConsultation.kcal }}">
+                    <span>kcal</span>
+                    <span title="Wijzig" class="editData tooltip">Wijzig</span> <span title="Bewaar" class="editOk tooltip">Ok</span>
+                </p>
+            </div>
+            <div class="input auto">
+                <label class="carbs" id="carbs">Koolhydraten</label>
+                <p id="carbsSpan">
+                    <span class="value">{{ lastConsultation.carbohydrates }}</span>
+                    <input autocomplete="off" class="number" type="hidden" name="carbs" value="{{ lastConsultation.carbohydrates }}">
+                    <span>g</span>
+                    <span title="Wijzig" class="editData tooltip">Wijzig</span> <span title="Bewaar" class="editOk tooltip">Ok</span>
+                </p>
+            </div>            
+            <div class="input auto">
+                <label class="sugar" id="sugars">Suikers</label>
+                <p id="sugarsSpan">
+                    <span class="value">{{ lastConsultation.sugars }}</span>
+                    <input autocomplete="off" class="number" type="hidden" name="sugars" value="{{ lastConsultation.sugars }}">
+                    <span>g</span>
+                    <span title="Wijzig" class="editData tooltip">Wijzig</span> <span title="Bewaar" class="editOk tooltip">Ok</span>
+                </p>
+            </div>
+            <div class="input auto">
+                <label class="protein" id="proteins">Eiwitten</label>
+                <p id="proteinsSpan">
+                    <span class="value">{{ lastConsultation.proteins }}</span>
+                    <input autocomplete="off" class="number" type="hidden" name="proteins" value="{{ lastConsultation.proteins }}">
+                    <span>g</span>
+                    <span title="Wijzig" class="editData tooltip">Wijzig</span> <span title="Bewaar" class="editOk tooltip">Ok</span>
+                </p>
+            </div>
+            <div class="input auto">
+                <label class="fat" id="fats">Vetten</label>
+                <p id="fatsSpan">
+                    <span class="value">{{ lastConsultation.fats }}</span>
+                    <input autocomplete="off" class="number" type="hidden" name="fats" value="{{ lastConsultation.fats }}">
+                    <span>g</span>
+                    <span title="Wijzig" class="editData tooltip">Wijzig</span> <span title="Bewaar" class="editOk tooltip">Ok</span>
+                </p>
+            </div>
+            <div class="input auto">
+                <label class="cholesterol" id="cholesterol">Cholesterol (max)</label>
+                <p id="cholesterolSpan">
+                    <span class="value">{{ lastConsultation.cholesterol }}</span>
+                    <input autocomplete="off" class="number" type="hidden" name="cholesterol" value="{{ lastConsultation.cholesterol }}">
+                    <span>mg</span>
+                    <span title="Wijzig" class="editData tooltip">Wijzig</span> <span title="Bewaar" class="editOk tooltip">Ok</span>
+                </p>
+            </div>
+            <div class="input auto">
+                <label class="fibre" id="fibres">Vezels (min)</label>
+                <p id="fibresSpan">
+                    <span class="value">{{ lastConsultation.fibres }}</span>
+                    <input autocomplete="off" class="number" type="hidden" name="fibres" value="{{ lastConsultation.fibres }}">
+                    <span>g</span>
+                    <span title="Wijzig" class="editData tooltip">Wijzig</span> <span title="Bewaar" class="editOk tooltip">Ok</span>
+                </p>
+            </div>
+            <div class="input auto">
+                <label class="salt" id="sodium">Natrium (min)</label>
+                <p id="sodiumSpan">
+                    <span class="value">{{ lastConsultation.sodium }}</span>
+                    <input autocomplete="off" class="number" type="hidden" name="sodium" value="{{ lastConsultation.sodium }}">
+                    <span>mg</span>
+                    <span title="Wijzig" class="editData tooltip">Wijzig</span> <span title="Bewaar" class="editOk tooltip">Ok</span>
+                </p>
+            </div>
+            <div class="input">
+                <label id="comments">Opmerkingen</label>
+                <textarea name="comments"></textarea>
+            </div> 
+            
+        </div>
+        <div class="submitField clearfix">
+            <input type="submit" value="Voeg toe">
+        </div>
+    </form>
 {% endblock %}

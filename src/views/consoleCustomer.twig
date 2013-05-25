@@ -17,7 +17,7 @@
     <div id="consoleContent" class="clearfix">
         <div id="subheader" class="clearfix">
             {% block subheader %}{% endblock %}
-            <a id="logout"  class="blue" href="{{ app.request.baseUrl }}/klant/logout">Afmelden</a>
+            <a id="logout" title="Afmelden" class="blue tooltip" href="{{ app.request.baseUrl }}/klant/logout">Afmelden</a>
         </div>
         {% if breadcrumb is defined %}
             <div id="breadcrumb">

@@ -1,25 +1,20 @@
 $(function($) {
-    $('div#consults ul.hidden').hide();
-    var shownCons = $('div#consults ul.shownConsult').attr('id');
+    $('div#consults div.consult:not(:first)').hide();
+    
     $('select#previousConsults').on('change', function(e) {
         var val = $(this).val();
-        $('div#consults ul').addClass("hidden").slideUp('normal', function() {
-            
-            if ($(window).width() > 750 && $('header#small').height() < $('section#console').height()) {
-                $('header#small').height($('section#console').height());
-            }  
-        });
-        $('div#consults ul#' + val).removeClass('hidden').slideDown('normal', function() {
-            if ($(window).width() > 750 && $('header#small').height() < $('section#console').height()) {
-                $('header#small').height($('section#console').height());
-            }  
-        });
-        if (val === shownCons) {
-            $('h3 span#headerConsult').html('Recentste (3E) consultatie');
-        }
-        else {
-            $('h3 span#headerConsult').html('(1STE) consultatie');
-        }     
+//        $('div#consults div.consult').addClass("hidden").slideUp('normal', function() {
+//            if ($(window).width() > 750 && $('header#small').height() < $('section#console').height()) {
+//                $('header#small').height($('section#console').height());
+//            }  
+//        });
+$('div#consults div.consult').addClass("hidden").hide();
+//        $('div#consults div#' + val).removeClass('hidden').slideDown('normal', function() {
+//            if ($(window).width() > 750 && $('header#small').height() < $('section#console').height()) {
+//                $('header#small').height($('section#console').height());
+//            }  
+//        }); 
+$('div#consults div#' + val).removeClass('hidden').show();
     });
     
     $('div.subfield h2').on('click', function(e) {

@@ -130,18 +130,7 @@ class DieticianController implements ControllerProviderInterface {
                 $customerData['customer_id'] = $customerId;
                 $customerData['weight'] = $_POST['weight'];
                 $customerData['height'] = $_POST['height'];
-                switch ($_POST['pal']) {
-                    case 1:
-                        $pal = 'Licht';
-                        break;
-                    case 2:
-                        $pal = 'Middelmatig';
-                        break;
-                    case 3:
-                        $pal = 'Zwaar';
-                        break;
-                }
-                $customerData['PAL'] = $pal;
+                $customerData['PAL'] = $_POST['pal'];
                 $customerData['bmi'] = $_POST['bmi'];
                 $customerData['kcal'] = $_POST['kcal'];
                 $customerData['carbohydrates'] = $_POST['carbs'];
@@ -187,15 +176,12 @@ class DieticianController implements ControllerProviderInterface {
             if (!$customer) {
                 return $app->redirect('/dietist/console');
             }
-            
-            $activeConsultation = $app['dietician']->getActiveConsultation($customerId);
-            $previousConsultations = $app['dietician']->getPreviousConsultations($customerId);
-            
+
+            $consultations = $app['dietician']->getConsultations($customerId);
 
             return $app['twig']->render('dietician/viewCustomer.twig', array('dietician' => $dietician, 
-                                                                            'customer' => $customer, 
-                                                                            'activeConsultation' => $activeConsultation,
-                                                                            'previousConsultations' => $previousConsultations
+                                                                            'customer' => $customer,
+                                                                            'consultations' => $consultations
                     ));
 	}
         
@@ -216,7 +202,7 @@ class DieticianController implements ControllerProviderInterface {
 
         }
         
-        public function customerConsultation(Application $app, $customerId) {
+        public function customerConsultation(Application $app, $customerId, Request $request) {
             if (!$app['session']->get('dietician')) {
                 return $app->redirect('/');
             }
@@ -225,8 +211,40 @@ class DieticianController implements ControllerProviderInterface {
             if (!$customer) {
                 return $app->redirect('/dietist/console');
             }
+            
+            if ($request->isMethod('POST')) {
+                $customerData['customer_id'] = $customerId;
+                $customerData['weight'] = $_POST['weight'];
+                $customerData['height'] = $_POST['height'];
+                $customerData['PAL'] = $_POST['pal'];
+                $customerData['bmi'] = $_POST['bmi'];
+                $customerData['kcal'] = $_POST['kcal'];
+                $customerData['carbohydrates'] = $_POST['carbs'];
+                $customerData['sugars'] = $_POST['sugars'];
+                $customerData['proteins'] = $_POST['proteins'];
+                $customerData['fats'] = $_POST['fats'];
+                $customerData['cholesterol'] = $_POST['cholesterol'];
+                $customerData['fibres'] = $_POST['fibres'];
+                $customerData['sodium'] = $_POST['sodium'];
+                $customerData['comments'] = htmlentities($_POST['comments']);
+                $customerData['bmi'] = $_POST['bmi'];
+                $customerData['date'] = date("Y-m-d H:i:s");
+                $app['dietician']->addCustomerData($customerData);
+                return $app->redirect('/dietist/klanten/' . $customerId);
+            }
+            
+            $lastConsultation = $app['dietician']->getLastConsultation($customerId);
+            if ($lastConsultation['PAL'] === "Licht") {
+                $pal = 1;
+            }
+            else if ($lastConsultation['PAL'] === "Middelmatig") {
+                $pal = 2;
+            }
+            else {
+                $pal = 3;
+            }
 
-            return $app['twig']->render('dietician/customerConsultation.twig', array('dietician' => $dietician, 'customer' => $customer));
+            return $app['twig']->render('dietician/customerConsultation.twig', array('dietician' => $dietician, 'customer' => $customer, 'lastConsultation' => $lastConsultation, 'pal' => $pal));
 	}        
 
 }

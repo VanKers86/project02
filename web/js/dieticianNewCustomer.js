@@ -5,6 +5,18 @@ var pal;
 
 $(function($) {
 
+    $('#palSlider').slider({
+       value: 2,
+       min: 1,
+       max: 3,
+       step: 1,
+       slide: function(event, ui) {
+            pal = ui.value;
+            setPal();
+            calculateKcal();
+       }
+    });
+    
     $("form :input").on("keypress", function(e) {
         return e.keyCode !== 13;
     });
@@ -40,11 +52,6 @@ $(function($) {
     $("input[name=gender]").change(function () {
         calculateKcal();
     });
-    
-    document.getElementById('PALInput').onchange = function() {
-        setPal();
-        calculateKcal();
-    };
 
     $('#age span').html("&nbsp;");
     
@@ -89,6 +96,7 @@ $(function($) {
     });
 
     calculateBMI();
+    pal = $('#palSlider').slider('value');
     setPal();
     calculateKcal();
     
@@ -125,16 +133,18 @@ var checkAge = function() {
 };
 
 var setPal = function() {
-    pal = document.getElementById('PALInput').value;
-    if (pal === "1") {
-        $('#PAL').html('Licht');
+    var palText;
+    if (pal === 1) {
+        palText = 'Licht';
     }
-    else if (pal === "2") {
-        $('#PAL').html('Middelmatig');
+    else if (pal === 2) {
+        palText = 'Middelmatig';
     }
-    else if (pal === "3") {
-        $('#PAL').html('Zwaar');
+    else if (pal === 3) {
+        palText = 'Zwaar';
     }
+    $('#PAL').html(palText);
+    $('input#PALInput').attr('value', palText);
 };
 
 var calculateBMI = function() {
@@ -178,7 +188,6 @@ var calculateKcal = function() {
     var age = $('#age span#ageSpan').html();
     var gender = $('input[name=gender]:checked', '#newCustomer').val();
     var weight = $('input#spinnerWeight').val();
-    var pal = document.getElementById('PALInput').value;
     var kcal;
     var pre;
     if ($.isNumeric(age) && $.isNumeric(weight)) {
@@ -197,13 +206,13 @@ var calculateKcal = function() {
                 pre = (8.4 * weight + 820);
             }
 
-            if (pal === "1") {
+            if (pal === 1) {
                 kcal = pre * 1.55;
             }
-            else if (pal === "2") {
+            else if (pal === 2) {
                 kcal = pre * 1.78;
             }
-            else if (pal === "3") {
+            else if (pal === 3) {
                 kcal = pre * 2.1;
             }
         }
@@ -221,13 +230,13 @@ var calculateKcal = function() {
                 pre = (9.8 * weight + 624);
             }
 
-            if (pal === "1") {
+            if (pal === 1) {
                 kcal = pre * 1.56;
             }
-            else if (pal === "2") {
+            else if (pal === 2) {
                 kcal = pre * 1.64;
             }
-            else if (pal === "3") {
+            else if (pal === 3) {
                 kcal = pre * 1.82;
             }    
         }

@@ -2,7 +2,7 @@
 {% extends 'consoleDietician.twig' %}
 
 {# set the pagetitle in the parent tpl #}
-{% set pageTitle = 'Dietist | Nieuwe klant' %}
+{% set pageTitle = 'Nieuwe klant' %}
 {% set contentId = 'console' %}
 {% set javascript = 'dieticianNewCustomer' %}
 
@@ -55,7 +55,7 @@
                 </select>
             </div>
             <div class="input">
-                <label id="age">Leeftijd <span id="ageSpan">&nbsp;</span></label>
+                <label id="age">Leeftijd: <span id="ageSpan">&nbsp;</span></label>
             </div>            
             <div class="input">
                 <label>Email</label>
@@ -71,7 +71,8 @@
             </div>
             <div class="input">
                 <label class="pal">PAL <span class="infoInput">(Physical Activity Level)</span></label>
-                <input id="PALInput" type="range" name="pal" max="3" min="1" step="1" value="2"><br />
+                <input id="PALInput" type="hidden" name="pal" value="">
+                <div id="palSlider"></div>
                 <span id="PAL">&nbsp;</span>
             </div>
         </div>
@@ -88,7 +89,7 @@
                 </ul>
                 <input type="hidden" name="bmi" value="">
             </div>
-            <h2>Aanbevolen dagelijkse hoeveelheden</h2>
+            <h2>Dagelijkse aanbevolen hoeveelheid</h2>
             <div class="input auto">
                 <label class="energy" id="kcal">Energie</label>
                 <p id="kcalSpan">
