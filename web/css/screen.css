@@ -778,19 +778,20 @@ div.subfield h2 {
     margin-bottom: 0;
     padding-left: 3%;
     padding-right: 3%;
+    font-size: 1.4em;
 }
 div.subfield h2:hover {
     cursor: pointer;
 }
 
-ul.consult {
+div.consult {
     float: left;
     padding-bottom: 1em;
     margin-bottom: 0.5em;
     width: 97%;
     margin-left: 3%;
-    font-size: 1.2em;
     line-height: 1.2em;
+    font-size: 1.2em;
     box-sizing: border-box;   
 /*    border-top: 1px solid #008FC5;*/
     border-bottom: 1px solid #008FC5;
@@ -834,9 +835,8 @@ ul.consult li.comments {
 }
 
 div#consults h3 {
-    font-size: 1.4em;
     font-weight: normal;
-    padding: 0.5em 0 0 3%;
+    padding: 0.5em 0 0 0%;
 }
 
 div#consults select {
@@ -931,6 +931,13 @@ form#newConsultation div.auto input {
 
 form#newConsultation label#comments {
     margin: 0.5em 0;
+    float: left;
+}
+
+.chart {
+    width: 100%;
+    height: 20em;
+    display: inline-block;
     float: left;
 }
 

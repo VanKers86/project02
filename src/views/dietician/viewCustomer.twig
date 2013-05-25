@@ -6,6 +6,7 @@
 {% set contentId = 'console' %}
 {% set javascript = 'dieticianViewCustomer' %}
 {% set jsPlugin = 'jquery.numeric' %}
+{% set jchart = true %}
 
 {# set variables in the console tpl #}
 {% set customersActive = true %}
@@ -56,7 +57,7 @@
                 </li>             
                 <li class="bmi">
                     BMI:
-                    {{ consultation.bmi }}
+                    <span class="bmiSpan">{{ consultation.bmi }}</span>
                 </li>              
                 <li class="pal">
                     PAL:
@@ -111,6 +112,7 @@
     <div class="subfield shown" id="progression">
         <h2>Progressie</h2>
         <p>Statistieken, gewicht, gda / inname per dag</p>
+        <div id="chartBMI" class="chart"></div>
     </div>
     
     <div class="subfield shown" id="meals">
