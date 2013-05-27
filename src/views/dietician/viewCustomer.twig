@@ -43,7 +43,7 @@
         {% for key, consultation in consultations %}
         <div id="cons{{ consultation.id }}" class="consult clearfix">
             <h3>
-                <span id="headerConsult">Consultatie <span class="nr">{{ loop.revindex }}</span>/{{ loop.length }}</span> 
+                Consultatie <span class="nr">{{ loop.revindex }}</span>/{{ loop.length }}
             </h3>            
             <ul class="consult">
                 <li class="customerData">Anamnetische gegevens</li>
@@ -85,15 +85,15 @@
                     {{ consultation.fats }} g
                 </li>
                 <li class="cholesterol">
-                    Cholesterol: <
+                    Cholesterol: &lt;
                     {{ consultation.cholesterol }} g
                 </li>
                 <li class="fibre">
-                    Vezels: >
+                    Vezels: &lt;
                     {{ consultation.fibres }} mg
                 </li>
                 <li class="salt">
-                    Natrium: >
+                    Natrium: &gt;
                     {{ consultation.sodium }} mg
                 </li>
                 {% if consultation.comments %}

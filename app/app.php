@@ -19,3 +19,4 @@ $app->get('/', function(Silex\Application $app) {
 $app->mount('/', new Ikdoeict\Provider\Controller\HomeController());
 $app->mount('/dietist', new Ikdoeict\Provider\Controller\DieticianController());
 $app->mount('/klant', new Ikdoeict\Provider\Controller\CustomerController());
+$app->mount('/api', new Ikdoeict\Provider\Controller\ApiController());

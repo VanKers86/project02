@@ -30,7 +30,8 @@ $app->register(new Silex\Provider\DoctrineServiceProvider(), array(
 $app->register(new Knp\Provider\RepositoryServiceProvider(), array(
 	'repository.repositories' => array(
                 'dietician' => 'Ikdoeict\\Repository\\DieticiansRepository',
-                'customer' => 'Ikdoeict\\Repository\\CustomersRepository'
+                'customer' => 'Ikdoeict\\Repository\\CustomersRepository',
+                'api' => 'Ikdoeict\\Repository\\APIRepository'
 	)
 ));
 
