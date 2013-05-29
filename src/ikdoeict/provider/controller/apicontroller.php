@@ -19,8 +19,10 @@ class ApiController implements ControllerProviderInterface {
 		$controllers = $app['controllers_factory'];
 
 		// Bind sub-routes
-                $controllers->match('/klanten/{customerId}/bmi', array($this, 'customerBmi'))->assert('customerId', '\d+');
-                
+                $controllers->post('/klanten/{customerId}/bmi', array($this, 'customerBmi'))->assert('customerId', '\d+');
+                $controllers->post('/klanten/{customerId}/gewicht', array($this, 'customerWeight'))->assert('customerId', '\d+');
+                $controllers->post('/food/{categoryId}', array($this, 'foodByCategory'))->assert('categoryId', '\d+');
+
 		return $controllers;
 
 	}
@@ -41,4 +43,29 @@ class ApiController implements ControllerProviderInterface {
             return $app->json($return, 200);
 	}
         
+        public function customerWeight(Application $app, $customerId, Request $request) {
+            if (!$app['session']->get('dietician')) {
+                return $app->json("Not allowed", 401);
+            }
+            
+            $dietician = $app['session']->get('dietician');
+            $customer = $app['dietician']->getDietistCustomer($dietician['id'], $customerId);
+            if (!$customer) {
+                return $app->json("Not allowed", 401);
+            }
+
+            $return = $app['api']->getCustomerWeight($customerId);
+            
+            return $app->json($return, 200);  
+        }
+        
+        public function foodByCategory(Application $app, $categoryId, Request $request) {
+            if (!$app['session']->get('customer')) {
+                return $app->json("Not allowed", 401);
+            }
+            
+            $return = $app['api']->getFoodByCategory($categoryId);
+            
+            return $app->json($return, 200);
+        }
 }

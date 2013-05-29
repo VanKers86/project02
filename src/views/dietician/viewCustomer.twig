@@ -14,7 +14,12 @@
 {% block subheader %}
     <h1>{{ customer.name }}</h1>
     <p id="customerGender" class="{% if customer.gender == "M" %}male{% elseif customer.gender == "F" %}female{% endif %}">{{ customer.gender }}</p>
-    <p><span class="age">Leeftijd: {{ customer.age }}</span><span class="birthdate">({{ customer.birthdateFormat }})</span><span class="email">{{ customer.email }}</span></p>
+    <p>
+        <span class="age">Leeftijd: {{ customer.age }}</span>
+        <span class="birthdate">({{ customer.birthdateFormat }})</span>
+        <span class="email">{{ customer.email }}</span>
+        <span class="phone">{{ customer.phone }}</span>
+    </p>
     <p class="addedDate">Toegevoegd op {{ customer.dateFormat }}</p>
     <div id="deleteCustomer" class="clearfix">
         <a href="#" class="smallButtonLink">Deze klant verwijderen</a>
@@ -32,14 +37,18 @@
 {% endblock %}
 
 {% block consolePageContent %}
-    
+    <div class="subfield">
+        <a href="#">Stuur een opmerking naar deze klant</a> <br />
+        <a href="#">Stel een nieuwe consultatie voor</a><br />
+    </div>
     <div class="subfield shown" id="consults">
-        <h2>Consultaties</h2>
-        <select autocomplete="off" id="previousConsults">
-            {% for consultation in consultations %}
-            <option value="cons{{ consultation.id}}">{{ consultation.dateFormat }}</option>
-            {% endfor %}
-        </select>    
+        <h2 class="consultation">Consultaties
+            <select autocomplete="off" id="previousConsults">
+                {% for consultation in consultations %}
+                <option value="cons{{ consultation.id}}">{{ consultation.dateFormat }}</option>
+                {% endfor %}
+            </select>    
+        </h2>
         {% for key, consultation in consultations %}
         <div id="cons{{ consultation.id }}" class="consult clearfix">
             <h3>
@@ -110,13 +119,13 @@
     </div>   
     
     <div class="subfield shown" id="progression">
-        <h2>Progressie</h2>
-        <p>Statistieken, gewicht, gda / inname per dag</p>
+        <h2 class="progression">Progressie</h2>
+        <div id="chartWeight" class="chart"></div>
         <div id="chartBMI" class="chart"></div>
     </div>
     
     <div class="subfield shown" id="meals">
-        <h2>Maaltijden</h2>
+        <h2 class="meals">Maaltijden</h2>
         <p>Per datum</p>
     </div> 
     

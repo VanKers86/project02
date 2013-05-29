@@ -122,6 +122,7 @@ class DieticianController implements ControllerProviderInterface {
                 $customerInfo['name'] = htmlentities($_POST['name']);
                 $customerInfo['email'] = htmlentities($_POST['email']);
                 $customerInfo['dietician_id'] = $dietician['id'];
+                $customerInfo['phone'] = htmlentities($_POST['phone']);
                 $customerInfo['gender'] = $_POST['gender'];
                 $customerInfo['birthdate'] = $_POST['year'] . '-' . $_POST['month'] . '-' . $_POST['day'];
                 $customerInfo['password'] = $this->RandomPass();

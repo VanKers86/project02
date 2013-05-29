@@ -3,18 +3,69 @@
 
 
 {# set the pagetitle in the parent tpl #}
-{% set pageTitle = 'Klant | Maaltijden' %}
+{% set pageTitle = 'Maaltijden' %}
 {% set contentId = 'console' %}
 {% set javascript = 'customerMeals' %}
+{% set jsPlugin = 'moment.min' %}
 
 {# set variables in the console tpl #}
 {% set foodActive = true %}
 
 {% block subheader %}
     <h1>Maaltijden</h1>
+    <div id="interaction" class="clearfix">
+        <img class="interactionPhoto" src='/img/userfiles/dietician/{{ customerDietician.photo }}' alt="{{ customerDietician.name }}" title="{{ customerDietician.name }}" />
+        <p>
+            <span id="dieticianName">{{ customerDietician.name }}:</span><br />
+            <span id="interactionText">"Wat heb je vandaag gegeten?"</span>
+        </p>
+    </div>    
 {% endblock %}
 
 
 {% block consolePageContent %}
+    <div id="addNewMeal" class="clearfix">
+        <h2>Voeg een nieuwe maaltijd toe</h2>
+        <form id="newMeal" method="POST" class="clearfix">
+            <p class="initial">
+                Je kan maaltijden ingeven van maximum twee dagen terug <br /><br />
+                <input disabled="disabled" autocomplete="off" type="text" id="datepicker" />
+                <input type="hidden"  autocomplete="off" id="date" name="date" />
+            </p>
+            <p class="initial">
+                <select name="type" autocomplete="off" id="type">
+                    <option value="0">Welke maaltijd?</option>
+                    {% for mealtype in mealtypes %}
+                     <option value="{{ mealtype.id }}">{{ mealtype.name }}</option>
+                    {% endfor %}
+                </select>   
+            </p>
 
+            <div id="overviewMeal" class="typeDependant clearfix">
+                <h3 id="meal"><span id="mealHeader"></span><a href="#" title="Wijzig" id="editInitial">Wijzig</a></h3>
+                <p>
+                    <label>Kies een voedingscategorie:</label>
+                    <select autocomplete="off" id="category">
+                        <option value="0">Selecteer</option>
+                        {% for categorie in foodcategories %}
+                         <option value="{{ categorie.id }}">{{ categorie.name }}</option>
+                        {% endfor %}
+                    </select>
+                </p>
+                <p class="categoryDependant">
+                    <label>Zoek en selecteer voedingsmiddel:</label>
+                    <input class="spinner" type="text" value="100" autocomplete="off" id="gram" /><span id="quantity">gram</span>
+                    <input class="small" autocomplete="off" type="text" id="food" />
+                    <a href="#" title="Voeg toe" id="addFood">Voeg toe</a>
+                </p> 
+                <ul>
+                    
+                </ul>
+                <p id="addThisMeal">
+                    <input type="submit" value="Voeg deze maaltijd toe">
+                </p>
+            </div>
+            
+        </form>
+    </div>
 {% endblock %}

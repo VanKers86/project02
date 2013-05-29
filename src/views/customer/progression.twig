@@ -3,18 +3,28 @@
 
 
 {# set the pagetitle in the parent tpl #}
-{% set pageTitle = 'Klant | Progressie' %}
+{% set pageTitle = 'Progressie' %}
 {% set contentId = 'console' %}
 {% set javascript = 'customerProgression' %}
+{% set jchart = true %}
 
 {# set variables in the console tpl #}
 {% set statsActive = true %}
 
 {% block subheader %}
+    <input type="hidden" id="customerId" value="{{ customer.id }}">
     <h1>Progressie</h1>
+    <div id="interaction" class="clearfix">
+        <img class="interactionPhoto" src='/img/userfiles/dietician/{{ customerDietician.photo }}' alt="{{ customerDietician.name }}" title="{{ customerDietician.name }}" />
+        <p>
+            <span id="dieticianName">{{ customerDietician.name }}:</span><br />
+            <span id="interactionText">"Hier kan je je progressie volgen."</span>
+        </p>
+    </div>    
 {% endblock %}
 
 
 {% block consolePageContent %}
-
+    <div id="chartWeight" class="chart"></div>      
+    <div id="chartBMI" class="chart"></div>    
 {% endblock %}

@@ -48,6 +48,8 @@ class CustomerController implements ControllerProviderInterface {
                     $customer = $app['customer']->findCustomer($formData['Email'], $formData['Paswoord']);
                     if ($customer) {
                         $app['session']->set('customer', $customer);
+                        $customerDietician = $app['customer']->findCustomerDietician($customer['id']);
+                        $app['session']->set('customerDietician', $customerDietician);
                         return $app->redirect('console');
                     }
                     else {
@@ -66,12 +68,15 @@ class CustomerController implements ControllerProviderInterface {
             }
 
             $customer = $app['session']->get('customer');
+            $customerDietician = $app['session']->get('customerDietician');
+            $lastConsultationDate = $app['customer']->getLastConsultationDate($customer['id']);
             
-            return $app['twig']->render('customer/console.twig', array('customer' => $customer));
+            return $app['twig']->render('customer/console.twig', array('customer' => $customer, 'customerDietician' => $customerDietician, 'lastConsultationDate' => $lastConsultationDate));
         }
         
         public function logout(Application $app, Request $request) {
             $app['session']->remove('customer');
+            $app['session']->remove('customerDietician');
             return $app->redirect('/');
         }
         
@@ -81,8 +86,14 @@ class CustomerController implements ControllerProviderInterface {
             }
 
             $customer = $app['session']->get('customer');
+            $customerDietician = $app['session']->get('customerDietician');
+            $mealtypes = $app['customer']->getMealTypes();
+            $foodcategories = $app['customer']->getFoodCategories();
             
-            return $app['twig']->render('customer/meals.twig', array('customer' => $customer));
+            return $app['twig']->render('customer/meals.twig', array('customer' => $customer, 
+                                                                    'customerDietician' => $customerDietician, 
+                                                                    'mealtypes' => $mealtypes,
+                                                                    'foodcategories' => $foodcategories));
         }
         
         public function progression(Application $app, Request $request) {
@@ -91,8 +102,9 @@ class CustomerController implements ControllerProviderInterface {
             }
 
             $customer = $app['session']->get('customer');
+            $customerDietician = $app['session']->get('customerDietician');
             
-            return $app['twig']->render('customer/progression.twig', array('customer' => $customer));
+            return $app['twig']->render('customer/progression.twig', array('customer' => $customer, 'customerDietician' => $customerDietician));
         }        
 }
         

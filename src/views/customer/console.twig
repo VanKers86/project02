@@ -3,7 +3,7 @@
 
 
 {# set the pagetitle in the parent tpl #}
-{% set pageTitle = 'Klant | Console' %}
+{% set pageTitle = 'Console' %}
 {% set contentId = 'console' %}
 {% set javascript = 'customer' %}
 
@@ -12,15 +12,31 @@
 
 {% block subheader %}
     <h1>Welkom {{ customer.name }}</h1>
-    <p>Wat heb je vandaag gegeten? gesport?</p>
+    <div id="interaction" class="clearfix">
+        <img class="interactionPhoto" src='/img/userfiles/dietician/{{ customerDietician.photo }}' alt="{{ customerDietician.name }}" title="{{ customerDietician.name }}" />
+        <p>
+            <span id="dieticianName">{{ customerDietician.name }}:</span><br />
+            <span id="interactionText">"Heb je een vraag of wil je een afspraak maken? Aarzel dan niet!"</span>
+        </p>
+    </div>
+    
 {% endblock %}
 
 
 {% block consolePageContent %}
-
-<div id="calender">
-    <h4>Agenda</h4>
-    <p>Dietist xxx heeft een nieuwe afspraak verzoek</p>
-    <p>Geen nieuwe afspraak verzoeken</p>
-</div>
+    <div id="question">
+        <h4>Stel een vraag aan {{ customerDietician.name }}</h4>
+    </div>
+    <div id="remarks">
+        <h4>{{ customerDietician.name }} zei het volgende:</h4>
+    </div>       
+    
+    <div id="consultationInfo">
+        <p>Je laatste consultatie was op {{ lastConsultationDate }} <br /> Je kan altijd een nieuwe consultatie aanvragen.</p>
+    </div>
+    <div id="calender">
+        <h4>Agenda</h4>
+        <p>Dietist xxx heeft een nieuwe afspraak verzoek</p>
+        <p>Geen nieuwe afspraak verzoeken</p>
+    </div> 
 {% endblock %}

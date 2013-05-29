@@ -40,7 +40,7 @@ body {
     font-family: "Segoe UI", sans-serif;
     font-weight: 300;
     color: #333;
-    font-size: 11px;
+    font-size: 12px;
     line-height: 1;
     width: 100%;
     font-weight: 100;
@@ -771,17 +771,20 @@ div.subfield {
 }
 
 div.subfield h2 {
-    padding-bottom: 0.5em;
-    padding-top: 0.3em;
+    padding-bottom: 0.2em;
+    padding-top: 0.2em;
     background-color: #008FC5;
     color: white;
     margin-bottom: 0;
-    padding-left: 3%;
-    padding-right: 3%;
+    padding-left: 8%;
+    padding-right: 0%;
     font-size: 1.4em;
+    line-height: 1.4em;
+    text-indent: -9999px;
 }
 div.subfield h2:hover {
     cursor: pointer;
+    background-color: #71D01C;
 }
 
 div.consult {
@@ -811,7 +814,7 @@ ul.consult li {
 ul.consult li.customerData {
     float: left;
     width: 94%;
-    font-size: 1.1em;
+    font-size: 1em;
     background-color: #008FC5;
     margin-top: 1em;
     color: white;
@@ -837,10 +840,12 @@ ul.consult li.comments {
 div#consults h3 {
     font-weight: normal;
     padding: 0.5em 0 0 0%;
+    font-size: 1em;
 }
 
 div#consults select {
     float: right;
+    font-size: 0.8em;
 }
 
 div#consults a {
@@ -935,11 +940,153 @@ form#newConsultation label#comments {
 }
 
 .chart {
-    width: 100%;
+    width: 99%;
     height: 20em;
     display: inline-block;
     float: left;
 }
+
+h2.consultation, h2.progression, h2.meals {
+    background-repeat: no-repeat;
+    background-position: 4px;
+    background-size: 1.693846153846154em 1.693846153846154em;
+}
+
+h2.consultation {
+    background-image: url('../img/icons/consultation.png');
+}
+
+h2.progression {
+    background-image: url('../img/icons/statspassive.png');
+}
+
+h2.meals {
+    background-image: url('../img/icons/foodpassive.png');
+}
+
+div#interaction {
+    float: left;
+    width: 96%;
+    margin: 0.5em 0;
+    background-color: #71D01C;
+    padding: 0.6846153846153846em 2%;
+    position: relative;
+}
+
+div#interaction img.interactionPhoto {
+    width: 11.21188630490956%;
+    background-color: #71D01C;
+    float: left;
+    margin-right: 2%;
+}
+
+div#interaction p {
+    float: left;
+    width: 82%;
+    margin-top: 0.5em;
+    position: absolute;
+    bottom: 0.6846153846153846em;
+    left: 15%;
+}
+
+div#interaction span#dieticianName {
+    color: white;
+    font-size: 0.9em;
+}
+
+div#interaction span#interactionText {
+    line-height: 1.2em;
+    font-size: 1.2em;
+    font-style: italic;
+}
+
+div#addNewMeal {
+    margin: 0.5em 0;
+    width: 100%;
+    padding-bottom: 0.5em;
+    border-bottom: 1px solid #008FC5;
+    float: left;
+}
+
+img.ui-datepicker-trigger {
+    margin-bottom: -7px;
+    margin-left: 2px;
+    width: 1.692307692307692em;
+}
+
+img.ui-datepicker-trigger:hover {
+    cursor: pointer;
+}
+
+form#newMeal p {
+    margin-bottom: 1.3em;
+    float: left;
+    width: 100%;
+}
+
+form#newMeal div {
+    float: left;
+}
+
+form#newMeal label {
+    float: left;
+    width: 100%;
+    margin-bottom: 0.4em;
+    font-size: 1.2em;
+}
+
+form#newMeal input, form#newMeal select {
+    float: left;
+    width: 15.92307692307692em;
+    padding: 1px;
+    margin: 0px;
+    font-size: 1.2em;
+}
+
+form#newMeal input.small {
+    width: 12.92307692307692em;
+    float: left;
+}
+
+form#newMeal input.spinner {
+    width: 3.5em;
+    float: left;
+    font-size: 0.85em;
+}
+
+form#newMeal span#quantity, form#newMeal span#addFood {
+    float: left;
+    line-height: 2em;
+}
+
+form#newMeal span#addFood:hover, span#editInitial:hover, span.deleteFood:hover {
+    cursor: pointer;
+}
+
+form#newMeal div#overviewMeal, form#newMeal div#overviewMeal ul {
+    float: left;
+    width: 100%;
+}
+
+form#newMeal div#overviewMeal ul li {
+    border-top: 1px solid #71D01C;
+    padding-top: 0.4em;
+    padding-bottom: 0.5em;
+    font-size: 1em;
+    line-height: 1em;
+}
+
+form#newMeal p#addThisMeal {
+    float: left;
+    width: 100%;
+    padding-top: 0.5em;
+    border-top: 1px solid #71D01C;
+}
+
+form#newMeal p#addThisMeal input {
+    float: right;
+}
+
 
 @media (min-width: 481px) {
     section.center {
@@ -951,6 +1098,10 @@ form#newConsultation label#comments {
         font-size: 12px;
     }
    
+    div.subfield h2 {
+        text-indent: 0px;
+    }
+    
 }
 
 @media (min-width: 750px) {
@@ -964,11 +1115,11 @@ form#newConsultation label#comments {
     
     header#small {
         padding: 0.5em 0 1em 0;
-/*        width: 33.333333333%;*/
         width: 20%;
         float: left;
         margin-bottom: 0;
         border-bottom: none;
+        min-height: 350px;
     }
     
     header#small h1 a {
@@ -978,7 +1129,6 @@ form#newConsultation label#comments {
     }
     
     section#console {
-/*        width: 64.666666666%;*/
         width: 78%;
         
     }
@@ -1011,6 +1161,12 @@ form#newConsultation label#comments {
     form#newCustomer div.inputFields, form#newCustomer div.infoFromInput {
         width: 48%;
     }
+    
+    form#newMeal div.typeDependant p {
+        float: left;
+        width: 50%;
+    }
+   
 }
 
 @media (min-width: 1024px) {

@@ -40,8 +40,16 @@ $(function($) {
         }
     });     
     
+    resizeHeader();
+    
+});
+
+var resizeHeader = function() {
     
     if ($(window).width() > 750 && $('header#small').height() < $('section#console').height()) {
+        $('header#small').height($('section#console').height());
+    }
+    else if ($(window).width() > 750 && $('header#small').height() > $('section#console').height()) {
         $('header#small').height($('section#console').height());
     }
     
@@ -68,4 +76,8 @@ $(function($) {
 //        }
 //    }
 
-});
+};
+
+Array.prototype.insert = function (index, item) {
+  this.splice(index, 0, item);
+};
