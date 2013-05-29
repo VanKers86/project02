@@ -12,6 +12,7 @@
 {% set foodActive = true %}
 
 {% block subheader %}
+    <input type="hidden" id="customerId" value="{{ customer.id }}">
     <h1>Maaltijden</h1>
     <div id="interaction" class="clearfix">
         <img class="interactionPhoto" src='/img/userfiles/dietician/{{ customerDietician.photo }}' alt="{{ customerDietician.name }}" title="{{ customerDietician.name }}" />
@@ -27,14 +28,15 @@
     <div id="addNewMeal" class="clearfix">
         <h2>Voeg een nieuwe maaltijd toe</h2>
         <form id="newMeal" method="POST" class="clearfix">
+            <h3 class="initial"><span class="step">Stap 1</span>Selecteer datum en type maaltijd</h3>
             <p class="initial">
-                Je kan maaltijden ingeven van maximum twee dagen terug <br /><br />
+                Je kan maaltijden ingeven van maximaal twee dagen terug <br /><br />
                 <input disabled="disabled" autocomplete="off" type="text" id="datepicker" />
-                <input type="hidden"  autocomplete="off" id="date" name="date" />
+                <input type="hidden" autocomplete="off" id="date" name="date" />
             </p>
             <p class="initial">
                 <select name="type" autocomplete="off" id="type">
-                    <option value="0">Welke maaltijd?</option>
+                    <option value="0">Type maaltijd...</option>
                     {% for mealtype in mealtypes %}
                      <option value="{{ mealtype.id }}">{{ mealtype.name }}</option>
                     {% endfor %}
@@ -42,7 +44,7 @@
             </p>
 
             <div id="overviewMeal" class="typeDependant clearfix">
-                <h3 id="meal"><span id="mealHeader"></span><a href="#" title="Wijzig" id="editInitial">Wijzig</a></h3>
+                <h3><span class="step">Stap 2</span>Voeg voedingsmiddelen toe aan <span id="mealHeader"></span><a href="#" class="editData tooltip" title="Wijzig" id="editInitial">Wijzig</a></h3>
                 <p>
                     <label>Kies een voedingscategorie:</label>
                     <select autocomplete="off" id="category">
@@ -68,5 +70,15 @@
             </div>
             
         </form>
+    </div>
+    <div id="addedMeals" class="clearfix">
+        <h2>Jouw toegevoegde maaltijden</h2>
+        <div id="datepickerShowMeals"></div>
+        <input type="hidden" id="showMeals" autocomplete="off" />
+        <div id="showMealsDate" class="clearfix">
+            <h3></h3>
+            <ul>
+            </ul>
+        </div>
     </div>
 {% endblock %}

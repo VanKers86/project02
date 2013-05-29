@@ -46,4 +46,5 @@ class CustomersRepository extends \Knp\Repository {
         public function addNewMealFood($food) {
             return $this->db->insert('meals_food', $food);
         }
+        
 }

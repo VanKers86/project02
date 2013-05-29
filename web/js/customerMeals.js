@@ -1,11 +1,31 @@
 var cache = $('body');
 var previousValue = "";
 var list;
+var customerId;
 
 $(function($) {
-    $('p#addThisMeal').hide();
     
-     $( "#datepicker" ).datepicker(
+    customerId = Number($('input#customerId').attr('value'));
+    $('p#addThisMeal').hide();
+       
+    $("#datepickerShowMeals").datepicker(
+            {
+                maxDate: +0,
+                dateFormat: 'dd-mm-yy',
+                altField: "input#showMeals",
+                altFormat: 'yy-mm-dd',
+                numberOfMonths: 1,
+                dayNamesMin: ['Zon', 'Maa', 'Din', 'Woe', 'Don', 'Vri', 'Zat'],
+                monthNames: [ "Januari", "Februari", "Maart", "April", "Mei", "Juni", "Juli", "Augustus", "September", "Oktober", "November", "December"],
+                onSelect: function() {
+                    getMealInfo();
+                }
+            }
+    );
+        
+    getMealInfo();
+    
+    $("#datepicker").datepicker(
         { 
             minDate: -2, 
             maxDate: +0,
@@ -14,7 +34,9 @@ $(function($) {
             buttonImageOnly: true,
             dateFormat: 'dd-mm-yy',
             altField: "input#date",
-            altFormat: "yy-mm-dd"
+            altFormat: "yy-mm-dd",
+            dayNamesMin: ['Zon', 'Maa', 'Din', 'Woe', 'Don', 'Vri', 'Zat'],
+            monthNames: [ "Januari", "Februari", "Maart", "April", "Mei", "Juni", "Juli", "Augustus", "September", "Oktober", "November", "December"]
         }
     );
          
@@ -50,7 +72,7 @@ $(function($) {
             $('.typeDependant').hide();
         }
         else {
-            $('p.initial').hide();
+            $('.initial').hide();
             $('div#overviewMeal span#mealHeader').html($('select#type option:selected').text() + ' op ' + $('input#datepicker').val()); 
             $('.typeDependant').show();
         }
@@ -72,12 +94,13 @@ $(function($) {
                 scroll: true
             });
             if ($(this).val() === '6') {
-                $('span#quantity').html('cl');
+                $('span#quantity').html('ml');
             }
             else {
                 $('span#quantity').html('gr');
             }
             $('input#food').val("");
+            $('span#errorFood').empty();
         }
         resizeHeader();
      });
@@ -90,8 +113,8 @@ $(function($) {
         $('.categoryDependant').hide();
         $('div#overviewMeal ul').empty();
         $('span#errorFood').empty();
-        $('p.initial').show();
-        
+        $('.initial').show()
+        resizeHeader();
      });
      
      $('a#addFood').on('click', function(e) {
@@ -124,9 +147,9 @@ $(function($) {
             liValue += '<input type="hidden" name="food[]" value="' + food + '"/>';
             liValue += '</li>';
             $('div#overviewMeal ul').append(liValue);
-            resizeHeader();
             checkSubmitOption();
          }
+         resizeHeader();  
      });
    
      $('body').on('click', 'ul li a.deleteFood', function(e) {
@@ -135,8 +158,7 @@ $(function($) {
          resizeHeader();
          checkSubmitOption();
      });
-     
-     
+          
 });
      
 
@@ -167,4 +189,40 @@ var getFoodsByCategory = function(url) {
     }
     return cache.data(url);
     
+};
+
+var getMealInfo = function() {
+    var dateMeals = customerId + $('input#showMeals').val();
+    if (!cache.data(dateMeals)) {
+        $.ajax ({
+           url: '/api/klanten/' + customerId + '/maaltijden',
+           type: 'POST',
+           dataType: 'json',
+           async: false,
+           data: {date: $('input#showMeals').val() },
+           success: function(data) {
+               cache.data(dateMeals, data);
+           }
+        });
+    }
+    var meals = cache.data(dateMeals);
+    $('div#showMealsDate h3').html('Maaltijden op ' + moment($('input#showMeals').val()).format("DD-MM-YYYY"));
+    $('div#showMealsDate ul').empty();
+    if (meals.length === 0) {
+        $('div#showMealsDate ul').append('<li>Geen maaltijden toegevoegd</li>');
+    }
+    else {
+        $.each(meals, function(i, meal) {
+            $('div#showMealsDate ul').append('<li class="type">' + meal.type + '</li>');
+            $.each(meal.food, function(i, food) {
+                if (food.foodcategory === "Dranken") {
+                    $('div#showMealsDate ul').append('<li class="food">' + food.quantity + 'cl ' + food.foodname + '</li>');   
+                }
+                else {
+                    $('div#showMealsDate ul').append('<li class="food">' + food.quantity + 'gr '  + food.foodname + '</li>');   
+                }
+            });
+        });
+    }
+    resizeHeader();
 };

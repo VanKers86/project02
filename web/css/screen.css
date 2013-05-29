@@ -558,7 +558,7 @@ form#newCustomer div.infoFromInput div.auto input {
     float: left;
 }
 
-span.editData {
+.editData {
     float: right;
     display: block;
     text-indent: -9999px;
@@ -568,12 +568,12 @@ span.editData {
     background-repeat: no-repeat;
 }
 
-span.editData:hover {
+.editData:hover {
     background-image: url('../img/icons/edit.png');
     cursor: pointer;
 }
 
-span.editOk {
+.editOk {
     float: right;
     display: block;
     text-indent: -9999px;
@@ -584,7 +584,7 @@ span.editOk {
     height: 1.4em;
 }
 
-span.editOk:hover {
+.editOk:hover {
     background-image: url('../img/icons/save.png');
     cursor: pointer;    
 }
@@ -990,7 +990,7 @@ div#interaction p {
 }
 
 div#interaction span#dieticianName {
-    color: white;
+    color: #333;
     font-size: 0.9em;
 }
 
@@ -998,13 +998,13 @@ div#interaction span#interactionText {
     line-height: 1.2em;
     font-size: 1.2em;
     font-style: italic;
+    color: white;
 }
 
 div#addNewMeal {
     margin: 0.5em 0;
     width: 100%;
     padding-bottom: 0.5em;
-    border-bottom: 1px solid #008FC5;
     float: left;
 }
 
@@ -1016,6 +1016,12 @@ img.ui-datepicker-trigger {
 
 img.ui-datepicker-trigger:hover {
     cursor: pointer;
+}
+
+form#newMeal {
+    float: left;
+    margin-left: 3%;
+    width: 97%;
 }
 
 form#newMeal p {
@@ -1051,16 +1057,26 @@ form#newMeal input.small {
 form#newMeal input.spinner {
     width: 3.5em;
     float: left;
-    font-size: 0.85em;
+    font-size: 1.1em;
 }
 
-form#newMeal span#quantity, form#newMeal span#addFood {
+form#newMeal span#quantity {
     float: left;
     line-height: 2em;
 }
 
-form#newMeal span#addFood:hover, span#editInitial:hover, span.deleteFood:hover {
-    cursor: pointer;
+form#newMeal a#addFood {
+    float: left;
+    background-color: #71d01c;
+    padding: 0 1%;
+    line-height: 1.85em;
+    color: white;
+    margin-left: 1%;
+}
+
+form#newMeal a#addFood:hover {
+    background-color: #DDD;
+    color: #333;
 }
 
 form#newMeal div#overviewMeal, form#newMeal div#overviewMeal ul {
@@ -1073,7 +1089,7 @@ form#newMeal div#overviewMeal ul li {
     padding-top: 0.4em;
     padding-bottom: 0.5em;
     font-size: 1em;
-    line-height: 1em;
+    line-height: 1.5em;
 }
 
 form#newMeal p#addThisMeal {
@@ -1085,6 +1101,14 @@ form#newMeal p#addThisMeal {
 
 form#newMeal a.deleteFood {
     float: right;
+    background-color: #C10015;
+    padding: 0.1em 1%;
+    color: white;
+}
+
+form#newMeal a.deleteFood:hover {
+    background-color: #DDD;
+    color: #333;
 }
 
 form#newMeal p#addThisMeal input {
@@ -1097,6 +1121,60 @@ span#errorFood {
     font-size: 0.9em;
     width: 100%;
     margin-top: 0.5em;
+}
+
+div#addNewMeal h2 , div#addedMeals h2 {
+    background-color: #008FC5;
+    color: white;
+    float: left;
+    width: 97%;
+    padding: 0.2em 0 0.3em 3%;
+    font-size: 1.4em;
+    line-height: 1.4em;
+}
+
+form#newMeal h3 {
+    font-size: 1.2em;
+    font-weight: normal;
+    margin-bottom: 1em;
+    border-bottom: 1px solid #008FC5;
+    line-height: 1.3em;
+}
+
+form#newMeal span.step {
+    margin-right: 0.5em;
+    padding: 0 0.5em;
+    background-color: #71D01C;
+    color: white;
+}
+
+div#datepickerShowMeals, div#showMealsDate {
+    float: left;
+    width: 97%;
+    margin-left: 3%;
+}
+
+div#showMealsDate h3 {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    font-weight: normal;
+    border-bottom: 1px solid #008FC5;
+    padding-bottom: 0.2em;
+}
+
+div#showMealsDate ul li {
+    margin-bottom: 0.6em;
+    padding: 0.1em 0 0.1em 3%;
+    font-size: 1em;
+    line-height: 1em;    
+}
+
+div#showMealsDate ul li.type {
+    background-color: #71D01C;
+    color: white;
+    margin-bottom: 0.2em;
+    padding-top: 0.3em;
+    padding-bottom: 0.3em;
 }
 
 @media (min-width: 481px) {
@@ -1177,6 +1255,14 @@ span#errorFood {
         float: left;
         width: 50%;
     }
+    
+    div#datepickerShowMeals {
+        width: 40%;
+    } 
+    
+    div#showMealsDate {
+        width: 54%;
+    }
    
 }
 
@@ -1197,7 +1283,14 @@ span#errorFood {
         text-indent: 0;
         background-position: left;        
     }
+
+    div#datepickerShowMeals {
+        width: 30%;
+    } 
     
+    div#showMealsDate {
+        width: 64%;
+    }    
 }
 
 /*EOF*/

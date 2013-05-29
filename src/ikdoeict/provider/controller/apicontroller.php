@@ -22,6 +22,7 @@ class ApiController implements ControllerProviderInterface {
                 $controllers->post('/klanten/{customerId}/bmi', array($this, 'customerBmi'))->assert('customerId', '\d+');
                 $controllers->post('/klanten/{customerId}/gewicht', array($this, 'customerWeight'))->assert('customerId', '\d+');
                 $controllers->post('/food/{categoryId}', array($this, 'foodByCategory'))->assert('categoryId', '\d+');
+                $controllers->post('/klanten/{customerId}/maaltijden', array($this, 'customerMeals'))->assert('customerId', '\d+');
 
 		return $controllers;
 
@@ -68,4 +69,26 @@ class ApiController implements ControllerProviderInterface {
             
             return $app->json($return, 200);
         }
+        
+        public function customerMeals(Application $app, $customerId, Request $request) {
+            if (!$app['session']->get('dietician') || !$app['session']->get('customer')) {
+                return $app->json("Not allowed", 401);
+            }
+            
+            if (!isset($_POST['date'])) {
+                return $app->json("Not allowed", 401);
+            }
+            
+            $return = $app['api']->getCustomerMeals($customerId, $_POST['date']);
+            json_encode($return);
+            foreach($return as $i => $meal) {
+                $food = $app['api']->getFoodByMeals($meal['id']);
+                foreach($food as $y => $f) {
+                    $return[$i]['food'][$y] = $f;
+                }
+            }
+            
+            return $app->json($return, 200);  
+        }
+        
 }

@@ -106,6 +106,7 @@ class CustomerController implements ControllerProviderInterface {
                 }
             };
             
+            
             return $app['twig']->render('customer/meals.twig', array('customer' => $customer, 
                                                                     'customerDietician' => $customerDietician, 
                                                                     'mealtypes' => $mealtypes,
