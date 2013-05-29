@@ -90,6 +90,22 @@ class CustomerController implements ControllerProviderInterface {
             $mealtypes = $app['customer']->getMealTypes();
             $foodcategories = $app['customer']->getFoodCategories();
             
+            if ($request->isMethod('POST')) {
+                if (isset($_POST['addMeal'])) {
+                    $meal['customer_id'] = $customer['id'];
+                    $meal['type_id'] = $_POST['type'];
+                    $meal['date'] = $_POST['date'];
+                    $mealId = $app['customer']->addNewMeal($meal);
+                    $meal_food['meals_id'] = $mealId;
+                    foreach($_POST['food'] as $key => $food) {
+                        $meal_food['food_id'] = $app['customer']->getFoodId($food);
+                        $meal_food['gram'] = $_POST['gram'][$key];
+                        $app['customer']->addNewMealFood($meal_food);
+                    }
+                    return $app->redirect('/klant/maaltijden');
+                }
+            };
+            
             return $app['twig']->render('customer/meals.twig', array('customer' => $customer, 
                                                                     'customerDietician' => $customerDietician, 
                                                                     'mealtypes' => $mealtypes,

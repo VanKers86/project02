@@ -29,4 +29,21 @@ class CustomersRepository extends \Knp\Repository {
             return $this->db->fetchAll('SELECT * FROM food_categories');
         }
         
+        public function addNewMeal($meal) {
+            $meal['consultation_id'] = $this->getConsultationOfMeal($meal);
+            $this->db->insert('meals', $meal);
+            return $this->db->lastInsertId();
+        }
+        
+        public function getConsultationOfMeal($meal) {
+            return $this->db->fetchColumn('SELECT c.id FROM customer_data AS c WHERE c.customer_id = ? AND c.date < ? ORDER BY c.date DESC limit 0,1', array($meal['customer_id'], $meal['date']));
+        }
+        
+        public function getFoodId($food) {
+            return $this->db->fetchColumn('SELECT c.id FROM foods AS c WHERE c.name = ?', array($food));
+        }
+        
+        public function addNewMealFood($food) {
+            return $this->db->insert('meals_food', $food);
+        }
 }

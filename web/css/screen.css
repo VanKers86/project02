@@ -1083,10 +1083,21 @@ form#newMeal p#addThisMeal {
     border-top: 1px solid #71D01C;
 }
 
+form#newMeal a.deleteFood {
+    float: right;
+}
+
 form#newMeal p#addThisMeal input {
     float: right;
 }
 
+span#errorFood {
+    float: left;
+    color: #C10015;
+    font-size: 0.9em;
+    width: 100%;
+    margin-top: 0.5em;
+}
 
 @media (min-width: 481px) {
     section.center {
