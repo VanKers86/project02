@@ -24,7 +24,7 @@ class DieticiansRepository extends \Knp\Repository {
         }
         
         public function findCustomers($dieticianId) {
-            return $this->db->fetchAll('SELECT c.*, DATE_FORMAT(c.date_added,"%d-%m-%Y") AS dateFormat FROM customers AS c WHERE c.dietician_id = ? AND c.archive = "N"', array($dieticianId));
+            return $this->db->fetchAll('SELECT c.*, DATE_FORMAT(c.date_added,"%d-%m-%Y") AS dateFormat FROM customers AS c WHERE c.dietician_id = ? AND c.archive = "N" ORDER BY c.name', array($dieticianId));
         }
         
         public function getDietistCustomer($dieticianId, $customerId) {

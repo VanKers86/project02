@@ -30,7 +30,7 @@ var setWeightChart = function() {
     if (weightProgression.length === 0) {
         $.ajax ({
            url: '/api/klanten/' + customerIdChart + '/gewicht',
-           type: 'POST',
+           type: 'GET',
            dataType: 'json',
            async: false,
            success: function(data) {
@@ -57,7 +57,10 @@ var setWeightChart = function() {
              zoomType: 'xy'
         },
         title: {
-            text: 'Gewicht Progressie'
+            text: 'Gewicht Progressie',
+            style: {
+                fontSize: '1.2em'
+            }            
         },
         xAxis: {
             type: 'datetime',
@@ -126,7 +129,7 @@ var setWeightChart = function() {
 var setBmiChart = function() {
      $.ajax ({
        url: '/api/klanten/' + customerIdChart + '/bmi',
-       type: 'POST',
+       type: 'GET',
        dataType: 'json',
        async: false,
        success: function(data) {
@@ -148,7 +151,7 @@ var setBmiChart = function() {
     
     $.ajax ({
        url: '/api/klanten/' + customerIdChart + '/gewicht',
-       type: 'POST',
+       type: 'GET',
        dataType: 'json',
        async: false,
        success: function(data) {
@@ -174,7 +177,10 @@ var setBmiChart = function() {
              zoomType: 'xy'
         },
         title: {
-            text: 'BMI Progressie'
+            text: 'BMI Progressie',
+            style: {
+                fontSize: '1.2em'
+            }
         },
         xAxis: {
             type: 'datetime',

@@ -11,8 +11,15 @@
 
 {% block subheader %}
     <h1>Nieuwe consultatie voor {{ customer.name }}</h1>
-    <p id="customerGender" class="{% if customer.gender == "M" %}male{% elseif customer.gender == "F" %}female{% endif %}">{{ customer.gender }}</p>
-    <p><span class="age">Leeftijd: {{ customer.age }}</span><span class="birthdate">({{ customer.birthdateFormat }})</span></p>
+    <p>
+        <span id="customerGender" class="{% if customer.gender == "M" %}male{% elseif customer.gender == "F" %}female{% endif %}">{{ customer.gender }}</span>
+        <span class="age">Leeftijd: {{ customer.age }}</span>
+        <span class="birthdate">({{ customer.birthdateFormat }})</span>
+    </p>  
+    <p> 
+        <span class="email">{{ customer.email }}</span><br />
+        <span class="phone">{{ customer.phone }}</span>
+    </p>
    
 {% endblock %}
     

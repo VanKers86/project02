@@ -175,7 +175,7 @@ var getFoodsByCategory = function(url) {
     if (!cache.data(url)) {
         $.ajax ({
            url: '/api/' + url,
-           type: 'POST',
+           type: 'GET',
            dataType: 'json',
            async: false,
            success: function(data) {

@@ -12,12 +12,17 @@
 {% set customersActive = true %}
 
 {% block subheader %}
+    <input type="hidden" id="customerId" value="{{ customer.id }}">
+    <input type="hidden" id="dieticianId" value="{{ dietician.id }}">
+
     <h1>{{ customer.name }}</h1>
-    <p id="customerGender" class="{% if customer.gender == "M" %}male{% elseif customer.gender == "F" %}female{% endif %}">{{ customer.gender }}</p>
     <p>
+        <span id="customerGender" class="{% if customer.gender == "M" %}male{% elseif customer.gender == "F" %}female{% endif %}">{{ customer.gender }}</span>
         <span class="age">Leeftijd: {{ customer.age }}</span>
         <span class="birthdate">({{ customer.birthdateFormat }})</span>
-        <span class="email">{{ customer.email }}</span>
+    </p>  
+    <p> 
+        <span class="email">{{ customer.email }}</span><br />
         <span class="phone">{{ customer.phone }}</span>
     </p>
     <p class="addedDate">Toegevoegd op {{ customer.dateFormat }}</p>
@@ -37,10 +42,23 @@
 {% endblock %}
 
 {% block consolePageContent %}
+    
     <div class="subfield">
         <a href="#">Stuur een opmerking naar deze klant</a> <br />
         <a href="#">Stel een nieuwe consultatie voor</a><br />
     </div>
+    
+    <div class="subfield shown" id="meals">
+        <h2 class="meals">Maaltijden</h2>
+        <div id="datepickerShowMeals"></div>
+        <input type="hidden" id="showMeals" autocomplete="off" />
+        <div id="showMealsDate" class="clearfix">
+            <h3></h3>
+            <ul>
+            </ul>
+        </div>
+    </div>     
+    
     <div class="subfield shown" id="consults">
         <h2 class="consultation">Consultaties
             <select autocomplete="off" id="previousConsults">
@@ -124,9 +142,5 @@
         <div id="chartBMI" class="chart"></div>
     </div>
     
-    <div class="subfield shown" id="meals">
-        <h2 class="meals">Maaltijden</h2>
-        <p>Per datum</p>
-    </div> 
     
 {% endblock %}

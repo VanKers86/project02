@@ -167,7 +167,6 @@ form#login label {
     display: block;
     background-size: 1.384615384615385em 1.384615384615385em;
     background-repeat: no-repeat;
-    line-height: 1.461538461538462em !important;
 }
 
 .weight {
@@ -481,7 +480,7 @@ form#newCustomer label {
     float: left;
     width: 100%;
     color: #333;
-    font-size: 1.2em;
+    font-size: 1em;
     margin-bottom: 0.5em;
     font-weight: 200;
 }
@@ -535,12 +534,12 @@ form#newCustomer div.infoFromInput div.auto label {
 form#newCustomer div.infoFromInput div.auto p {
     float: left;
     width: 55%;
-    font-size: 1.2em;
+    font-size: 1em;
 }
 
 span#PAL {
     float: left;
-    font-size: 1.2em;
+    font-size: 1em;
     margin: 0.5em 0 0 1em;
 }
 
@@ -694,24 +693,29 @@ div#subheader {
 }
 
 div#subheader p {
-    line-height: 1.5em;
-    float: left;
-    padding-right: 1.384615384615385em;
-}
-
-
-div#subheader p span {
-    font-size: 1em;
-}
-
-div#subheader p.male, div#subheader p.female {
-
-}
-
-div#subheader p.addedDate {
     float: left;
     width: 100%;
-    padding: 0px;
+    line-height: 1.6em;
+}
+
+div#subheader p span#customerGender {
+    padding-left: 1.5em;
+}
+
+div#subheader p span.email, div#subheader p span.phone {
+    padding-left: 2em;
+}
+
+div#subheader p span.email {
+    background-image: url('../img/icons/email.png');
+    background-repeat: no-repeat;
+    background-size: 1.3em 1.3em;
+}
+
+div#subheader p span.phone {
+    background-image: url('../img/icons/phone.png');
+    background-repeat: no-repeat;
+    background-size: 1.3em 1.3em;
 }
 
 ul#customersList {
@@ -775,12 +779,11 @@ div.subfield h2 {
     padding-top: 0.2em;
     background-color: #008FC5;
     color: white;
-    margin-bottom: 0;
+    margin-bottom: 0.5em;
     padding-left: 8%;
     padding-right: 0%;
-    font-size: 1.4em;
-    line-height: 1.4em;
-    text-indent: -9999px;
+    font-size: 1.3em;
+    line-height: 1.3em;
 }
 div.subfield h2:hover {
     cursor: pointer;
@@ -793,8 +796,8 @@ div.consult {
     margin-bottom: 0.5em;
     width: 97%;
     margin-left: 3%;
-    line-height: 1.2em;
-    font-size: 1.2em;
+    line-height: 1em;
+    font-size: 1em;
     box-sizing: border-box;   
 /*    border-top: 1px solid #008FC5;*/
     border-bottom: 1px solid #008FC5;
@@ -891,7 +894,7 @@ form#newConsultation div.input {
 }
 
 form#newConsultation div.input label {
-    font-size: 1.2em;
+    font-size: 1em;
 }
 
 form#newConsultation div.inputFields {
@@ -904,7 +907,7 @@ form#newConsultation div.submitField {
     float: right;
 }
 
-p#customerGender {
+span#customerGender {
     text-indent: -9999px;
     margin-right: 0.5em;
 }
@@ -924,7 +927,7 @@ form#newConsultation div.auto label {
 form#newConsultation div.auto p {
     float: left;
     width: 60%;
-    font-size: 1.2em;
+    font-size: 1em;
     line-height: 1.38462em;
 }
 
@@ -949,7 +952,7 @@ form#newConsultation label#comments {
 h2.consultation, h2.progression, h2.meals {
     background-repeat: no-repeat;
     background-position: 4px;
-    background-size: 1.693846153846154em 1.693846153846154em;
+    background-size: 1.653846153846154em 1.653846153846154em;
 }
 
 h2.consultation {
@@ -1163,18 +1166,42 @@ div#showMealsDate h3 {
 }
 
 div#showMealsDate ul li {
-    margin-bottom: 0.6em;
-    padding: 0.1em 0 0.1em 3%;
+    margin-bottom: 0.2em;
+    padding-left: 3%;
     font-size: 1em;
-    line-height: 1em;    
+    line-height: 1.5em;
+    float: left;
+    width: 97%;
 }
 
 div#showMealsDate ul li.type {
     background-color: #71D01C;
     color: white;
-    margin-bottom: 0.2em;
-    padding-top: 0.3em;
-    padding-bottom: 0.3em;
+}
+
+div#showMealsDate ul li.total {
+    background-color: #DDD;
+    color: #333;
+}
+
+div#showMealsDate ul li.top span {
+    background-position: center center;
+    font-size: 1em !important;
+}
+
+div#showMealsDate ul li span.info {
+    float: left;
+    width: 33%;
+}
+
+div#showMealsDate ul li span.val {
+    float: left;
+    width: 8.1%;
+    text-align: center;
+    border-left: 1px solid white;
+    font-size: 0.8em;
+    line-height: 1.875em;
+    box-sizing: border-box;
 }
 
 @media (min-width: 481px) {
@@ -1255,14 +1282,6 @@ div#showMealsDate ul li.type {
         float: left;
         width: 50%;
     }
-    
-    div#datepickerShowMeals {
-        width: 40%;
-    } 
-    
-    div#showMealsDate {
-        width: 54%;
-    }
    
 }
 
@@ -1290,7 +1309,7 @@ div#showMealsDate ul li.type {
     
     div#showMealsDate {
         width: 64%;
-    }    
+    } 
 }
 
 /*EOF*/
