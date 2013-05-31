@@ -18,7 +18,7 @@ class CustomersRepository extends \Knp\Repository {
         }
 
         public function getLastConsultationDate($customerId) {
-            return $this->db->fetchColumn('SELECT DATE_FORMAT(c.date,"%d-%m-%Y") AS dateFormat FROM customer_data AS c WHERE c.customer_id = ? ORDER BY c.date DESC limit 0,1', array($customerId));
+            return $this->db->fetchColumn('SELECT DATE_FORMAT(c.date,"%d-%m-%Y") AS dateFormat FROM customer_consultations AS c WHERE c.customer_id = ? ORDER BY c.date DESC limit 0,1', array($customerId));
         }
         
         public function getMealTypes() {
@@ -36,7 +36,7 @@ class CustomersRepository extends \Knp\Repository {
         }
         
         public function getConsultationOfMeal($meal) {
-            return $this->db->fetchColumn('SELECT c.id FROM customer_data AS c WHERE c.customer_id = ? AND c.date < ? ORDER BY c.date DESC limit 0,1', array($meal['customer_id'], $meal['date']));
+            return $this->db->fetchColumn('SELECT c.id FROM customer_consultations AS c WHERE c.customer_id = ? AND c.date < ? ORDER BY c.date DESC limit 0,1', array($meal['customer_id'], $meal['date']));
         }
         
         public function getFoodId($food) {

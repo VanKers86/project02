@@ -40,7 +40,17 @@ $(function($) {
             if ($(window).width() > 750 && $('header#small').height() < $('section#console').height()) {
                 $('header#small').height($('section#console').height());
             }  
-        }); 
+        });
+    });
+
+    var now = moment();
+
+    $('div.consult').each(function(e) {
+        var date = $(this).find('.consDateFormat').val();
+        var dateMoment = moment(date, 'DD-MM-YYYY');
+        $(this).find('span.consDate').append(' op ' + date);
+        $(this).find('span.consDate').append(' (' + now.diff(dateMoment, 'days') + ' dagen geleden)');
+        console.log(date);
     });
     
     $('div.subfield h2').on('click', function(e) {
@@ -89,12 +99,6 @@ $(function($) {
             $('.' + className[0]).css('background-color', 'inherit');
             $('.' + className[0]).css('color', 'inherit');        
         }
-    });
-    
-    $('body').on({
-          mouseenter: function() {
-              console.log("hi");
-          }
     });
 });
 

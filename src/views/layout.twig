@@ -41,6 +41,9 @@
         <script type="text/javascript" src="{{ app.request.baseUrl }}/js/jquery-ui-1.10.3.custom.min.js"></script>
         <script type="text/javascript" src="{{ app.request.baseUrl }}/js/jquery.numeric.js"></script>
         <script type="text/javascript" src="{{ app.request.baseUrl }}/js/moment.min.js"></script>
+        {% if gmaps is defined %}
+        <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+        {% endif %}
         {% if jchart is defined %}
         <script type="text/javascript" src="{{ app.request.baseUrl }}/js/highcharts/highcharts.js"></script> 
         <script type="text/javascript" src="{{ app.request.baseUrl }}/js/highcharts/modules/exporting.js"></script> 

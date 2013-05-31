@@ -7,7 +7,7 @@ $app->error(function (\Exception $e, $code) {
 	if ($code == 404) {
 		return '404 - Not Found! // ' . $e->getMessage();
 	} else {
-		return 'Shenanigans! Something went horribly wrong // ' . $e->getMessage();
+		return 'Something went wrong // ' . $e->getMessage();
 	}
 });
 

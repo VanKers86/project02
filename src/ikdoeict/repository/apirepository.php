@@ -9,11 +9,11 @@ class APIRepository extends \Knp\Repository {
 	}
         
         public function getCustomerBmi($customerId) {
-            return $this->db->fetchAll('SELECT date, bmi FROM customer_data WHERE customer_id = ? ORDER BY date', array($customerId));
+            return $this->db->fetchAll('SELECT date, bmi FROM customer_consultations WHERE customer_id = ? ORDER BY date', array($customerId));
 	}
  
         public function getCustomerWeight($customerId) {
-            return $this->db->fetchAll('SELECT date, weight FROM customer_data WHERE customer_id = ? ORDER BY date', array($customerId));
+            return $this->db->fetchAll('SELECT date, weight FROM customer_consultations WHERE customer_id = ? ORDER BY date', array($customerId));
 	}        
         
         public function getFoodByCategory($categoryId) {
@@ -36,7 +36,7 @@ class APIRepository extends \Knp\Repository {
         }
         
         public function getConsultationOfMeal($mealId) {
-            return $this->db->fetchAssoc('SELECT c.kcal, c.carbohydrates, c.sugars, c.fats, c.proteins, c.cholesterol, c.fibres, c.sodium FROM customer_data AS c 
+            return $this->db->fetchAssoc('SELECT c.kcal, c.carbohydrates, c.sugars, c.fats, c.proteins, c.cholesterol, c.fibres, c.sodium FROM customer_consultations AS c 
                                           INNER JOIN meals AS m ON m.consultation_id = c.id
                                           WHERE m.id = ?', array($mealId));
         }

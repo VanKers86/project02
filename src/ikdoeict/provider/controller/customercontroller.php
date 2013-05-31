@@ -68,7 +68,7 @@ class CustomerController implements ControllerProviderInterface {
             }
 
             $customer = $app['session']->get('customer');
-            $customerDietician = $app['session']->get('customerDietician');
+            $customerDietician = $app['customer']->findCustomerDietician($customer['id']);
             $lastConsultationDate = $app['customer']->getLastConsultationDate($customer['id']);
             
             return $app['twig']->render('customer/console.twig', array('customer' => $customer, 'customerDietician' => $customerDietician, 'lastConsultationDate' => $lastConsultationDate));

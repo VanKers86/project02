@@ -20,7 +20,7 @@ class DieticiansRepository extends \Knp\Repository {
         }
         
         public function addCustomerData($customerData) {
-            return $this->db->insert('customer_data', $customerData);
+            return $this->db->insert('customer_consultations', $customerData);
         }
         
         public function findCustomers($dieticianId) {
@@ -32,11 +32,11 @@ class DieticiansRepository extends \Knp\Repository {
         }
         
         public function getLastConsultation($customerId) {
-            return $this->db->fetchAssoc('SELECT c.*, DATE_FORMAT(c.date,"%d-%m-%Y") AS dateFormat FROM customer_data AS c WHERE c.customer_id = ? ORDER BY c.date DESC limit 0,1', array($customerId));
+            return $this->db->fetchAssoc('SELECT c.*, DATE_FORMAT(c.date,"%d-%m-%Y") AS dateFormat FROM customer_consultations AS c WHERE c.customer_id = ? ORDER BY c.date DESC limit 0,1', array($customerId));
         }
         
         public function getConsultations($customerId) {
-            return $this->db->fetchAll('SELECT *, DATE_FORMAT(c.date,"%d-%m-%Y") AS dateFormat FROM customer_data AS c WHERE c.customer_id = ? ORDER BY c.date DESC', array($customerId));
+            return $this->db->fetchAll('SELECT *, DATE_FORMAT(c.date,"%d-%m-%Y") AS dateFormat FROM customer_consultations AS c WHERE c.customer_id = ? ORDER BY c.date DESC', array($customerId));
         }
         
         //Set customer as archived, when "deleted" by dietician

@@ -164,7 +164,6 @@ form#login label {
 
 
 .male, .female {
-    display: block;
     background-size: 1.384615384615385em 1.384615384615385em;
     background-repeat: no-repeat;
 }
@@ -543,10 +542,6 @@ span#PAL {
     margin: 0.5em 0 0 1em;
 }
 
-p span {
-    float: left;
-    margin-right: 3px;
-}
 div.auto p input {
     float: left;
 }
@@ -677,7 +672,7 @@ div#subheader a#logout:hover {
 div#subheader h1 {
     width: 90%;
     margin-bottom: 0.2em;
-    font-size: 2.5em;
+    font-size: 2.3em;
     font-weight: 100;
     color: #333;    
 }
@@ -699,20 +694,22 @@ div#subheader p {
 }
 
 div#subheader p span#customerGender {
-    padding-left: 1.5em;
+    padding-left: 1.3em;
+    padding-bottom: 0.2em;
+    line-height: 2em;
 }
 
-div#subheader p span.email, div#subheader p span.phone {
+.email, .phone {
     padding-left: 2em;
 }
 
-div#subheader p span.email {
+.email {
     background-image: url('../img/icons/email.png');
     background-repeat: no-repeat;
     background-size: 1.3em 1.3em;
 }
 
-div#subheader p span.phone {
+.phone {
     background-image: url('../img/icons/phone.png');
     background-repeat: no-repeat;
     background-size: 1.3em 1.3em;
@@ -818,7 +815,7 @@ ul.consult li.customerData {
     float: left;
     width: 94%;
     font-size: 1em;
-    background-color: #008FC5;
+    background-color: #71d01c;
     margin-top: 1em;
     color: white;
     margin-right: 0%;
@@ -843,7 +840,7 @@ ul.consult li.comments {
 div#consults h3 {
     font-weight: normal;
     padding: 0.5em 0 0 0%;
-    font-size: 1em;
+    font-size: 1.1em;
 }
 
 div#consults select {
@@ -905,11 +902,6 @@ form#newConsultation div.inputFields {
 
 form#newConsultation div.submitField {
     float: right;
-}
-
-span#customerGender {
-    text-indent: -9999px;
-    margin-right: 0.5em;
 }
 
 div#palSlider {
@@ -985,16 +977,14 @@ div#interaction img.interactionPhoto {
 
 div#interaction p {
     float: left;
-    width: 82%;
-    margin-top: 0.5em;
-    position: absolute;
-    bottom: 0.6846153846153846em;
-    left: 15%;
+    width: 82% !important;
+    padding: 0 !important;
 }
 
 div#interaction span#dieticianName {
     color: #333;
     font-size: 0.9em;
+    text-indent: -9999px;
 }
 
 div#interaction span#interactionText {
@@ -1167,11 +1157,11 @@ div#showMealsDate h3 {
 
 div#showMealsDate ul li {
     margin-bottom: 0.2em;
-    padding-left: 3%;
+    padding-left: 1.5%;
     font-size: 1em;
     line-height: 1.5em;
     float: left;
-    width: 97%;
+    width: 98.5%;
 }
 
 div#showMealsDate ul li.type {
@@ -1202,6 +1192,81 @@ div#showMealsDate ul li span.val {
     font-size: 0.8em;
     line-height: 1.875em;
     box-sizing: border-box;
+}
+
+div#dashboard h2 {
+    float: left;
+    width: 97%;
+    background-color: #008FC5;
+    color: white;
+    margin: 0.7em 0 0.2em 0;
+    padding: 0.4em 0 0.4em 3%;
+    font-size: 1.2em;
+}
+
+div#dashboard div.sub {
+    float: left;
+    width: 97%;
+    margin-left: 3%;
+}
+
+div#dashboard h3 {
+    float: left;
+    width: 100%;
+    margin-top: 1em;
+    padding-bottom: 0.2em;
+    border-bottom: 1px solid #008fc5;
+    font-weight: normal;
+}
+
+div#dashboard div#consultation span {
+    font-weight: bold;
+}
+
+div#dashboard div#consultation ul {
+    float: left;
+    width: 100%;
+}
+
+div#dashboard div#consultation li {
+    line-height: 1.4em;
+    margin-top: 0.2em;
+}
+
+div#dashboard div#consultation li:first-child {
+    font-size: 1.2em;
+    margin-bottom: 0.5em;
+    margin-top: 0.4em;
+}
+
+div#dashboard p {
+    width: 100%;
+    float: left;
+    line-height: 1.2em;
+    margin-top: 0.4em;
+}
+
+div#dashboard div#consultation dl#hours {
+    float: left;
+}
+
+div#dashboard div#consultation dl#hours dt {
+    width: 30%;
+    float: left;
+    margin-top: 0.2em;
+}
+
+div#dashboard div#consultation dl#hours dd {
+    width: 70%;
+    float: left;
+    margin-top: 0.2em;    
+}
+
+div#dashboard div#consultation div#googleMap {
+    width: 100%;
+    height: 15em;
+    float: left;
+    margin-top: 1em;
 }
 
 @media (min-width: 481px) {
@@ -1282,6 +1347,10 @@ div#showMealsDate ul li span.val {
         float: left;
         width: 50%;
     }
+    
+    div#interaction span#dieticianName {
+        text-indent: 0px;
+    }    
    
 }
 
@@ -1308,8 +1377,16 @@ div#showMealsDate ul li span.val {
     } 
     
     div#showMealsDate {
-        width: 64%;
-    } 
+        width: 66%;
+        margin-left: 1%;
+    }
+    
+    div#dashboard div.sub {
+        
+        width: 47%;
+    }
+    
+    
 }
 
 /*EOF*/

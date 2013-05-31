@@ -6,6 +6,7 @@
 {% set pageTitle = 'Console' %}
 {% set contentId = 'console' %}
 {% set javascript = 'customer' %}
+{% set gmaps = true %}
 
 {# set variables in the console tpl #}
 {% set dashboardActive = true %}
@@ -16,7 +17,7 @@
         <img class="interactionPhoto" src='/img/userfiles/dietician/{{ customerDietician.photo }}' alt="{{ customerDietician.name }}" title="{{ customerDietician.name }}" />
         <p>
             <span id="dieticianName">{{ customerDietician.name }}:</span><br />
-            <span id="interactionText">"Heb je een vraag of wil je een afspraak maken? Aarzel dan niet!"</span>
+            <span id="interactionText">"Heb je een vraag of wil je een afspraak maken? Contacteer me!"</span>
         </p>
     </div>
     
@@ -24,19 +25,53 @@
 
 
 {% block consolePageContent %}
-    <div id="question">
-        <h4>Stel een vraag aan {{ customerDietician.name }}</h4>
-    </div>
+<div id="dashboard">
     <div id="remarks">
-        <h4>{{ customerDietician.name }} zei het volgende:</h4>
-    </div>       
-    
-    <div id="consultationInfo">
-        <p>Je laatste consultatie was op {{ lastConsultationDate }} <br /> Je kan altijd een nieuwe consultatie aanvragen.</p>
+        <h2>{{ customerDietician.name }} zei het volgende op ... datum ...:</h2>
     </div>
-    <div id="calender">
-        <h4>Agenda</h4>
-        <p>Dietist xxx heeft een nieuwe afspraak verzoek</p>
-        <p>Geen nieuwe afspraak verzoeken</p>
-    </div> 
+    
+    <div id="question">
+        <h2>Stel een vraag aan {{ customerDietician.name }}</h2>
+
+    </div>
+        
+    <div id="consultation">
+        <h2>Consultatie en contactgegevens</h2>
+        <div class="sub">
+            <h3>Contactgegevens</h3>
+            <ul>
+                <li>Infraligne Sint-Niklaas</li>
+                <li>Pater Segersstraat 22</li>
+                <li>9100 Sint-Niklaas</li>
+                <li class="phone">03 765 06 64</li>
+                <li class="email">{{ customerDietician.email }}</li>
+            </ul>
+            <h3>Openingsuren</h3>
+            <dl id="hours">
+                <dt>maandag:</dt>
+                <dd>09u00 - 21u00</dd>
+                <dt>dinsdag:</dt>
+                <dd> 09u00 - 21u00</dd>
+                <dt>woensdag:</dt>
+                <dd> 09u00 - 13u00 &amp; 17u00 - 21u00</dd>
+                <dt>donderdag:</dt>
+                <dd> 09u00 - 21u00</dd>
+                <dt>vrijdag:</dt>
+                <dd> 09u00 - 15u00</dd>
+                <dt>zaterdag:</dt>
+                <dd> 09u30 - 13u00</dd>
+            </dl>            
+        </div>
+        <div class="sub">
+            <h3>Recentste consultatie</h3>
+            <p>Je recentste consultatie was op 
+                <span id="lastConsultationDate">{{ lastConsultationDate }}</span>, dit is 
+                <span id="daysAgo">&nbsp;</span> dagen geleden.
+                Je kan altijd <span>telefonisch</span> een nieuwe consultatie aanvragen.
+            </p>
+            <h3>Locatie</h3>
+            <div id="googleMap"></div>
+        </div>
+    </div>        
+</div>
 {% endblock %}

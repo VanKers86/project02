@@ -17,13 +17,15 @@
 
     <h1>{{ customer.name }}</h1>
     <p>
-        <span id="customerGender" class="{% if customer.gender == "M" %}male{% elseif customer.gender == "F" %}female{% endif %}">{{ customer.gender }}</span>
+        <span id="customerGender" class="{% if customer.gender == "M" %}male{% elseif customer.gender == "F" %}female{% endif %}">&nbsp;</span>
         <span class="age">Leeftijd: {{ customer.age }}</span>
         <span class="birthdate">({{ customer.birthdateFormat }})</span>
     </p>  
     <p> 
         <span class="email">{{ customer.email }}</span><br />
+        {% if customer.phone %}
         <span class="phone">{{ customer.phone }}</span>
+        {% endif %}
     </p>
     <p class="addedDate">Toegevoegd op {{ customer.dateFormat }}</p>
     <div id="deleteCustomer" class="clearfix">
@@ -45,7 +47,6 @@
     
     <div class="subfield">
         <a href="#">Stuur een opmerking naar deze klant</a> <br />
-        <a href="#">Stel een nieuwe consultatie voor</a><br />
     </div>
     
     <div class="subfield shown" id="meals">
@@ -69,8 +70,9 @@
         </h2>
         {% for key, consultation in consultations %}
         <div id="cons{{ consultation.id }}" class="consult clearfix">
+            <input type="hidden" class="consDateFormat" value="{{ consultation.dateFormat }}" />
             <h3>
-                Consultatie <span class="nr">{{ loop.revindex }}</span>/{{ loop.length }}
+                Consultatie <span class="nr">{{ loop.revindex }}</span>/{{ loop.length }}<span class="consDate"></span>
             </h3>            
             <ul class="consult">
                 <li class="customerData">Anamnetische gegevens</li>
