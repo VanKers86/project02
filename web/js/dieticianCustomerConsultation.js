@@ -123,7 +123,7 @@ var calculateBMI = function() {
             $('#BMI span#bmiSpan').attr('class', 'bmi5');
         }
 
-        $('#BMI span#bmiSpan').html(bmi + ' (' + type + ')');
+        $('#BMI span#bmiSpan').html('BMI: ' + bmi + ' (' + type + ')');
         $('input[name=bmi]').val(bmi);
     }
     else {

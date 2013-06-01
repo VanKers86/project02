@@ -5,6 +5,29 @@ var cache = $('body');
 $(function($) {
     customerId = Number($('input#customerId').attr('value'));
     dieticianId = Number($('input#dieticianId').attr('value'));
+
+    $('div#menuCustomer h2').each(function () {
+       var menuLink = $(this).attr('id');
+       var menuDiv = menuLink.split('Link')[0];
+       if (!$(this).hasClass('active')) {
+           $('div#consoleContent').find('div#' + menuDiv).hide();
+       };
+    });
+    
+    $('div#menuCustomer h2').on('click', function(e) {
+        if (!$(this).hasClass('active')) {
+            var activeMenu = $('div#menuCustomer h2.active').attr('id');
+            var activeDiv = activeMenu.split('Link')[0];
+            $('div#menuCustomer h2.active').removeClass('active');
+            $('div#consoleContent div#' + activeDiv).hide();
+            $(this).addClass('active');
+            var menuLink = $(this).attr('id');
+            var menuDiv = menuLink.split('Link')[0];            
+            $('div#consoleContent').find('div#' + menuDiv).show();
+            resizeHeader();
+            $(window).resize();
+        }
+    });
     
     $('div#consults div.consult:not(:first)').addClass('hidden').hide();
     
@@ -226,8 +249,30 @@ var setMealsChart = function(data) {
             text: null
         },
         xAxis: {
-            categories: ['Energie', 'Koolhydraten', 'Suikers', 'Eiwitten', 'Vetten']
+            categories: ['Energie', 'Koolhydraten', 'Suikers', 'Eiwitten', 'Vetten'],
+            labels: {
+                formatter: function() {
+                    if (this.value === 'Energie') {
+                        icon = 'energy';
+                    }
+                    else if (this.value === 'Koolhydraten') {
+                        icon = 'carbs';
+                    }
+                    else if (this.value === 'Suikers') {
+                        icon = 'sugar';
+                    }
+                    else if (this.value === 'Eiwitten') {
+                        icon = 'protein';
+                    }
+                    else if (this.value === 'Vetten') {
+                        icon = 'fat';
+                    }
+                    return '<img src="/img/icons/' + icon + '.png" width="18px;" height="18px;" alt="' + this.value + '" />';
+                },                
+                useHTML: true
+            }
         },
+        
         yAxis: {
             min: 0,
             title: {

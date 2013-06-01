@@ -48,9 +48,12 @@
     <div class="subfield">
         <a href="#">Stuur een opmerking naar deze klant</a> <br />
     </div>
-    
+    <div id="menuCustomer">
+        <h2 class="meals active" id="mealsLink">Maaltijden</h2>
+        <h2 class="consultation" id="consultsLink">Consultaties</h2>
+        <h2 class="progression" id="progressionLink">Progressie</h2>
+    </div>
     <div class="subfield shown" id="meals">
-        <h2 class="meals">Maaltijden</h2>
         <div id="datepickerShowMeals"></div>
         <input type="hidden" id="showMeals" autocomplete="off" />
         <div id="showMealsDate" class="clearfix">
@@ -62,13 +65,11 @@
     </div>     
     
     <div class="subfield shown" id="consults">
-        <h2 class="consultation">Consultaties
             <select autocomplete="off" id="previousConsults">
                 {% for consultation in consultations %}
                 <option value="cons{{ consultation.id}}">{{ consultation.dateFormat }}</option>
                 {% endfor %}
             </select>    
-        </h2>
         {% for key, consultation in consultations %}
         <div id="cons{{ consultation.id }}" class="consult clearfix">
             <input type="hidden" class="consDateFormat" value="{{ consultation.dateFormat }}" />
@@ -140,7 +141,6 @@
     </div>   
     
     <div class="subfield shown" id="progression">
-        <h2 class="progression">Progressie</h2>
         <div id="chartWeight" class="chart"></div>
         <div id="chartBMI" class="chart"></div>
     </div>

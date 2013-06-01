@@ -304,6 +304,8 @@ header#small ul#menu li a.passiveStats {
     -webkit-box-shadow: 5px 5px 20px 0px #000;
     box-shadow: 5px 5px 20px 0px #000;   
     box-sizing: border-box;
+    -moz-box-sizing:border-box; /* Firefox */    
+    
 }
 
 .buttonLink:hover {
@@ -448,6 +450,11 @@ section#console {
 
 form#newCustomer, form#newConsultation {
     float: left;
+}
+
+form#newConsultation div.inputBMI, form#newConsultation div.inputPAL {
+    width: 50% !important;
+    margin-left: 3% !important;
 }
 
 form#newCustomer div.inputFields, form#newCustomer div.infoFromInput {
@@ -771,18 +778,35 @@ div.subfield {
     padding-bottom: 0.5em;
 }
 
-div.subfield h2 {
+div#menuCustomer {
+    float: left;
+    width: 100%;
+}
+
+div#menuCustomer h2 {
+    float: left;
+    width: 33.3333333333%;
     padding-bottom: 0.2em;
     padding-top: 0.2em;
     background-color: #008FC5;
     color: white;
     margin-bottom: 0.5em;
-    padding-left: 8%;
     padding-right: 0%;
     font-size: 1.3em;
     line-height: 1.3em;
+    float: left;
+    text-align: center;
+    text-indent: -9999px;
+    border-right: 0.1em solid #FFF;
+    box-sizing: border-box;
+    -moz-box-sizing:border-box; /* Firefox */    
 }
-div.subfield h2:hover {
+
+div#menuCustomer h2:last-child {
+    border-right: 0px; 
+}
+
+div#menuCustomer h2:hover, div#menuCustomer h2.active {
     cursor: pointer;
     background-color: #71D01C;
 }
@@ -791,11 +815,13 @@ div.consult {
     float: left;
     padding-bottom: 1em;
     margin-bottom: 0.5em;
-    width: 97%;
-    margin-left: 3%;
+    width: 100%;
+    padding-left: 3%;
     line-height: 1em;
     font-size: 1em;
     box-sizing: border-box;   
+    -moz-box-sizing:border-box; /* Firefox */    
+    
 /*    border-top: 1px solid #008FC5;*/
     border-bottom: 1px solid #008FC5;
 /*    background-color: #71d01c;*/
@@ -814,7 +840,7 @@ ul.consult li {
 ul.consult li.customerData {
     float: left;
     width: 94%;
-    font-size: 1em;
+    font-size: 1.2em;
     background-color: #71d01c;
     margin-top: 1em;
     color: white;
@@ -845,7 +871,7 @@ div#consults h3 {
 
 div#consults select {
     float: right;
-    font-size: 0.8em;
+    font-size: 1.1em;
 }
 
 div#consults a {
@@ -941,9 +967,13 @@ form#newConsultation label#comments {
     float: left;
 }
 
+div#chartMeals {
+    margin-top: 1em;
+}
+
 h2.consultation, h2.progression, h2.meals {
     background-repeat: no-repeat;
-    background-position: 4px;
+    background-position: center center;
     background-size: 1.653846153846154em 1.653846153846154em;
 }
 
@@ -1190,12 +1220,14 @@ div#showMealsDate ul li span.info {
 
 div#showMealsDate ul li span.val {
     float: left;
-    width: 8.1%;
+    width: 8%;
     text-align: center;
     border-left: 1px solid white;
     font-size: 0.8em;
     line-height: 1.875em;
     box-sizing: border-box;
+    -moz-box-sizing:border-box; /* Firefox */    
+    
 }
 
 div#dashboard h2 {
@@ -1287,6 +1319,13 @@ div#dashboard div#consultation div#googleMap {
         text-indent: 0px;
     }
     
+    div#menuCustomer h2 {
+        text-indent: 0px;
+    }
+    
+    h2.consultation, h2.progression, h2.meals {
+        background-position: 0.5em;
+    }    
 }
 
 @media (min-width: 750px) {
