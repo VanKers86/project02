@@ -84,7 +84,7 @@
                 </li>
                 <li class="height">
                     Lengte:
-                    {{ consultation.height }} cm
+                    {{ consultation.height }}cm
                 </li>             
                 <li class="bmi">
                     BMI:
@@ -97,35 +97,35 @@
                 <li class="customerData">Dagelijkse aanbevolen hoeveelheid</li>
                 <li class="energy">
                     Energie:
-                    {{ consultation.kcal }} kcal
+                    {{ consultation.kcal }}kcal
                 </li>
                 <li class="carbs">
                     Koolhydraten:
-                    {{ consultation.carbohydrates }} g
+                    {{ consultation.carbohydrates }}g (= {{ consultation.carbcal }}kcal)
                 </li>
                 <li class="sugar">
                     Suikers:
-                    {{ consultation.sugars }} g
+                    {{ consultation.sugars }}g
                 </li>
                 <li class="protein">
                     Eiwitten:
-                    {{ consultation.proteins }} g
+                    {{ consultation.proteins }}g (= {{ consultation.protcal }}kcal)
                 </li>
                 <li class="fat">
                     Vetten:
-                    {{ consultation.fats }} g
+                    {{ consultation.fats }}g (= {{ consultation.fatcal }}kcal)
                 </li>
                 <li class="cholesterol">
                     Cholesterol: &lt;
-                    {{ consultation.cholesterol }} g
+                    {{ consultation.cholesterol }}mg
                 </li>
                 <li class="fibre">
                     Vezels: &gt;
-                    {{ consultation.fibres }} mg
+                    {{ consultation.fibres }}g
                 </li>
                 <li class="salt">
                     Natrium: &gt;
-                    {{ consultation.sodium }} mg
+                    {{ consultation.sodium }}mg
                 </li>
                 {% if consultation.comments %}
                 <li class="customerData">Opmerkingen</li>

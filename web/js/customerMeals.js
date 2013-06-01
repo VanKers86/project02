@@ -97,7 +97,7 @@ $(function($) {
                 $('span#quantity').html('ml');
             }
             else {
-                $('span#quantity').html('gr');
+                $('span#quantity').html('g');
             }
             $('input#food').val("");
             $('span#errorFood').empty();
@@ -216,10 +216,10 @@ var getMealInfo = function() {
             $('div#showMealsDate ul').append('<li class="type">' + meal.type + '</li>');
             $.each(meal.food, function(i, food) {
                 if (food.foodcategory === "Dranken") {
-                    $('div#showMealsDate ul').append('<li class="food">' + food.quantity + 'cl ' + food.foodname + '</li>');   
+                    $('div#showMealsDate ul').append('<li class="food">' + food.quantity + 'ml ' + food.foodname + '</li>');   
                 }
                 else {
-                    $('div#showMealsDate ul').append('<li class="food">' + food.quantity + 'gr '  + food.foodname + '</li>');   
+                    $('div#showMealsDate ul').append('<li class="food">' + food.quantity + 'g '  + food.foodname + '</li>');   
                 }
             });
         });

@@ -36,7 +36,7 @@ class DieticiansRepository extends \Knp\Repository {
         }
         
         public function getConsultations($customerId) {
-            return $this->db->fetchAll('SELECT *, DATE_FORMAT(c.date,"%d-%m-%Y") AS dateFormat FROM customer_consultations AS c WHERE c.customer_id = ? ORDER BY c.date DESC', array($customerId));
+            return $this->db->fetchAll('SELECT *, DATE_FORMAT(c.date,"%d-%m-%Y") AS dateFormat, ROUND(c.carbohydrates * 4) as carbcal, ROUND(c.fats * 9) as fatcal, ROUND(c.proteins * 4) as protcal FROM customer_consultations AS c WHERE c.customer_id = ? ORDER BY c.date DESC', array($customerId));
         }
         
         //Set customer as archived, when "deleted" by dietician

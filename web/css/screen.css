@@ -1181,16 +1181,26 @@ div#datepickerShowMeals, div#showMealsDate {
     margin-left: 3%;
 }
 
+div#showMealsDate {
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
 div#showMealsDate h3 {
     margin-top: 0.5em;
     margin-bottom: 0.5em;
     font-weight: normal;
     border-bottom: 1px solid #008FC5;
     padding-bottom: 0.2em;
+    font-size: 1.3em;
+    background-color:  #008FC5;
+    color: white;
+    padding-left: 1%;
+    padding-top: 0.2em;
+
 }
 
 div#showMealsDate ul li {
-    margin-bottom: 0.2em;
     padding-left: 1.5%;
     font-size: 1em;
     line-height: 1.5em;
@@ -1209,20 +1219,21 @@ div#showMealsDate ul li.total {
 }
 
 div#showMealsDate ul li.top span {
-    background-position: center center;
+    background-position: center top;
     font-size: 1em !important;
+    padding-top: 1em;
 }
 
 div#showMealsDate ul li span.info {
     float: left;
-    width: 33%;
+    width: 32%;
 }
 
 div#showMealsDate ul li span.val {
     float: left;
-    width: 8%;
+    width: 8.5%;
     text-align: center;
-    border-left: 1px solid white;
+    border-left:1px solid #FFF;
     font-size: 0.8em;
     line-height: 1.875em;
     box-sizing: border-box;
@@ -1303,6 +1314,10 @@ div#dashboard div#consultation div#googleMap {
     height: 15em;
     float: left;
     margin-top: 1em;
+}
+
+div#overviewMeal h3 span#mealHeader {
+    font-weight: bold;
 }
 
 @media (min-width: 481px) {
@@ -1415,14 +1430,14 @@ div#dashboard div#consultation div#googleMap {
         background-position: left;        
     }
 
-    div#datepickerShowMeals {
+/*    div#datepickerShowMeals {
         width: 30%;
-    } 
+    } */
     
-    div#showMealsDate {
+/*    div#showMealsDate {
         width: 66%;
         margin-left: 1%;
-    }
+    }*/
     
     div#dashboard div.sub {
         width: 47%;
