@@ -1053,6 +1053,10 @@ form#newMeal input.spinner {
     font-size: 1.1em;
 }
 
+span.ui-spinner {
+    float: left;
+}
+
 form#newMeal span#quantity {
     float: left;
     line-height: 2em;
@@ -1382,11 +1386,9 @@ div#dashboard div#consultation div#googleMap {
     }
     
     div#dashboard div.sub {
-        
         width: 47%;
     }
-    
-    
+       
 }
 
 /*EOF*/

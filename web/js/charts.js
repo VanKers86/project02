@@ -169,7 +169,7 @@ var setBmiChart = function() {
            });
        }
     });   
-    
+        
     $(containerChart).highcharts({
         chart: {
             type: 'spline',
