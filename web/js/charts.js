@@ -29,7 +29,7 @@ var setChart = function(container, value, customerId) {
 var setWeightChart = function() {
     if (weightProgression.length === 0) {
         $.ajax ({
-           url: '/api/klanten/' + customerIdChart + '/gewicht',
+           url: '/secure/klanten/' + customerIdChart + '/gewicht',
            type: 'GET',
            dataType: 'json',
            async: false,
@@ -130,7 +130,7 @@ var setWeightChart = function() {
 
 var setBmiChart = function() {
      $.ajax ({
-       url: '/api/klanten/' + customerIdChart + '/bmi',
+       url: '/secure/klanten/' + customerIdChart + '/bmi',
        type: 'GET',
        dataType: 'json',
        async: false,
@@ -152,7 +152,7 @@ var setBmiChart = function() {
     
     
     $.ajax ({
-       url: '/api/klanten/' + customerIdChart + '/gewicht',
+       url: '/secure/klanten/' + customerIdChart + '/gewicht',
        type: 'GET',
        dataType: 'json',
        async: false,

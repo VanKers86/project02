@@ -9,8 +9,8 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\HttpFoundation\Request as Request;
 use Symfony\Component\HttpKernel\HttpKernelInterface;
 
-//Secured API, used in the website to get data to javascript files with AJAX calls
-class ApiController implements ControllerProviderInterface {
+//Secured controller, used in the website to get data to javascript files with AJAX calls, returns json objects
+class SecureController implements ControllerProviderInterface {
 
 	public function connect(Application $app) {
 
@@ -42,7 +42,7 @@ class ApiController implements ControllerProviderInterface {
                 }
             }
 
-            $return = $app['api']->getCustomerBmi($customerId);
+            $return = $app['secure']->getCustomerBmi($customerId);
             
             return $app->json($return, 200);
 	}
@@ -60,7 +60,7 @@ class ApiController implements ControllerProviderInterface {
                 }
             }
 
-            $return = $app['api']->getCustomerWeight($customerId);
+            $return = $app['secure']->getCustomerWeight($customerId);
             
             return $app->json($return, 200);  
         }
@@ -70,7 +70,7 @@ class ApiController implements ControllerProviderInterface {
                 return $app->json("Not allowed", 401);
             }
             
-            $return = $app['api']->getFoodByCategory($categoryId);
+            $return = $app['secure']->getFoodByCategory($categoryId);
             
             return $app->json($return, 200);
         }
@@ -84,10 +84,10 @@ class ApiController implements ControllerProviderInterface {
                 return $app->json("Not allowed", 401);
             }
             
-            $return = $app['api']->getCustomerMeals($customerId, $_POST['date']);
+            $return = $app['secure']->getCustomerMeals($customerId, $_POST['date']);
             json_encode($return);
             foreach($return as $i => $meal) {
-                $food = $app['api']->getFoodByMeals($meal['id']);
+                $food = $app['secure']->getFoodByMeals($meal['id']);
                 foreach($food as $y => $f) {
                     $return[$i]['food'][$y] = $f;
                 }
@@ -112,8 +112,8 @@ class ApiController implements ControllerProviderInterface {
             }
             
             $return['meals'] = array();
-            $return['meals'] = $app['api']->getCustomerMeals($customerId, $_POST['date']);
-            $return['max'] = $app['api']->getConsultationOfMeal($return['meals'][0]['id']);
+            $return['meals'] = $app['secure']->getCustomerMeals($customerId, $_POST['date']);
+            $return['max'] = $app['secure']->getConsultationOfMeal($return['meals'][0]['id']);
             $return['total'] = array();
 
             $totalKcal = 0;
@@ -125,7 +125,7 @@ class ApiController implements ControllerProviderInterface {
             $totalFibres = 0;
             $totalSodium = 0;
             foreach($return['meals'] as $i => $meal) {
-                $food = $app['api']->getDetailedFoodByMeals($meal['id']);
+                $food = $app['secure']->getDetailedFoodByMeals($meal['id']);
                 $return['meals'][$i]['total'] = array();
                 $kcal = 0;
                 $carbohydrates = 0;
@@ -173,7 +173,7 @@ class ApiController implements ControllerProviderInterface {
             }
             
             //update meals of this date as seen
-            $app['api']->setMealsDateAsSeen($_POST['date'], $customerId);
+            $app['secure']->setMealsDateAsSeen($_POST['date'], $customerId);
             
             return $app->json($return, 200);  
         
@@ -190,7 +190,7 @@ class ApiController implements ControllerProviderInterface {
                 return $app->json("Not allowed", 401);
             }
             
-            $unseenDates = $app['api']->getUnseenDates($customerId, $dietician['id']);
+            $unseenDates = $app['secure']->getUnseenDates($customerId, $dietician['id']);
             
             return $app->json($unseenDates, 200);        
 

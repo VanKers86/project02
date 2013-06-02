@@ -174,7 +174,7 @@ var checkSubmitOption = function() {
 var getFoodsByCategory = function(url) {
     if (!cache.data(url)) {
         $.ajax ({
-           url: '/api/' + url,
+           url: '/secure/' + url,
            type: 'GET',
            dataType: 'json',
            async: false,
@@ -195,7 +195,7 @@ var getMealInfo = function() {
     var dateMeals = customerId + $('input#showMeals').val();
     if (!cache.data(dateMeals)) {
         $.ajax ({
-           url: '/api/klanten/' + customerId + '/maaltijden',
+           url: '/secure/klanten/' + customerId + '/maaltijden',
            type: 'POST',
            dataType: 'json',
            async: false,

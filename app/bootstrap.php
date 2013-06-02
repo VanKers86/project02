@@ -31,7 +31,7 @@ $app->register(new Knp\Provider\RepositoryServiceProvider(), array(
 	'repository.repositories' => array(
                 'dietician' => 'Ikdoeict\\Repository\\DieticiansRepository',
                 'customer' => 'Ikdoeict\\Repository\\CustomersRepository',
-                'api' => 'Ikdoeict\\Repository\\APIRepository'
+                'secure' => 'Ikdoeict\\Repository\\SecureRepository'
 	)
 ));
 

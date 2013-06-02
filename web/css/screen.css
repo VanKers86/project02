@@ -1435,6 +1435,11 @@ span#countDates {
     font-weight: bold;
 }
 
+select#drpUnseenData {
+    font-size: 1em;
+    margin-bottom: 0.2em;
+}
+
 @media (min-width: 481px) {
     section.center {
         min-width: 38.69230769230769em;

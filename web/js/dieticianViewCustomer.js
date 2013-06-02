@@ -144,7 +144,7 @@ var getMealInfo = function() {
     var dateMeals = customerId + 'd' + dieticianId + $('input#showMeals').val();
     if (!cache.data(dateMeals)) {
         $.ajax ({
-           url: '/api/dietist/klanten/' + customerId + '/maaltijden',
+           url: '/secure/dietist/klanten/' + customerId + '/maaltijden',
            type: 'POST',
            dataType: 'json',
            async: false,
@@ -362,7 +362,7 @@ var setMealsKcal = function(data) {
 
 var getUnseenDates = function() {
     $.ajax ({
-        url: '/api/dietist/klanten/' + customerId + '/maaltijden/nieuw',
+        url: '/secure/dietist/klanten/' + customerId + '/maaltijden/nieuw',
         type: 'GET',
         dataType: 'json',
         async: false,

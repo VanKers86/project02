@@ -2,7 +2,7 @@
 
 namespace Ikdoeict\Repository;
 
-class APIRepository extends \Knp\Repository {
+class SecureRepository extends \Knp\Repository {
 
 	public function getTableName() {
             return 'dieticians';
