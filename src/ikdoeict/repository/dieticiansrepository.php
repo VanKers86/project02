@@ -43,5 +43,14 @@ class DieticiansRepository extends \Knp\Repository {
         public function deleteCustomer($customerId) {
             return $this->db->update('customers', array('archive' => 'Y'), array('id' => $customerId));
         }
+        
+        public function getNewMeals($dieticianId) {
+            return $this->db->fetchAll('SELECT DATE_FORMAT(m.date,"%d-%m-%Y") as dateFormat, c.name AS customerName, m.customer_id AS customerId FROM meals as m
+                                        INNER JOIN customers as c ON m.customer_id = c.id
+                                        WHERE m.seen = "N"
+                                        AND c.dietician_id = ? 
+                                        GROUP BY dateFormat, customerName 
+                                        ORDER BY m.date DESC', array($dieticianId));   
+        }
 
 }

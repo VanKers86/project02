@@ -66,10 +66,11 @@ class DieticianController implements ControllerProviderInterface {
             if (!$app['session']->get('dietician')) {
                 return $app->redirect('/');
             }
-
             $dietician = $app['session']->get('dietician');
             
-            return $app['twig']->render('dietician/console.twig', array('dietician' => $dietician));
+            $newMeals = $app['dietician']->getNewMeals($dietician['id']);
+            
+            return $app['twig']->render('dietician/console.twig', array('dietician' => $dietician, 'newMeals' => $newMeals));
         }
         
         public function customers(Application $app, Request $request) {

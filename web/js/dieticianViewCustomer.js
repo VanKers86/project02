@@ -1,10 +1,13 @@
 var customerId;
 var dieticianId;
 var cache = $('body');
+var unseen;
 
 $(function($) {
     customerId = Number($('input#customerId').attr('value'));
     dieticianId = Number($('input#dieticianId').attr('value'));
+
+    getUnseenDates();
 
     $('div#menuCustomer h2').each(function () {
        var menuLink = $(this).attr('id');
@@ -121,6 +124,19 @@ $(function($) {
             $('.' + className[0]).css('background-color', 'inherit');
             $('.' + className[0]).css('color', 'inherit');        
         }
+    });
+    
+    $('body').on('change', 'select#drpUnseenData', function(e) {
+       if ($(this).val() !== '-1') {
+           $('#datepickerShowMeals').datepicker('setDate', $(this).val());
+           getMealInfo();
+           $(this).find(':selected').remove();           
+           var count = $(this).children('option').length;
+           $('span#countDates').html(count - 1);
+           if (count === 1) {
+                $('div#unseenData').html('<p>U heeft alle maaltijden van deze klant bekeken.</p>');
+           }
+       }
     });
 });
 
@@ -342,4 +358,33 @@ var setMealsKcal = function(data) {
                 }
             }]
         });    
+};
+
+var getUnseenDates = function() {
+    $.ajax ({
+        url: '/api/dietist/klanten/' + customerId + '/maaltijden/nieuw',
+        type: 'GET',
+        dataType: 'json',
+        async: false,
+        success: function(data) {
+           unseen = data;
+        }
+    });
+    //all data seen
+    if (unseen.length === 0) {
+       $('div#unseenData').html('<p>U heeft alle maaltijden van deze klant bekeken.</p>');
+    }
+    else {       
+        var unseenContent = '<p>Er zijn nog niet bekeken maaltijden op volgende <span id="countDates">' + unseen.length + '</span> data: <select id="drpUnseenData">';
+        unseenContent += '<option value="-1">Selecteer ...</option>';
+
+        $.each(unseen, function(i, date) {            
+            unseenContent += '<option value="' + date.dateFormat + '">' + date.dateFormat + '</option>';
+        });
+        
+        unseenContent += '</select></p>';
+
+        $('div#unseenData').html(unseenContent);
+
+    }
 };

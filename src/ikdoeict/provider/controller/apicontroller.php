@@ -24,6 +24,7 @@ class ApiController implements ControllerProviderInterface {
                 $controllers->get('/food/{categoryId}', array($this, 'foodByCategory'))->assert('categoryId', '\d+');
                 $controllers->post('/klanten/{customerId}/maaltijden', array($this, 'customerMeals'))->assert('customerId', '\d+');
                 $controllers->post('/dietist/klanten/{customerId}/maaltijden', array($this, 'dieticianCustomerMeals'))->assert('customerId', '\d+');
+                $controllers->get('/dietist/klanten/{customerId}/maaltijden/nieuw', array($this, 'getUnseenDatesOfDietician'))->assert('customerId', '\d+');
 		return $controllers;
 
 	}
@@ -171,8 +172,28 @@ class ApiController implements ControllerProviderInterface {
                 $return['total']['sodium'] = $totalSodium; 
             }
             
+            //update meals of this date as seen
+            $app['api']->setMealsDateAsSeen($_POST['date'], $customerId);
+            
             return $app->json($return, 200);  
         
+        }
+        
+        public function getUnseenDatesOfDietician(Application $app, $customerId, Request $request) {
+            $dietician = $app['session']->get('dietician');
+            if (!$dietician) {
+                return $app->json("Not allowed", 401);
+            }
+
+            $customer = $app['dietician']->getDietistCustomer($dietician['id'], $customerId);
+            if (!$customer) {
+                return $app->json("Not allowed", 401);
+            }
+            
+            $unseenDates = $app['api']->getUnseenDates($customerId, $dietician['id']);
+            
+            return $app->json($unseenDates, 200);        
+
         }
         
 }

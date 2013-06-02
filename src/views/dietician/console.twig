@@ -16,7 +16,24 @@
 
 
 {% block consolePageContent %}
+<div id="dashboard">
     <div id="customersInput">
-        <h4>Nieuwe ingaves van klanten</h4>
+        <h2>Nieuwe toegevoegde maaltijden</h2>
+        {% if newMeals %}
+        <ul>
+            {% for newMeal in newMeals %}
+            <li>
+                <a href="{{ app.request.baseUrl }}/dietist/klanten/{{ newMeal.customerId }}">
+                    <span class="mealDate">{{ newMeal.dateFormat }}</span>:
+                    <span class="customerName">{{ newMeal.customerName }}</span> 
+                </a>
+                    
+            </li>
+            {% endfor %}
+        </ul>
+        {% else %}
+        <p>Geen nieuwe toegevoegde maaltijden</p>
+        {% endif %}
     </div>
+</div>
 {% endblock %}

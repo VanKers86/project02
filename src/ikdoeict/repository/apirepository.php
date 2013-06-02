@@ -56,5 +56,19 @@ class APIRepository extends \Knp\Repository {
                                         INNER JOIN food_categories AS fc ON f.category_id = fc.id 
                                         WHERE m.meals_id = ?', array($mealsId));
         }
+        
+        public function setMealsDateAsSeen($date, $customerId) {
+            return $this->db->executeUpdate('UPDATE meals SET seen = "Y" WHERE date = ? AND customer_id = ?', array($date, $customerId));
+        }
+        
+        public function getUnseenDates($customerId, $dieticianId) {
+            return $this->db->fetchAll('SELECT DATE_FORMAT(m.date,"%d-%m-%Y") as dateFormat FROM meals as m
+                                        INNER JOIN customers as c ON m.customer_id = c.id
+                                        WHERE m.seen = "N"
+                                        AND m.customer_id = ?
+                                        AND c.dietician_id = ? 
+                                        GROUP BY dateFormat 
+                                        ORDER BY m.date DESC', array($customerId, $dieticianId));   
+        }        
 
 }
