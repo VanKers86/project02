@@ -487,7 +487,7 @@ form#newCustomer div.inputFields div.input label {
     margin-bottom: 0.3em;
 }
 
-form#newCustomer div.submitField {
+div.submitField {
     float: left;
     width: 100%;
     text-align: right;
@@ -1519,6 +1519,40 @@ div#foodtable table tr.food:hover {
     color: white;
 }
 
+form#newFood {
+    font-size: 1.1em;
+    float: left;
+}
+
+form#newFood label {
+    width: 100%;
+    float: left;
+    margin-bottom: 0.2em;
+    margin-top: 0.2em;
+}
+
+form#newFood label.val {
+    padding-left: 10%;
+    width: 90%;
+}
+
+form#newFood div.val {
+    width: 47%;
+}
+
+form#newFood input[type=text] {
+    width: 50%;
+    font-size: 1.1em;
+}
+
+form#newFood select {
+    width: 51%;
+    font-size: 1.1em;
+}
+
+form#newFood div.submitField {
+    float: left;
+}
 
 @media (min-width: 481px) {
     section.center {

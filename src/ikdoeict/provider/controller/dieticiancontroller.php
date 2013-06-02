@@ -268,10 +268,25 @@ class DieticianController implements ControllerProviderInterface {
             }
             $dietician = $app['session']->get('dietician');
             
-            $foodByCategories = $app['dietician']->getAllFoodCategories();
-
+            $foodCategories = $app['dietician']->getAllFoodCategories();
             
-            return $app['twig']->render('dietician/foodtableNew.twig', array('dietician' => $dietician));            
+            if ($request->isMethod('POST')) {
+                $newFood['category_id'] = $_POST['category'];
+                $newFood['name'] = htmlentities($_POST['name']);
+                $newFood['calories'] = $_POST['calories'];
+                $newFood['proteins'] = $_POST['proteins'];
+                $newFood['fats'] = $_POST['fats'];
+                $newFood['carbohydrates'] = $_POST['carbohydrates'];
+                $newFood['sugars'] = $_POST['sugars'];
+                $newFood['cholesterol'] = $_POST['cholesterol'];
+                $newFood['sodium'] = $_POST['natrium'];
+                $newFood['fibres'] = $_POST['fibres'];
+                
+                $app['dietician']->addNewFood($newFood);
+                
+                return $app->redirect('/dietist/voedingstabel');
+            }
+            return $app['twig']->render('dietician/foodtableNew.twig', array('dietician' => $dietician, 'foodCategories' => $foodCategories));            
         }          
 
 }

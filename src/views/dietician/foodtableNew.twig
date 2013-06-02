@@ -5,7 +5,7 @@
 {# set the pagetitle in the parent tpl #}
 {% set pageTitle = 'Nieuw voedingsmiddel' %}
 {% set contentId = 'console' %}
-{% set javascript = 'dieticianFoodtable' %}
+{% set javascript = 'dieticianFoodtableNew' %}
 
 {# set variables in the console tpl #}
 {% set foodtableActive = true %}
@@ -22,7 +22,57 @@
 {% block consolePageContent %}
 
 <div id="foodtable">
-
+    <form id="newFood" method="POST" class="clearfix">
+        <div class="input">
+            <label>Voedingscategorie</label>
+            <select name="category" required>
+                <option value="">Selecteer...</option>
+                {% for categorie in foodCategories %}
+                <option value="{{ categorie.id }}">{{ categorie.name }}</option>
+                {% endfor %}
+            </select>
+        </div>   
+        <div class="input">
+            <label>Naam</label>
+            <input type="text" name="name" required>
+        </div>        
+        <div class="input val">
+            <label class="energy val">Energie <span class="infoInput">(in kcal)</span></label>
+            <input type="number" class="spinner" name="calories" value="0" required>
+        </div>
+        <div class="input val">
+            <label class="protein val">Eiwitten <span class="infoInput">(in g)</span></label>
+            <input type="number" class="spinner" name="proteins" value="0" required>
+        </div>       
+        <div class="input val">
+            <label class="fat val">Vetten <span class="infoInput">(in g)</span></label>
+            <input type="number" class="spinner" name="fats" value="0" required>
+        </div>       
+        <div class="input val">
+            <label class="carbs val">Koolhydraten <span class="infoInput">(in g)</span></label>
+            <input type="number" class="spinner" name="carbohydrates" value="0" required>
+        </div>
+        <div class="input val">
+            <label class="sugar val">Suikers <span class="infoInput">(in g)</span></label>
+            <input type="number" class="spinner" name="sugars" value="0" required>
+        </div>
+        <div class="input val">
+            <label class="cholesterol val">Cholesterol <span class="infoInput">(in mg)</span></label>
+            <input type="number" class="spinner" name="cholesterol" value="0" required>
+        </div>
+        <div class="input val">
+            <label class="fibre val">Vezels <span class="infoInput">(in g)</span></label>
+            <input type="number" class="spinner" name="fibres" value="0" required>
+        </div>
+        <div class="input val">
+            <label class="salt val">Natrium <span class="infoInput">(in mg)</span></label>
+            <input type="number" class="spinner" name="natrium" value="0" required>
+        </div> 
+        
+        <div class="submitField">
+            <input type="submit" value="Voeg toe">
+        </div>
+    </form>
 </div>
 
 {% endblock %}

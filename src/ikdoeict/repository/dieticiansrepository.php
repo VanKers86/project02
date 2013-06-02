@@ -64,11 +64,11 @@ class DieticiansRepository extends \Knp\Repository {
         }
         
         public function getAllFoodCategories() {
-            $c = $this->db->fetchAll('SELECT f.name FROM food_categories AS f');
-            foreach ($c as $key => $i) {
-                $categories[$key] = $i['name'];
-            }
-            return $categories;
+            return $this->db->fetchAll('SELECT f.name, f.id FROM food_categories AS f');
+        }
+        
+        public function addNewFood($food) {
+            return $this->db->insert('foods', $food);
         }
 
 }
