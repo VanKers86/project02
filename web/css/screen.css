@@ -1453,6 +1453,73 @@ select#drpUnseenData {
     margin-bottom: 0.2em;
 }
 
+div#foodtable h3 {
+    float: left;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    font-weight: normal;
+}
+
+div#foodtable table {
+    float: left;
+    width: 100%;
+    text-align: center;
+}
+
+div#foodtable table tr td {
+    padding: 0.2em 1%;
+}
+
+div#foodtable table tr.food td:first-child {
+    text-align: left;
+    width: 26%;
+}
+
+div#foodtable table tr.food td {
+    width: 9.5%;
+}
+
+div#foodtable table tr.values td {
+    padding-top: 1.2em;
+    margin-top: 0.2em;
+    background-position: center top;
+    display: table-cell;
+    
+}
+
+div#foodtable table tr.valuesClear td {
+    display: table-cell;
+    padding-top: 0.5em;
+    background-position: center;
+}
+
+div#foodtable table tr.valuesClear {
+    border-bottom: 1px solid #71D01C;
+}
+
+div#foodtable table tr.category {
+    background-color: #008fc5;
+    color: white;
+    font-size: 1.3em;
+}
+
+div#foodtable table tr.category td {
+    margin-top: 2em;
+    text-align: left;
+}
+
+div#foodtable div#filterFood {
+    float: left;
+    width: 100%;
+    margin-top: 0.5em;
+}
+
+div#foodtable table tr.food:hover {
+    background-color: #71D01C;
+    color: white;
+}
+
+
 @media (min-width: 481px) {
     section.center {
         min-width: 38.69230769230769em;

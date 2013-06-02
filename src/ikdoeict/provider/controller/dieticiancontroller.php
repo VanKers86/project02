@@ -257,7 +257,9 @@ class DieticianController implements ControllerProviderInterface {
             }
             $dietician = $app['session']->get('dietician');
             
-            return $app['twig']->render('dietician/foodtable.twig', array('dietician' => $dietician));            
+            $foodByCategories = $app['dietician']->getAllFoodByCategories();           
+            
+            return $app['twig']->render('dietician/foodtable.twig', array('dietician' => $dietician, 'foodByCategories' => $foodByCategories));            
         }
         
         public function newFoodtableEntry(Application $app, Request $request) {
@@ -265,6 +267,9 @@ class DieticianController implements ControllerProviderInterface {
                 return $app->redirect('/');
             }
             $dietician = $app['session']->get('dietician');
+            
+            $foodByCategories = $app['dietician']->getAllFoodCategories();
+
             
             return $app['twig']->render('dietician/foodtableNew.twig', array('dietician' => $dietician));            
         }          

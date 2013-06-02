@@ -18,7 +18,58 @@
 {% block consolePageContent %}
 
 <div id="foodtable">
+    
+    <h3>Alle waarden zijn per <b>100 gram</b> berekend</h3>
+    <div id="filterFood">
+        <input type="text" />
+    </div>
+    <table id="foodlist">
+        <tr class="values">
+            <td>&nbsp;</td>
+            <td class="energy">En <br /> in kcal</td>
+            <td class="protein">Ew <br /> in g</td>
+            <td class="fat">Vet <br /> in g</td>
+            <td class="carbs">Kh <br /> in g</td>
+            <td class="sugar">Skr <br /> in g</td>
+            <td class="cholesterol">Chol <br /> in mg</td>
+            <td class="fibre">Vez <br /> in g</td>
+            <td class="salt">Na <br /> in mg</td>
+        </tr>         
+        {% for foodByCategory in foodByCategories %}
+        <tr class="category">
+            <td colspan="9"> {{ foodByCategory.category }}</td>
+        </tr>       
+        <tr class="valuesClear">
+            <td>&nbsp;</td>
+            <td class="energy">&nbsp;</td>
+            <td class="protein">&nbsp;</td>
+            <td class="fat">&nbsp;</td>
+            <td class="carbs">&nbsp;</td>
+            <td class="sugar">&nbsp;</td>
+            <td class="cholesterol">&nbsp;</td>
+            <td class="fibre">&nbsp;</td>
+            <td class="salt">&nbsp;</td>
+        </tr>        
+            {% for food in foodByCategory.food %}
+        <tr class="food"> 
+            <td class="name">{{ food.name }}</td>
+            <td>{{ food.calories }}</td>
+            <td>{{ food.proteins }}</td>
+            <td>{{ food.fats }}</td>
+            <td>{{ food.carbohydrates }}</td>
+            <td>{{ food.sugars }}</td>
+            <td>{{ food.cholesterol }}</td>
+            <td>{{ food.fibres }}</td>
+            <td>{{ food.sodium }}</td>
+        </tr>
+        
+            {% endfor %}
+        <tr class="empty">     
+            <td colspan="9">&nbsp;</td>
+        </tr> 
+       {% endfor %}
 
+    </table>      
 </div>
 
 {% endblock %}

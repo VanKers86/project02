@@ -52,5 +52,23 @@ class DieticiansRepository extends \Knp\Repository {
                                         GROUP BY dateFormat, customerName 
                                         ORDER BY m.date DESC', array($dieticianId));   
         }
+        
+        public function getAllFoodByCategories() {
+            $c = $this->db->fetchAll('SELECT f.name, f.id FROM food_categories AS f');
+            foreach ($c as $key => $i) {
+                $categories[$key]['category'] = $i['name'];
+                //$categories[$key]['food'] = array();
+                $categories[$key]['food'] = $this->db->fetchAll('SELECT f.* FROM foods AS f WHERE category_id = ?', array($i['id']));
+            }
+            return $categories;
+        }
+        
+        public function getAllFoodCategories() {
+            $c = $this->db->fetchAll('SELECT f.name FROM food_categories AS f');
+            foreach ($c as $key => $i) {
+                $categories[$key] = $i['name'];
+            }
+            return $categories;
+        }
 
 }
