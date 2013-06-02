@@ -49,11 +49,12 @@
         <a href="#">Stuur een opmerking naar deze klant</a> <br />
     </div>
     <div id="menuCustomer">
-        <h2 class="meals active" id="mealsLink">Voedingsiname</h2>
+        <h2 class="meals active" id="mealsLink">Voedingsdagboek</h2>
         <h2 class="consultation" id="consultsLink">Consultaties</h2>
         <h2 class="progression" id="progressionLink">Progressie</h2>
+        <h2 class="communication" id="communicationLink">Communicatie</h2>
     </div>
-    <div class="subfield shown" id="meals">
+    <div class="subfield" id="meals">
         <div id="unseenData"></div>
         <div id="datepickerShowMeals"></div>
         <input type="hidden" id="showMeals" autocomplete="off" />
@@ -68,7 +69,7 @@
         <div id="chart"></div>   
     </div>     
     
-    <div class="subfield shown" id="consults">
+    <div class="subfield" id="consults">
             <select autocomplete="off" id="previousConsults">
                 {% for consultation in consultations %}
                 <option value="cons{{ consultation.id}}">{{ consultation.dateFormat }}</option>
@@ -144,10 +145,13 @@
         <a class="smallButtonLink" href="{{ app.request.baseUrl }}/dietist/klanten/{{ customer.id }}/consultatie">Nieuwe consultatie toevoegen</a>   
     </div>   
     
-    <div class="subfield shown" id="progression">
+    <div class="subfield" id="progression">
         <div id="chartWeight" class="chart"></div>
         <div id="chartBMI" class="chart"></div>
     </div>
-    
+
+    <div class="subfield" id="communication">
+        communicatie
+    </div>
     
 {% endblock %}

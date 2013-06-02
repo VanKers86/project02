@@ -1,0 +1,24 @@
+{# extend the parent tpl #}
+{% extends 'consoleDietician.twig' %}
+
+
+{# set the pagetitle in the parent tpl #}
+{% set pageTitle = 'Voedingstabel' %}
+{% set contentId = 'console' %}
+{% set javascript = 'dieticianFoodtable' %}
+
+{# set variables in the console tpl #}
+{% set foodtableActive = true %}
+
+{% block subheader %}
+    <h1>Voedingstabel</h1>
+    <a class="smallButtonLink" href="{{ app.request.baseUrl }}/dietist/voedingstabel/nieuw">Nieuw voedingsmiddel toevoegen</a>   
+{% endblock %}   
+    
+{% block consolePageContent %}
+
+<div id="foodtable">
+
+</div>
+
+{% endblock %}

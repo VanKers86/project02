@@ -20,12 +20,14 @@ class DieticianController implements ControllerProviderInterface {
 		// Bind sub-routes
                 $controllers->match('/', array($this, 'login'));
 		$controllers->match('/login', array($this, 'login'));
-                $controllers->match('/console', array($this, 'console'));
-                $controllers->match('/logout', array($this, 'logout'));
-                $controllers->match('/klanten', array($this, 'customers'));
+                $controllers->get('/console', array($this, 'console'));
+                $controllers->get('/logout', array($this, 'logout'));
+                $controllers->get('/klanten', array($this, 'customers'));
                 $controllers->match('/klanten/nieuw', array($this, 'addCustomer'));
                 $controllers->match('/klanten/{customerId}', array($this, 'customerDetail'))->assert('customerId', '\d+');
                 $controllers->match('/klanten/{customerId}/consultatie', array($this, 'customerConsultation'))->assert('customerId', '\d+');
+                $controllers->get('/voedingstabel', array($this, 'foodtable'));
+                $controllers->match('/voedingstabel/nieuw', array($this, 'newFoodtableEntry'));
                 
 		return $controllers;
 
@@ -247,6 +249,24 @@ class DieticianController implements ControllerProviderInterface {
             }
 
             return $app['twig']->render('dietician/customerConsultation.twig', array('dietician' => $dietician, 'customer' => $customer, 'lastConsultation' => $lastConsultation, 'pal' => $pal));
-	}        
+	}
+        
+        public function foodtable(Application $app, Request $request) {
+            if (!$app['session']->get('dietician')) {
+                return $app->redirect('/');
+            }
+            $dietician = $app['session']->get('dietician');
+            
+            return $app['twig']->render('dietician/foodtable.twig', array('dietician' => $dietician));            
+        }
+        
+        public function newFoodtableEntry(Application $app, Request $request) {
+            if (!$app['session']->get('dietician')) {
+                return $app->redirect('/');
+            }
+            $dietician = $app['session']->get('dietician');
+            
+            return $app['twig']->render('dietician/foodtableNew.twig', array('dietician' => $dietician));            
+        }          
 
 }

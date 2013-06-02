@@ -267,6 +267,15 @@ header#small ul#menu li a.activeDashboard, header#small ul#menu li a.passiveDash
     color: #333 !important;    
 }
 
+header#small ul#menu li a.activeFoodtable, header#small ul#menu li a.passiveFoodtable:hover {
+    background-image: url('../img/icons/activeFoodtable.png') !important;
+    color: #333 !important;    
+}
+
+header#small ul#menu li a.passiveFoodtable {
+    background-image: url('../img/icons/passiveFoodtable.png');
+}
+
 header#small ul#menu li a.passiveDashboard {
     background-image: url('../img/icons/homepassive.png');
 }
@@ -789,7 +798,7 @@ div#menuCustomer {
 
 div#menuCustomer h2 {
     float: left;
-    width: 33.3333333333%;
+    width: 25%;
     padding-bottom: 0.2em;
     padding-top: 0.2em;
     background-color: #008FC5;
@@ -989,7 +998,7 @@ div#chartMeals {
     margin-top: 1em;
 }
 
-h2.consultation, h2.progression, h2.meals {
+h2.consultation, h2.progression, h2.meals, h2.communication {
     background-repeat: no-repeat;
     background-position: center center;
     background-size: 1.653846153846154em 1.653846153846154em;
@@ -1005,6 +1014,10 @@ h2.progression {
 
 h2.meals {
     background-image: url('../img/icons/foodpassive.png');
+}
+
+h2.communication {
+    background-image: url('../img/icons/communication.png');
 }
 
 div#interaction {
@@ -1453,14 +1466,7 @@ select#drpUnseenData {
     div.subfield h2 {
         text-indent: 0px;
     }
-    
-    div#menuCustomer h2 {
-        text-indent: 0px;
-    }
-    
-    h2.consultation, h2.progression, h2.meals {
-        background-position: 0.5em;
-    }    
+      
     
     div#adhperc {
         width: 47%;
@@ -1590,14 +1596,13 @@ select#drpUnseenData {
         background-position: left;        
     }
 
-/*    div#datepickerShowMeals {
-        width: 30%;
-    } */
+    div#menuCustomer h2 {
+        text-indent: 0px;
+    }
     
-/*    div#showMealsDate {
-        width: 66%;
-        margin-left: 1%;
-    }*/
+    h2.consultation, h2.progression, h2.meals, h2.communication {
+        background-position: 0.5em;
+    } 
     
     div#dashboard div.sub {
         width: 47%;
