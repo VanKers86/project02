@@ -59,7 +59,9 @@ var setWeightChart = function() {
         title: {
             text: 'Gewicht Progressie',
             style: {
-                fontSize: '1.2em'
+                fontSize: '1.3em',
+                fontFamily: 'Segoe UI, sans-serif',
+                fontWeight: 'bold'                        
             }            
         },
         xAxis: {
@@ -179,8 +181,10 @@ var setBmiChart = function() {
         title: {
             text: 'BMI Progressie',
             style: {
-                fontSize: '1.2em'
-            }
+                fontSize: '1.3em',
+                fontFamily: 'Segoe UI, sans-serif',
+                fontWeight: 'bold'                        
+            } 
         },
         xAxis: {
             type: 'datetime',

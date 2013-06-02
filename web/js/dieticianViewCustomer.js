@@ -141,10 +141,10 @@ var getMealInfo = function() {
     var data = cache.data(dateMeals);
     $('div#showMealsDate h3').html('Maaltijden op ' + moment($('input#showMeals').val()).format("DD-MM-YYYY"));
     $('div#showMealsDate ul').empty();
+    $('div#adhperc ul').empty();
     if (!data) {
         $('div#showMealsDate ul').append('<li>Geen maaltijden toegevoegd</li>');
         $('div#meals div#chart').html('');
-
     }
     else {
         var topLi = '<li class="top">';
@@ -209,132 +209,137 @@ var getMealInfo = function() {
         totalLi += '<span class="lsodium val">' + totals.sodium + 'mg<br/>&nbsp;</span>';
         totalLi += '</li>';
         $('div#showMealsDate ul').append(totalLi);
-        $('div#meals div#chart').html('<div id="chartMeals" class="chart"></div>');
-        setMealsChart(data);
-
+        $('div#meals div#chart').html('<div id="chartKcalAll" class="chart"></div>');
+        setMealsKcal(data);
+        
+        var max = data.max;
+        $('div#adhperc ul').append('<li>Energie ADH <span class="adhtotal">' + Math.round(totals.kcal / max.kcal * 100) + '%</span></li>');
+        $('div#adhperc ul').append('<li>Eiwitten ADH <span class="adhtotal">' + Math.round(totals.proteins / max.proteins * 100) + '%</span></li>');
+        $('div#adhperc ul').append('<li>Vetten ADH <span class="adhtotal">' + Math.round(totals.fats / max.fats * 100) + '%</span></li>');
+        $('div#adhperc ul').append('<li>Koolhydraten ADH <span class="adhtotal">' + Math.round(totals.carbohydrates / max.carbohydrates * 100) + '%</span></li>');
+        $('div#adhperc ul').append('<li>Suikers ADH <span class="adhtotal">' + Math.round(totals.sugars / max.sugars * 100) + '%</span></li>');
     }
     
     resizeHeader();
 };
 
-var setMealsChart = function(data) {
-
-    var meals = [];
-    $.each(data.meals, function(i, meal) {
-        var mealObject = {};
-        var pKcal = Math.round(meal.total.kcal / data.max.kcal * 10000) / 100;
-        var pCarbo = Math.round(meal.total.carbohydrates / data.max.carbohydrates * 10000) / 100;
-        var pSugars = Math.round(meal.total.sugars / data.max.sugars * 10000) / 100;
-        var pProteins = Math.round(meal.total.proteins / data.max.proteins * 10000) / 100;
-        var pFats = Math.round(meal.total.fats / data.max.fats * 10000) / 100;
-//        var pCholesterol = Math.round(meal.total.cholesterol / data.max.cholesterol * 100);
-//        var pFibres = Math.round(meal.total.fibres / data.max.fibres * 100);
-//        var pSodium = Math.round(meal.total.sodium / data.max.sodium * 100);
-        mealObject['name'] = meal.type;
-        mealObject['data'] = [pKcal, pCarbo, pSugars, pProteins, pFats];
-        meals[i] = mealObject;
-    });
-    var maxObject = {};
-    maxObject['name'] = 'GDA';
-    maxObject['data'] = [data.max.kcal, data.max.carbohydrates, data.max.sugars, data.max.proteins, data.max.fats];
-
+var setMealsKcal = function(data) {
     
-    $('#chartMeals').highcharts({
-        chart: {
-            type: 'bar',
-            backgroundColor: 'rgba(255, 255, 255, 0.0)',
-            zoomType: 'xy'            
-        },
-        title: {
-            text: null
-        },
-        xAxis: {
-            categories: ['Energie', 'Koolhydraten', 'Suikers', 'Eiwitten', 'Vetten'],
-            labels: {
-                formatter: function() {
-                    if (this.value === 'Energie') {
-                        icon = 'energy';
-                    }
-                    else if (this.value === 'Koolhydraten') {
-                        icon = 'carbs';
-                    }
-                    else if (this.value === 'Suikers') {
-                        icon = 'sugar';
-                    }
-                    else if (this.value === 'Eiwitten') {
-                        icon = 'protein';
-                    }
-                    else if (this.value === 'Vetten') {
-                        icon = 'fat';
-                    }
-                    return '<img src="/img/icons/' + icon + '.png" width="18px;" height="18px;" alt="' + this.value + '" />';
-                },                
-                useHTML: true
-            }
-        },
-        
-        yAxis: {
-            min: 0,
-            title: {
-                text: 'Percentage van GDA (%)'
-            }
-,
+    var allMax = [Math.round(data.max.kcal), Math.round(data.max.proteins) * 4, Math.round(data.max.fats) * 9, Math.round(data.max.carbohydrates) *4];
+    var allTotal = [Math.round(data.total.kcal), Math.round(data.total.proteins) * 4, Math.round(data.total.fats) * 9, Math.round(data.total.carbohydrates) * 4];
 
-            plotLines: [{
-                value: 100,
-                color: '#FF0000',
-                width: 3,
-                zIndex: 5
-            }],
-            minRange: 100,
-            tickInterval: 20
-        },
-        legend: {
-            backgroundColor: '#FFFFFF',
-            reversed: true
-        },
-        plotOptions: {
-            series: {
-                stacking: 'normal'
-            }
-        },
-        series: meals,
-        tooltip: {
-            formatter: function() {
-                var s = '<b>'+ this.x + '</b>';
-                var total = 0;
-                var maxT;
-                var gda;
-                $.each(this.points, function(i, point) {
-                    s += '<br/>' + point.series.name +': ' + point.y + '%';
-                    total += point.y;
-                });
-                if (this.x === 'Energie') {
-                    maxT = Math.round(total / 100 * data.max.kcal * 10) / 10 + 'kcal';
-                    gda = data.max.kcal + 'kcal';
-                }
-                else if (this.x === 'Koolhydraten') {
-                    maxT = Math.round(total / 100 * data.max.carbohydrates * 10) / 10 + 'g';
-                    gda = data.max.carbohydrates + 'g';
-                }
-                else if (this.x === 'Suikers') {
-                    maxT = Math.round(total / 100 * data.max.sugars * 10) / 10 + 'g';
-                    gda = data.max.sugars + 'g';
-                }
-                else if (this.x === 'Eiwitten') {
-                    maxT = Math.round(total / 100 * data.max.proteins * 10) / 10 + 'g';
-                    gda = data.max.proteins + 'g';
-                }
-                else if (this.x === 'Vetten') {
-                    maxT = Math.round(total / 100 * data.max.fats * 10) / 10 + 'g';
-                    gda = data.max.fats + 'g';
-                }
-                s += '<br /><b>Totaal: ' + Math.round(total * 100) / 100 + '% = ' + maxT + '</b>';
-                s += '<br /><b>GDA: 100% = ' + gda + '</b>';
-                
-                return s;
+    $('#chartKcalAll').highcharts({
+            chart: {
+                type: 'column',
+                backgroundColor: 'rgba(255, 255, 255, 0.0)',
+                zoomType: 'xy'                   
             },
-            shared: true
-        }     
-    });
+            legend: {
+                align: 'right',
+                verticalAlign: 'top',
+                x: 0,
+                y: 30,
+                floating: true
+            },            
+            title: {
+                text: 'Totale macro nutriënten inname',
+                style: {
+                    fontSize: '1.3em',
+                    fontFamily: 'Segoe UI, sans-serif',
+                    fontWeight: 'bold'                        
+                }                
+            },
+            xAxis: {
+                categories: [
+                    'Totaal',
+                    'Eiwitten',
+                    'Vetten', 
+                    'Koolhydraten'
+                ],
+                labels: {
+                    formatter: function() {
+                        var icon = '';
+                        if (this.value === 'Totaal') {
+                            icon = 'energy';
+                        }
+                        else if (this.value === 'Koolhydraten') {
+                            icon = 'carbs';
+                        }
+                        else if (this.value === 'Eiwitten') {
+                            icon = 'protein';
+                        }
+                        else if (this.value === 'Vetten') {
+                            icon = 'fat';
+                        }
+                        return '<img src="/img/icons/' + icon + '.png" width="20px;" height="20px;" style="margin-right: 5px; margin-top: 5px;" alt="' + this.value + '" />' + this.value;
+                    },                
+                    useHTML: true
+                }                
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: null
+                },
+                tickInterval: 500        
+            },
+            tooltip: {
+                shared: true,
+                formatter: function() {
+                var s = '<b>' + this.x + '</b>';
+                    $.each(this.points, function(i, point) {
+                        s += '<br/><span style="color:' + point.series.color + ';">' + point.series.name +'</span>: ';
+                        s += this.y + 'kcal';
+                        if (this.x === 'Totaal') {
+                            s += ' (' + Math.round((this.y / data.max.kcal) * 100) + '%)';
+                        }
+                        else if (this.x === 'Eiwitten') {
+                            s += ' (' + Math.round(((this.y / 4) / data.max.proteins) * 100) + '%)';
+                        }
+                        else if (this.x === 'Vetten') {
+                            s += ' (' + Math.round(((this.y / 9) / data.max.fats) * 100) + '%)';
+                        }
+                        else if (this.x === 'Koolhydraten') {
+                            s += ' (' + Math.round(((this.y / 4)/ data.max.carbohydrates) * 100) + '%)';
+                        }
+                    });
+                return s;
+                }
+            },
+            plotOptions: {
+                column: {
+                    pointPadding: 0.2,
+                    borderWidth: 0
+                }
+            },
+            series: [{
+                name: 'ADH',
+                data: allMax,
+                color: '#008FC5',
+                dataLabels: {
+                    enabled: true,
+                    color: '#008FC5',
+                    align: 'center',
+                    style: {
+                        fontSize: '1em',
+                        fontFamily: 'Segoe UI, sans-serif',
+                        fontWeight: 'bold'                        
+                    }
+                }    
+            }, {
+                name: 'Inname',
+                data: allTotal,
+                color: '#71D01C',
+                dataLabels: {
+                    enabled: true,
+                    color: '#71D01C',
+                    align: 'center',
+                    style: {
+                        fontSize: '1em',
+                        fontFamily: 'Segoe UI, sans-serif',
+                        fontWeight: 'bold'
+                    }
+                }
+            }]
+        });    
 };
