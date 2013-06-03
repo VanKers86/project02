@@ -1556,6 +1556,102 @@ form#newFood div.submitField {
     float: left;
 }
 
+div#communication {
+    margin-left: 3%;
+    width: 97%;
+}
+
+div#communication div.top {
+    border-bottom: 1px solid #008fc5;
+    padding-bottom: 0.5em;
+    margin-bottom: 1em;
+    float: left;
+    width: 100%;
+}
+
+div#communication div.top p {
+    text-align: right;
+    font-size: 1.2em;
+    margin-bottom: 0.2em;
+}
+
+div#communication div.top textarea {
+    width: 60%;
+    float: right;
+    font-size: 1.1em;
+}
+
+div#communication div.top p.empty {
+    font-size: 0.9em;
+    color: #C10015;
+    text-align: right;
+    width: 100%;
+    float: left;
+}
+
+div.comm {
+    color: white;   
+    width: 60%;
+    margin-bottom: 1em;
+}
+
+div.fromMe {
+    float: right;
+}
+
+div.fromHim {
+    float: left;
+}
+
+div.comm p.time {
+    margin-bottom: 0.2em;
+    float: left;
+    width: 100%;
+    color: #333;
+}
+
+div.comm p.text {
+    width: 94%;
+    padding: 0.5em 3% !important;
+    display: block;
+    float: left;
+}
+
+div.comm p.text img {
+    margin-right: 0.5em;
+    width: 12%;
+}
+
+div.fromMe p.text {
+    background-color: #71D01C;
+}
+
+div.fromHim p.text {
+    background-color: #008fc5; 
+}
+
+div.fromMe p.time {
+    text-align: right;
+}
+
+a#addMessage {
+    background-color: #71D01C;
+    color: white;
+    float: left;
+    line-height: 1.85em;
+    padding: 0 1%;
+    width: 20%;
+    margin-left: 78%;
+    text-align: center;
+    margin-top: 0.2em;
+    margin-bottom: 0.2em;
+}
+
+a#addMessage:hover {
+    background-color: #DDD;
+    color: #333;
+}
+
 @media (min-width: 481px) {
     section.center {
         min-width: 38.69230769230769em;

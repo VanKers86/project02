@@ -45,9 +45,6 @@
 
 {% block consolePageContent %}
     
-    <div class="subfield">
-        <a href="#">Stuur een opmerking naar deze klant</a> <br />
-    </div>
     <div id="menuCustomer">
         <h2 class="meals active" id="mealsLink">Voedingsdagboek</h2>
         <h2 class="consultation" id="consultsLink">Consultaties</h2>
@@ -151,7 +148,28 @@
     </div>
 
     <div class="subfield" id="communication">
-        communicatie
+        <div class="top">
+            <p>Stuur een bericht naar deze klant</p>
+            <textarea id="sendMessage"></textarea>
+            <p class="empty" style="display: none">Gelieve een bericht in te geven</p>
+            <a href="#" id="addMessage">Verstuur</a>
+        </div>
+        <div id="commHistory">
+        {% for key, comm in communication %}
+            {% if comm.from_dietician_id %}
+                <div class="comm fromMe">
+                    <p class="time">{{ comm.dateFormat }}</p>
+                    <p class="text"><img align="left" alt="{{ dietician.name }}" src="/img/userfiles/dietician/{{ dietician.photo }}">"{{ comm.text|raw }}"</p>
+                </div>
+            {% endif %}
+            {% if comm.from_customer_id %}
+                <div class="comm fromHim">
+                    <p class="time">{{ comm.dateFormat }}</p>
+                    <p class="text">"{{ comm.text|raw }}"</p>
+                </div>
+            {% endif %}
+        {% endfor %}
+        </div>
     </div>
     
 {% endblock %}

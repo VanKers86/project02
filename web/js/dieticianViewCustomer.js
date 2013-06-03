@@ -138,6 +138,32 @@ $(function($) {
            }
        }
     });
+    
+    $('a#addMessage').on('click', function(e) {
+        e.preventDefault();
+        var text = $('textarea#sendMessage').val();
+        if (text === "") {
+            $('div.top p.empty').show();
+        }
+        else {
+            var now = moment();
+            $('div.top p.empty').hide();
+            var newComm = '<div class="comm fromMe">';
+            newComm += '<p class="time">' + now.format("DD-MM-YYYY HH:mm") + '</p>';
+            newComm += '<p class="text"><img align="left" src="/img/userfiles/dietician/' + dieticianId + 'profilepicture.jpg">';
+            newComm += '"' + text + '"</p></div>';
+            $('div#commHistory').prepend(newComm);
+            resizeHeader();
+            $.ajax ({
+               url: '/secure/dietist/klanten/' + customerId + '/bericht',
+               type: 'POST',
+               dataType: 'json',
+               async: false,
+               data: {msg: text }
+            });
+            $('textarea#sendMessage').val('');
+        }
+    });
 });
 
 var getMealInfo = function() {

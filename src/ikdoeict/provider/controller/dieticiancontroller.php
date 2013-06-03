@@ -189,10 +189,12 @@ class DieticianController implements ControllerProviderInterface {
             }
 
             $consultations = $app['dietician']->getConsultations($customerId);
-
+            $communication = $app['dietician']->getUnseenCommunication($dietician['id'], $customerId);
+            
             return $app['twig']->render('dietician/viewCustomer.twig', array('dietician' => $dietician, 
                                                                             'customer' => $customer,
-                                                                            'consultations' => $consultations
+                                                                            'consultations' => $consultations,
+                                                                            'communication' => $communication
                     ));
 	}
         

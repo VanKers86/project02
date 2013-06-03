@@ -26,6 +26,7 @@ class SecureController implements ControllerProviderInterface {
                 $controllers->post('/klanten/{customerId}/maaltijden', array($this, 'customerMeals'))->assert('customerId', '\d+');
                 $controllers->post('/dietist/klanten/{customerId}/maaltijden', array($this, 'dieticianCustomerMeals'))->assert('customerId', '\d+');
                 $controllers->get('/dietist/klanten/{customerId}/maaltijden/nieuw', array($this, 'getUnseenDatesOfDietician'))->assert('customerId', '\d+');
+                $controllers->post('/dietist/klanten/{customerId}/bericht', array($this, 'makeNewMessageFromDietician'))->assert('customerId', '\d+');
 		return $controllers;
 
 	}
@@ -209,5 +210,28 @@ class SecureController implements ControllerProviderInterface {
             return $app->json($unseenDates, 200);        
 
         }
+ 
+        //Make a new communication message from dietician to a customer
+        //returns json object
+        public function makeNewMessageFromDietician(Application $app, $customerId, Request $request) {
+            $dietician = $app['session']->get('dietician');
+            if (!$dietician) {
+                return $app->json("Not allowed", 401);
+            }
+
+            $customer = $app['dietician']->getDietistCustomer($dietician['id'], $customerId);
+            if (!$customer) {
+                return $app->json("Not allowed", 401);
+            }
+            
+            $msgArray['from_dietician_id'] = $dietician['id'];
+            $msgArray['to_customer_id'] = $customerId;
+            $msgArray['datetime'] = date("Y-m-d H:i:s");
+            $msgArray['text'] = htmlentities($_POST['msg']);
+            $insert = $app['secure']->makeNewDieticianMessage($msgArray);
+            
+            return $app->json($insert, 200);        
+
+        }        
         
 }

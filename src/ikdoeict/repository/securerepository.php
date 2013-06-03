@@ -80,4 +80,8 @@ class SecureRepository extends \Knp\Repository {
                                         ORDER BY m.date DESC', array($customerId, $dieticianId));   
         }        
 
+        //Add new message entry in the communication table
+        public function makeNewDieticianMessage($msgArray) {
+            return $this->db->insert('communication', $msgArray);
+        }
 }
