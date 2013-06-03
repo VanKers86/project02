@@ -3,7 +3,7 @@
 // Bootstrap
 require __DIR__ . DIRECTORY_SEPARATOR . 'bootstrap.php';
 
-$app->error(function (\Exception $e, $code) {
+$app->error(function (Exception $e, $code) {
 	if ($code == 404) {
 		return '404 - Not Found! // ' . $e->getMessage();
 	} else {
