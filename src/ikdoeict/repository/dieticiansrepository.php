@@ -82,12 +82,21 @@ class DieticiansRepository extends \Knp\Repository {
             return $this->db->insert('foods', $food);
         }
         
-        //Get all the communication between the customer and his dietician, that the dietician hasnt seen yet
+        //Get all the communication between the customer and his dietician
         public function getUnseenCommunication($dieticianId, $customerId) {
             return $this->db->fetchAll('SELECT c.*, DATE_FORMAT(c.datetime,"%d-%m-%Y %H:%i") AS dateFormat FROM communication as c 
                                         WHERE (from_dietician_id = ? OR to_dietician_id = ?)
                                         AND (from_customer_id = ? OR to_customer_id = ?)
                                         ORDER BY c.datetime DESC', array($dieticianId, $dieticianId, $customerId, $customerId));
         }
+        
+        //Get all the communication to a dietician by his id, that the dietician hasnt seen yet
+        public function getNewMessages($dieticianId) {
+            return $this->db->fetchAll('SELECT c.*, DATE_FORMAT(c.datetime,"%d-%m-%Y %H:%i") AS dateFormat, cu.name as customerName FROM communication as c
+                                        INNER JOIN customers AS cu ON c.from_customer_id = cu.id
+                                        WHERE to_dietician_id = ?
+                                        AND dietician_seen = "N"
+                                        ORDER BY c.datetime DESC', array($dieticianId));
+        }        
 
 }

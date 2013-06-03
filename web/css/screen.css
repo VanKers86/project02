@@ -1402,14 +1402,21 @@ div#customersInput {
 }
 
 div#customersInput h2 {
-    background-image: url('../img/icons/foodpassive.png');
     background-repeat: no-repeat;
     background-size: 2em 2em;
     line-height: 1.7em;
-    padding-left: 10%;
-    width: 90%;
+    width: 97%;
     box-sizing: border-box;
-    background-position: 5px;
+    background-position: center center;
+    text-indent: -9999px;
+}
+
+div#customersInput div#newMeals h2 {
+    background-image: url('../img/icons/foodpassive.png');    
+}
+
+div#customersInput div#newComm h2 {
+    background-image: url('../img/icons/communication.png');    
 }
 
 div#customersInput p {
@@ -1437,12 +1444,6 @@ div#customersInput ul a {
 
 div#customersInput ul a:hover {
     background-color: #008fc5;
-}
-
-div#customersInput ul span.customerName {
-}
-
-div#customersInput ul span.mealDate {
 }
 
 div#unseenData {
@@ -1625,6 +1626,18 @@ div.comm p.text {
     float: left;
 }
 
+div.comm p.text span.ptext {
+    float: left;
+    width: 92%;
+    padding-left: 8%;
+    padding-bottom: 0.7em;
+    display: block;
+    background-image: url('../img/icons/quotewhite.png');
+    background-position: left top;
+    background-repeat: no-repeat;
+    background-size: 1.5em;
+}
+
 div.comm p.text img {
     margin-right: 0.5em;
     width: 12%;
@@ -1708,6 +1721,45 @@ div#menuDashboard h2#communicationLink {
     background-image: url('../img/icons/communication.png');
 }
 
+div#newMeals {
+    float: left;
+    width: 100%;
+}
+
+div#newComm {
+    float: left;
+    width: 100%;
+}
+
+div#newComm span.commDate {
+    text-align: right;
+    display: block;
+    float: left;
+    width: 98%;
+    margin-right: 2%;
+}
+
+div#newComm span.commCustomer {
+    display: block;
+    float: left;
+    width: 98%;
+    margin-right: 2%;
+    padding-bottom: 0.5em;
+    border-bottom: 1px solid #008FC5;
+}
+
+div#newComm span.commText {
+    display: block;
+    float: left;
+    width: 88%;
+    margin-right: 2%;
+    padding-bottom: 0.5em;
+    border-bottom: 1px solid #008FC5;
+    background-image: url('../img/icons/quotewhite.png');
+    background-repeat: no-repeat;
+    padding-left: 10%;
+    background-size: 1.5em;
+}
 
 @media (min-width: 481px) {
     section.center {
@@ -1813,7 +1865,19 @@ div#menuDashboard h2#communicationLink {
         padding-left: 8%;
         width: 92%;
     }    
-    
+
+    div#newMeals {
+        float: left;
+        width: 48%;
+        margin-right: 2%;
+    }
+
+    div#newComm {
+        float: left;
+        width: 48%;
+        margin-left: 2%;
+    }
+
 }
 
 @media (min-width: 860px) {
@@ -1823,7 +1887,7 @@ div#menuDashboard h2#communicationLink {
     
     div#customersInput {
         float: left;
-        width: 50%;
+        width: 100%;
     }
     
     
@@ -1854,6 +1918,11 @@ div#menuDashboard h2#communicationLink {
 
     div#menuCustomer h2 {
         text-indent: 0px;
+    }
+    
+    div#customersInput h2 {
+        text-indent: 0px;
+        background-position: 0.5em;
     }
     
     h2.consultation, h2.progression, h2.meals, h2.communication {

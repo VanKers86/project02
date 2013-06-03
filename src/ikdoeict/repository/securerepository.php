@@ -85,7 +85,22 @@ class SecureRepository extends \Knp\Repository {
             return $this->db->insert('communication', $msgArray);
         }
         
+        //Find the dietician of a customer by the customer id
         public function findCustomerDietician($customerId) {
             return $this->db->fetchColumn('SELECT d.id FROM dieticians as d INNER JOIN customers AS c ON d.id = c.dietician_id WHERE c.id = ?', array($customerId));
-        }        
+        }
+        
+        //Get the number of unseen messages of a customer to its dietician
+        public function getUnseenMessages($dieticianId, $customerId) {
+            return $this->db->fetchColumn('SELECT count(c.id) as unseen FROM communication AS c
+                                        WHERE to_dietician_id = ?
+                                        AND from_customer_id = ?
+                                        AND dietician_seen = "N"', array($dieticianId, $customerId));
+        }
+        
+        public function updateUnseenMessages($dieticianId, $customerId) {
+            return $this->db->executeUpdate('UPDATE communication SET dietician_seen = "Y" 
+                                             WHERE to_dietician_id = ? AND 
+                                             from_customer_id = ?', array($dieticianId, $customerId));
+        }
 }

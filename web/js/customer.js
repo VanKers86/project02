@@ -54,7 +54,7 @@ $(function($) {
             $('div.top p.empty').hide();
             var newComm = '<div class="comm fromMe">';
             newComm += '<p class="time">' + now.format("DD-MM-YYYY HH:mm") + '</p>';
-            newComm += '<p class="text">"' + text + '"</p></div>';
+            newComm += '<p class="text">' + text + '</p></div>';
             $('div#commHistory').prepend(newComm);
             resizeHeader();
             $.ajax ({

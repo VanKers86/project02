@@ -2,12 +2,28 @@ var customerId;
 var dieticianId;
 var cache = $('body');
 var unseen;
+var unseenMessages;
 
 $(function($) {
     customerId = Number($('input#customerId').attr('value'));
     dieticianId = Number($('input#dieticianId').attr('value'));
 
     getUnseenDates();
+
+    
+    //Check if this customer has unseen messages
+    $.ajax ({
+       url: '/secure/dietist/klanten/' + customerId + '/bericht/nieuw',
+       type: 'GET',
+       dataType: 'json',
+       async: true,
+       success: function(data) {
+           if (data) {
+               $('h2#communicationLink').css('border-bottom', '0.4em solid #71D01C');
+               unseenMessages = true;
+           }
+       }
+    });
 
     $('div#menuCustomer h2').each(function () {
        var menuLink = $(this).attr('id');
@@ -151,19 +167,33 @@ $(function($) {
             var newComm = '<div class="comm fromMe">';
             newComm += '<p class="time">' + now.format("DD-MM-YYYY HH:mm") + '</p>';
             newComm += '<p class="text"><img align="left" src="/img/userfiles/dietician/' + dieticianId + 'profilepicture.jpg">';
-            newComm += '"' + text + '"</p></div>';
+            newComm += text + '</p></div>';
             $('div#commHistory').prepend(newComm);
             resizeHeader();
             $.ajax ({
                url: '/secure/dietist/klanten/' + customerId + '/bericht',
                type: 'POST',
                dataType: 'json',
-               async: false,
+               async: true,
                data: {msg: text }
             });
             $('textarea#sendMessage').val('');
         }
     });
+    
+    //Update unseen 
+    $('h2#communicationLink').on('click', function(e) {
+        if (unseenMessages) {
+            $(this).css('border-bottom', '0');
+            $.ajax ({
+               url: '/secure/dietist/klanten/' + customerId + '/bericht/update',
+               type: 'POST',
+               dataType: 'json',
+               async: true
+            });        
+        }
+    });
+    
 });
 
 var getMealInfo = function() {

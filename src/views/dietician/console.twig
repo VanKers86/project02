@@ -18,22 +18,43 @@
 {% block consolePageContent %}
 <div id="dashboard">
     <div id="customersInput">
-        <h2>Nieuwe toegevoegde maaltijden</h2>
-        {% if newMeals %}
-        <ul>
-            {% for newMeal in newMeals %}
-            <li>
-                <a href="{{ app.request.baseUrl }}/dietist/klanten/{{ newMeal.customerId }}">
-                    <span class="mealDate">{{ newMeal.dateFormat }}</span>:
-                    <span class="customerName">{{ newMeal.customerName }}</span> 
-                </a>
-                    
-            </li>
-            {% endfor %}
-        </ul>
-        {% else %}
-        <p>Geen nieuwe toegevoegde maaltijden</p>
-        {% endif %}
+        <div id="newMeals">
+            <h2>Nieuwe toegevoegde maaltijden van klanten</h2>
+            {% if newMeals %}
+            <ul>
+                {% for newMeal in newMeals %}
+                <li>
+                    <a href="{{ app.request.baseUrl }}/dietist/klanten/{{ newMeal.customerId }}">
+                        <span class="mealDate">{{ newMeal.dateFormat }}</span>:
+                        <span class="customerName">{{ newMeal.customerName }}</span> 
+                    </a>
+
+                </li>
+                {% endfor %}
+            </ul>
+            {% else %}
+            <p>Geen nieuwe toegevoegde maaltijden</p>
+            {% endif %}
+        </div>
+        <div id="newComm">
+            <h2>Nieuwe berichten van klanten</h2>
+            {% if newComm %}
+            <ul>
+                {% for comm in newComm %}
+                <li class="clearfix">
+                    <a class="clearfix" href="{{ app.request.baseUrl }}/dietist/klanten/{{ comm.from_customer_id }}">
+                        <span class="commDate">{{ comm.dateFormat }}</span><br />
+                        <span class="commCustomer"> {{ comm.customerName|raw }}</span><br /><br />
+                        <span class="commText">{{ comm.text|raw }}</span> 
+                    </a>
+
+                </li>
+                {% endfor %}
+            </ul>
+            {% else %}
+            <p>Geen nieuwe berichten</p>
+            {% endif %}            
+        </div>
     </div>
 </div>
 {% endblock %}

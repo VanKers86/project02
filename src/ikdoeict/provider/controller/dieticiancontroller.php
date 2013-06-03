@@ -74,8 +74,9 @@ class DieticianController implements ControllerProviderInterface {
             $dietician = $app['session']->get('dietician');
             
             $newMeals = $app['dietician']->getNewMeals($dietician['id']);
+            $newComm = $app['dietician']->getNewMessages($dietician['id']);
             
-            return $app['twig']->render('dietician/console.twig', array('dietician' => $dietician, 'newMeals' => $newMeals));
+            return $app['twig']->render('dietician/console.twig', array('dietician' => $dietician, 'newMeals' => $newMeals, 'newComm' => $newComm));
         }
         
         //Customers page

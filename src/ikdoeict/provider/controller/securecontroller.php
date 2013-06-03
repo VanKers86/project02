@@ -28,6 +28,8 @@ class SecureController implements ControllerProviderInterface {
                 $controllers->get('/dietist/klanten/{customerId}/maaltijden/nieuw', array($this, 'getUnseenDatesOfDietician'))->assert('customerId', '\d+');
                 $controllers->post('/dietist/klanten/{customerId}/bericht', array($this, 'makeNewMessageFromDietician'))->assert('customerId', '\d+');
                 $controllers->post('/klanten/bericht', array($this, 'makeNewMessageFromCustomer'));
+                $controllers->get('/dietist/klanten/{customerId}/bericht/nieuw', array($this, 'checkIfDieticianHasUnseenMessages'))->assert('customerId', '\d+');
+                $controllers->post('/dietist/klanten/{customerId}/bericht/update', array($this, 'updateDieticianUnseenMessages'))->assert('customerId', '\d+');
 
 		return $controllers;
 
@@ -259,5 +261,45 @@ class SecureController implements ControllerProviderInterface {
             
             return $app->json($insert, 200);        
 
-        }            
+        }
+        
+        //Checks if a dietician has unseen messages of a certain customer
+        //Returns true or false in a json object
+        public function checkIfDieticianHasUnseenMessages(Application $app, $customerId, Request $request) {
+            $dietician = $app['session']->get('dietician');
+            if (!$dietician) {
+                return $app->json("Not allowed", 401);
+            }
+            
+            $customer = $app['dietician']->getDietistCustomer($dietician['id'], $customerId);
+            if (!$customer) {
+                return $app->json("Not allowed", 401);
+            }
+            
+            $nr = $app['secure']->getUnseenMessages($dietician['id'], $customerId);
+            if ($nr > 0) {
+                return $app->json(true, 200);
+            }
+            else {
+                return $app->json(false, 200);
+            }
+            
+        }
+        
+        //Updates the messages from a customer to a dietician thas were previously unseen
+        public function updateDieticianUnseenMessages(Application $app, $customerId, Request $request) {
+            $dietician = $app['session']->get('dietician');
+            if (!$dietician) {
+                return $app->json("Not allowed", 401);
+            }
+            
+            $customer = $app['dietician']->getDietistCustomer($dietician['id'], $customerId);
+            if (!$customer) {
+                return $app->json("Not allowed", 401);
+            }
+            
+            $return = $app['secure']->updateUnseenMessages($dietician['id'], $customerId);
+            
+            return $app->json($return, 200);    
+        }
 }

@@ -159,13 +159,13 @@
             {% if comm.from_dietician_id %}
                 <div class="comm fromMe">
                     <p class="time">{{ comm.dateFormat }}</p>
-                    <p class="text"><img align="left" alt="{{ dietician.name }}" src="/img/userfiles/dietician/{{ dietician.photo }}">"{{ comm.text|raw }}"</p>
+                    <p class="text"><img align="left" alt="{{ dietician.name }}" src="/img/userfiles/dietician/{{ dietician.photo }}">{{ comm.text|raw }}</p>
                 </div>
             {% endif %}
             {% if comm.from_customer_id %}
                 <div class="comm fromHim">
                     <p class="time">{{ comm.dateFormat }}</p>
-                    <p class="text">"{{ comm.text|raw }}"</p>
+                    <p class="text"><span class="ptext">{{ comm.text|raw }}</span></p>
                 </div>
             {% endif %}
         {% endfor %}
