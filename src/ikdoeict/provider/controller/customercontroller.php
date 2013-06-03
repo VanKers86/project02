@@ -21,7 +21,7 @@ class CustomerController implements ControllerProviderInterface {
 		// Bind sub-routes
                 $controllers->match('/', array($this, 'login'));
 		$controllers->match('/login', array($this, 'login'));
-                $controllers->post('/console', array($this, 'console'));
+                $controllers->get('/console', array($this, 'console'));
                 $controllers->get('/logout', array($this, 'logout'));
                 $controllers->match('/maaltijden', array($this, 'meals'));
                 $controllers->get('/progressie', array($this, 'progression'));
