@@ -26,8 +26,11 @@
 
 {% block consolePageContent %}
 <div id="dashboard">
+    <div id="menuDashboard">
+        <h2 id="communicationLink" class="active">Communicatie</h2>
+        <h2 id="consultationLink">Consultatie en contactgegevens</h2>
+    </div>
     <div id="communication">
-        <h2>Communicatie</h2>
         <div class="top">
             <p>Stuur een bericht naar {{ customerDietician.name }}</p>
             <textarea id="sendMessage"></textarea>
@@ -53,7 +56,6 @@
     </div>
    
     <div id="consultation">
-        <h2>Consultatie en contactgegevens</h2>
         <div class="sub">
             <h3>Contactgegevens</h3>
             <ul>

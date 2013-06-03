@@ -1,4 +1,28 @@
 $(function($) {
+    
+    $('div#menuDashboard h2').each(function () {
+       var menuLink = $(this).attr('id');
+       var menuDiv = menuLink.split('Link')[0];
+       if (!$(this).hasClass('active')) {
+           $('div#dashboard').find('div#' + menuDiv).hide();
+       };
+    });
+    
+    $('div#menuDashboard h2').on('click', function(e) {
+        if (!$(this).hasClass('active')) {
+            var activeMenu = $('div#menuDashboard h2.active').attr('id');
+            var activeDiv = activeMenu.split('Link')[0];
+            $('div#menuDashboard h2.active').removeClass('active');
+            $('div#dashboard div#' + activeDiv).hide();
+            $(this).addClass('active');
+            var menuLink = $(this).attr('id');
+            var menuDiv = menuLink.split('Link')[0];            
+            $('div#dashboard').find('div#' + menuDiv).show();
+            resizeHeader();
+            $(window).resize();
+        }
+    });    
+    
     var now = moment();
     var lastc = moment($('span#lastConsultationDate').text(), 'DD-MM-YYYY');
     $('span#daysAgo').text(now.diff(lastc, 'days'));

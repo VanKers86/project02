@@ -1409,7 +1409,6 @@ div#customersInput h2 {
     padding-left: 10%;
     width: 90%;
     box-sizing: border-box;
-    font-size: 1.3em;
     background-position: 5px;
 }
 
@@ -1672,6 +1671,44 @@ div#dashboard div#communication {
     float: left;
 }
 
+div#dashboard div#menuDashboard {
+    float: left;
+    width: 100%;
+    margin-bottom: 1em;
+}
+
+div#dashboard div#menuDashboard h2 {
+    float: left;
+    width: 50%;
+    font-size: 1.3em;
+    padding-left: 0;
+    border-right: 0.1em solid #FFF;
+    box-sizing: border-box;
+    -moz-box-sizing:border-box; /* Firefox */
+    background-repeat: no-repeat;
+    background-size: 2em;
+    background-position: center center;
+    text-indent: -9999px;
+}
+
+div#menuDashboard h2:last-child {
+    border-right: 0px; 
+}
+
+div#menuDashboard h2:hover, div#menuDashboard h2.active {
+    cursor: pointer;
+    background-color: #71D01C;
+}
+
+div#menuDashboard h2#consultationLink {
+    background-image: url('../img/icons/consultation.png');
+}
+
+div#menuDashboard h2#communicationLink {
+    background-image: url('../img/icons/communication.png');
+}
+
+
 @media (min-width: 481px) {
     section.center {
         min-width: 38.69230769230769em;
@@ -1830,7 +1867,13 @@ div#dashboard div#communication {
     div#customersInput h2 {
         padding-left: 12%;
         width: 88%;
-    }  
+    }
+    
+    div#dashboard div#menuDashboard h2 {
+        text-indent: 0px;
+        background-position: 0.5em;
+        padding-left: 7%;
+    }
 }
 
 /*EOF*/
