@@ -26,15 +26,32 @@
 
 {% block consolePageContent %}
 <div id="dashboard">
-    <div id="remarks">
-        <h2>{{ customerDietician.name|raw }} zei het volgende op ... datum ...:</h2>
+    <div id="communication">
+        <h2>Communicatie</h2>
+        <div class="top">
+            <p>Stuur een bericht naar {{ customerDietician.name }}</p>
+            <textarea id="sendMessage"></textarea>
+            <p class="empty" style="display: none">Gelieve een bericht in te geven</p>
+            <a href="#" id="addMessage">Verstuur</a>
+        </div>
+        <div id="commHistory">
+        {% for key, comm in communication %}
+            {% if comm.from_customer_id %}
+                <div class="comm fromMe">
+                    <p class="time">{{ comm.dateFormat }}</p>
+                    <p class="text">"{{ comm.text|raw }}"</p>
+                </div>
+            {% endif %}
+            {% if comm.from_dietician_id %}
+                <div class="comm fromHim">
+                    <p class="time">{{ comm.dateFormat }}</p>
+                    <p class="text"><img align="left" alt="{{ customerDietician.name }}" src="/img/userfiles/dietician/{{ customerDietician.photo }}">"{{ comm.text|raw }}"</p>
+                </div>
+            {% endif %}
+        {% endfor %}
+        </div>
     </div>
-    
-    <div id="question">
-        <h2>Stel een vraag aan {{ customerDietician.name|raw }}</h2>
-
-    </div>
-        
+   
     <div id="consultation">
         <h2>Consultatie en contactgegevens</h2>
         <div class="sub">

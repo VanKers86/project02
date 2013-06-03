@@ -81,7 +81,11 @@ class SecureRepository extends \Knp\Repository {
         }        
 
         //Add new message entry in the communication table
-        public function makeNewDieticianMessage($msgArray) {
+        public function makeNewMessage($msgArray) {
             return $this->db->insert('communication', $msgArray);
         }
+        
+        public function findCustomerDietician($customerId) {
+            return $this->db->fetchColumn('SELECT d.id FROM dieticians as d INNER JOIN customers AS c ON d.id = c.dietician_id WHERE c.id = ?', array($customerId));
+        }        
 }

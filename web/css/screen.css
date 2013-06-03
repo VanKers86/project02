@@ -1326,7 +1326,7 @@ div#dashboard div#consultation li:first-child {
     margin-top: 0.4em;
 }
 
-div#dashboard p {
+div#dashboard div#consultation p {
     width: 100%;
     float: left;
     line-height: 1.2em;
@@ -1411,6 +1411,14 @@ div#customersInput h2 {
     box-sizing: border-box;
     font-size: 1.3em;
     background-position: 5px;
+}
+
+div#customersInput p {
+    width: 100%;
+    float: left;
+    line-height: 1.2em;
+    margin-top: 0.4em;    
+    
 }
 
 div#customersInput ul {
@@ -1593,6 +1601,7 @@ div.comm {
     color: white;   
     width: 60%;
     margin-bottom: 1em;
+    float: left;
 }
 
 div.fromMe {
@@ -1650,6 +1659,17 @@ a#addMessage {
 a#addMessage:hover {
     background-color: #DDD;
     color: #333;
+}
+
+div#dashboard {
+    float: left;
+    width: 100%;
+}
+
+div#dashboard div#communication {
+    width: 100%;
+    margin-left: 0;
+    float: left;
 }
 
 @media (min-width: 481px) {

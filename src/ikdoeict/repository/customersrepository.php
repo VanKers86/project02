@@ -16,7 +16,7 @@ class CustomersRepository extends \Knp\Repository {
         
         //Find the dietician of this customer by the id of the customer
         public function findCustomerDietician($customerId) {
-            return $this->db->fetchAssoc('SELECT d.name, d.email, d.photo FROM dieticians as d INNER JOIN customers AS c ON d.id = c.dietician_id WHERE c.id = ?', array($customerId));
+            return $this->db->fetchAssoc('SELECT d.name, d.email, d.photo, d.id FROM dieticians as d INNER JOIN customers AS c ON d.id = c.dietician_id WHERE c.id = ?', array($customerId));
         }
 
         //Get the last consultation date of a customer
@@ -55,5 +55,13 @@ class CustomersRepository extends \Knp\Repository {
         public function addNewMealFood($food) {
             return $this->db->insert('meals_food', $food);
         }
+        
+        //Get all the communication between the customer and his dietician
+        public function getUnseenCommunication($dieticianId, $customerId) {
+            return $this->db->fetchAll('SELECT c.*, DATE_FORMAT(c.datetime,"%d-%m-%Y %H:%i") AS dateFormat FROM communication as c 
+                                        WHERE (from_dietician_id = ? OR to_dietician_id = ?)
+                                        AND (from_customer_id = ? OR to_customer_id = ?)
+                                        ORDER BY c.datetime DESC', array($dieticianId, $dieticianId, $customerId, $customerId));
+        }        
         
 }
