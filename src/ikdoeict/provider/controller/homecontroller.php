@@ -11,6 +11,7 @@ use Symfony\Component\HttpKernel\HttpKernelInterface;
 
 class HomeController implements ControllerProviderInterface {
 
+        // '/home' controller and path
 	public function connect(Application $app) {
 
 		//@note $app['controllers_factory'] is a factory that returns a new instance of ControllerCollection when used.
@@ -24,6 +25,7 @@ class HomeController implements ControllerProviderInterface {
 
 	}
 
+        // home page
         public function home(Application $app, Request $request) {
                 return $app['twig']->render('home/home.twig');
         }

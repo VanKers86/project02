@@ -11,6 +11,7 @@ use Symfony\Component\HttpKernel\HttpKernelInterface;
 
 class DieticianController implements ControllerProviderInterface {
 
+        // '/dietician' controller, functionality and different paths
 	public function connect(Application $app) {
 
 		//@note $app['controllers_factory'] is a factory that returns a new instance of ControllerCollection when used.
@@ -33,6 +34,7 @@ class DieticianController implements ControllerProviderInterface {
 
 	}
 
+        //Login page and functionality
         public function login(Application $app, Request $request) {
             if ($app['session']->get('dietician')) {
                 return $app->redirect('console');
@@ -64,6 +66,7 @@ class DieticianController implements ControllerProviderInterface {
             return $app['twig']->render('dietician/login.twig', array('form' => $form->createView()));
         }
 
+        //Console page
         public function console(Application $app, Request $request) {
             if (!$app['session']->get('dietician')) {
                 return $app->redirect('/');
@@ -75,6 +78,7 @@ class DieticianController implements ControllerProviderInterface {
             return $app['twig']->render('dietician/console.twig', array('dietician' => $dietician, 'newMeals' => $newMeals));
         }
         
+        //Customers page
         public function customers(Application $app, Request $request) {
             if (!$app['session']->get('dietician')) {
                 return $app->redirect('/');
@@ -85,6 +89,7 @@ class DieticianController implements ControllerProviderInterface {
             return $app['twig']->render('dietician/customers.twig', array('dietician' => $dietician, 'customers' => $customers));            
         }
         
+        //Add new customer page and functionality
         public function addCustomer(Application $app, Request $request) {
             if (!$app['session']->get('dietician')) {
                 return $app->redirect('/');
@@ -163,6 +168,7 @@ class DieticianController implements ControllerProviderInterface {
             return $app['twig']->render('dietician/addCustomer.twig', array('dietician' => $dietician, 'days' => $days, 'months' => $months, 'years' => $years));
         }
         
+        //Get customer detail page
         public function customerDetail(Application $app, $customerId, Request $request) {
             if (!$app['session']->get('dietician')) {
                 return $app->redirect('/');
@@ -177,6 +183,7 @@ class DieticianController implements ControllerProviderInterface {
             
             $dietician = $app['session']->get('dietician');
             $customer = $app['dietician']->getDietistCustomer($dietician['id'], $customerId);
+            //Not a customer of this dietician
             if (!$customer) {
                 return $app->redirect('/dietist/console');
             }
@@ -189,23 +196,14 @@ class DieticianController implements ControllerProviderInterface {
                     ));
 	}
         
+        //Logout
         public function logout(Application $app, Request $request) {
             $app['session']->remove('dietician');
             return $app->redirect('/');
         }
         
-        public function RandomPass($length = null) {
-
-            $length = $length < 6 ? 6 : $length;
-
-            for ($a = 0; $a < $length; $a++) {
-                @$pass .= chr(rand(65, 90));
-            }
-
-            return $pass;
-
-        }
         
+        //Add new consultation page and functionality
         public function customerConsultation(Application $app, $customerId, Request $request) {
             if (!$app['session']->get('dietician')) {
                 return $app->redirect('/');
@@ -251,6 +249,7 @@ class DieticianController implements ControllerProviderInterface {
             return $app['twig']->render('dietician/customerConsultation.twig', array('dietician' => $dietician, 'customer' => $customer, 'lastConsultation' => $lastConsultation, 'pal' => $pal));
 	}
         
+        //Foodtable page
         public function foodtable(Application $app, Request $request) {
             if (!$app['session']->get('dietician')) {
                 return $app->redirect('/');
@@ -262,6 +261,7 @@ class DieticianController implements ControllerProviderInterface {
             return $app['twig']->render('dietician/foodtable.twig', array('dietician' => $dietician, 'foodByCategories' => $foodByCategories));            
         }
         
+        //New foot table entry page and functionality
         public function newFoodtableEntry(Application $app, Request $request) {
             if (!$app['session']->get('dietician')) {
                 return $app->redirect('/');
@@ -288,5 +288,18 @@ class DieticianController implements ControllerProviderInterface {
             }
             return $app['twig']->render('dietician/foodtableNew.twig', array('dietician' => $dietician, 'foodCategories' => $foodCategories));            
         }          
+        
+        //make random password of 6 capital letters
+        public function RandomPass($length = null) {
+
+            $length = $length < 6 ? 6 : $length;
+
+            for ($a = 0; $a < $length; $a++) {
+                @$pass .= chr(rand(65, 90));
+            }
+
+            return $pass;
+
+        }        
 
 }

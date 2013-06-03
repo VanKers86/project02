@@ -11,6 +11,7 @@ use Symfony\Component\HttpKernel\HttpKernelInterface;
 
 class CustomerController implements ControllerProviderInterface {
 
+        // '/klant' controller, functionality and paths 
 	public function connect(Application $app) {
 
 		//@note $app['controllers_factory'] is a factory that returns a new instance of ControllerCollection when used.
@@ -20,15 +21,16 @@ class CustomerController implements ControllerProviderInterface {
 		// Bind sub-routes
                 $controllers->match('/', array($this, 'login'));
 		$controllers->match('/login', array($this, 'login'));
-                $controllers->match('/console', array($this, 'console'));
-                $controllers->match('/logout', array($this, 'logout'));
+                $controllers->post('/console', array($this, 'console'));
+                $controllers->get('/logout', array($this, 'logout'));
                 $controllers->match('/maaltijden', array($this, 'meals'));
-                $controllers->match('/progressie', array($this, 'progression'));
+                $controllers->get('/progressie', array($this, 'progression'));
 
 		return $controllers;
 
 	}
 
+        //Login page and functionality
         public function login(Application $app, Request $request) {
             if ($app['session']->get('customer')) {
                 return $app->redirect('console');
@@ -62,6 +64,7 @@ class CustomerController implements ControllerProviderInterface {
             return $app['twig']->render('customer/login.twig', array('form' => $form->createView()));
         }
 
+        //Show console page
         public function console(Application $app, Request $request) {
             if (!$app['session']->get('customer')) {
                 return $app->redirect('/');
@@ -74,12 +77,14 @@ class CustomerController implements ControllerProviderInterface {
             return $app['twig']->render('customer/console.twig', array('customer' => $customer, 'customerDietician' => $customerDietician, 'lastConsultationDate' => $lastConsultationDate));
         }
         
+        //Logout
         public function logout(Application $app, Request $request) {
             $app['session']->remove('customer');
             $app['session']->remove('customerDietician');
             return $app->redirect('/');
         }
         
+        //Show meals page
         public function meals(Application $app, Request $request) {
             if (!$app['session']->get('customer')) {
                 return $app->redirect('/');
@@ -113,6 +118,7 @@ class CustomerController implements ControllerProviderInterface {
                                                                     'foodcategories' => $foodcategories));
         }
         
+        //Show progression page
         public function progression(Application $app, Request $request) {
             if (!$app['session']->get('customer')) {
                 return $app->redirect('/');

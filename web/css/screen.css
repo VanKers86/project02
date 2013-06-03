@@ -1271,12 +1271,17 @@ div#showMealsDate ul li span.val {
     float: left;
     width: 8.5%;
     text-align: center;
-    border-left:1px solid #FFF;
+    border-left: 1px solid #FFF;
     font-size: 0.8em;
     line-height: 1.875em;
     box-sizing: border-box;
     -moz-box-sizing:border-box; /* Firefox */    
     
+}
+
+div#showMealsDate ul li.food:hover {
+    background-color: #008FC5;
+    color: white;
 }
 
 div#dashboard h2 {

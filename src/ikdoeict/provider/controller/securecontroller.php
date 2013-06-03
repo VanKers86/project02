@@ -12,6 +12,7 @@ use Symfony\Component\HttpKernel\HttpKernelInterface;
 //Secured controller, used in the website to get data to javascript files with AJAX calls, returns json objects
 class SecureController implements ControllerProviderInterface {
 
+        // '/secure' controller, functionality and paths
 	public function connect(Application $app) {
 
 		//@note $app['controllers_factory'] is a factory that returns a new instance of ControllerCollection when used.
@@ -29,6 +30,8 @@ class SecureController implements ControllerProviderInterface {
 
 	}
 
+        //Get customer BMI progression
+        //Returns json object
         public function customerBmi(Application $app, $customerId, Request $request) {
             if (!$app['session']->get('dietician') && !$app['session']->get('customer')) {
                 return $app->json("Not allowed", 401);
@@ -47,6 +50,8 @@ class SecureController implements ControllerProviderInterface {
             return $app->json($return, 200);
 	}
         
+        //Get customer weight progression
+        //returns json object
         public function customerWeight(Application $app, $customerId, Request $request) {
             if (!$app['session']->get('dietician') && !$app['session']->get('customer')) {
                 return $app->json("Not allowed", 401);
@@ -65,6 +70,8 @@ class SecureController implements ControllerProviderInterface {
             return $app->json($return, 200);  
         }
         
+        //Get all food by a categorie id
+        //returns json object
         public function foodByCategory(Application $app, $categoryId, Request $request) {
             if (!$app['session']->get('customer')) {
                 return $app->json("Not allowed", 401);
@@ -75,6 +82,8 @@ class SecureController implements ControllerProviderInterface {
             return $app->json($return, 200);
         }
         
+        //Get all meals of a certain customer on a certain date (POST)
+        //returns json object
         public function customerMeals(Application $app, $customerId, Request $request) {
             if (!$app['session']->get('customer')) {
                 return $app->json("Not allowed", 401);
@@ -96,6 +105,9 @@ class SecureController implements ControllerProviderInterface {
             return $app->json($return, 200);  
         }
         
+        //Get all meals of a certain customer on a certain date (POST)
+        //This method is used on the dietician controller, it needs more data to return
+        //returns json object
         public function dieticianCustomerMeals(Application $app, $customerId, Request $request) {
             $dietician = $app['session']->get('dietician');
             if (!$dietician) {
@@ -179,6 +191,8 @@ class SecureController implements ControllerProviderInterface {
         
         }
         
+        //Get all unseen dates of a dietician's customer where meals have been added
+        //returns json object
         public function getUnseenDatesOfDietician(Application $app, $customerId, Request $request) {
             $dietician = $app['session']->get('dietician');
             if (!$dietician) {

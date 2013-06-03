@@ -8,18 +8,22 @@ class SecureRepository extends \Knp\Repository {
             return 'dieticians';
 	}
         
+        //Get customer BMI progression over time
         public function getCustomerBmi($customerId) {
             return $this->db->fetchAll('SELECT date, bmi FROM customer_consultations WHERE customer_id = ? ORDER BY date', array($customerId));
 	}
  
+        //Get customer weight progression over time
         public function getCustomerWeight($customerId) {
             return $this->db->fetchAll('SELECT date, weight FROM customer_consultations WHERE customer_id = ? ORDER BY date', array($customerId));
 	}        
         
+        //Get food names by category id
         public function getFoodByCategory($categoryId) {
             return $this->db->fetchAll('SELECT f.name FROM foods AS f WHERE f.category_id = ?', array($categoryId));
         }
         
+        //Get all customer meals of a customer on a certain date
         public function getCustomerMeals($customerId, $date) {
             return $this->db->fetchAll('SELECT m.id, t.name as type FROM meals AS m
                                         INNER JOIN meal_types AS t on m.type_id = t.id
@@ -27,6 +31,7 @@ class SecureRepository extends \Knp\Repository {
                                         date = ?', array($customerId, $date));
         }
         
+        //Get food entries of a meal by the meal id
         public function getFoodByMeals($mealsId) {
             return $this->db->fetchAll('SELECT m.gram as quantity, f.name as foodname, fc.name as foodcategory
                                         FROM meals_food AS m 
@@ -35,12 +40,14 @@ class SecureRepository extends \Knp\Repository {
                                         WHERE m.meals_id = ?', array($mealsId));
         }
         
+        //Get consultation values of a meal by the meal id
         public function getConsultationOfMeal($mealId) {
             return $this->db->fetchAssoc('SELECT c.kcal, c.carbohydrates, c.sugars, c.fats, c.proteins, c.cholesterol, c.fibres, c.sodium FROM customer_consultations AS c 
                                           INNER JOIN meals AS m ON m.consultation_id = c.id
                                           WHERE m.id = ?', array($mealId));
         }
         
+        //Get detailed food details of a meal by the meal id
         public function getDetailedFoodByMeals($mealsId) {
             return $this->db->fetchAll('SELECT m.gram as quantity, f.name as foodname, fc.name as foodcategory,
                                         ROUND((m.gram / 100 * f.calories), 1) as kcal,
@@ -57,10 +64,12 @@ class SecureRepository extends \Knp\Repository {
                                         WHERE m.meals_id = ?', array($mealsId));
         }
         
+        //Set meal entry as seen = 'Y'
         public function setMealsDateAsSeen($date, $customerId) {
             return $this->db->executeUpdate('UPDATE meals SET seen = "Y" WHERE date = ? AND customer_id = ?', array($date, $customerId));
         }
         
+        //Get all dates on which a meal entry is unseen by the dietician
         public function getUnseenDates($customerId, $dieticianId) {
             return $this->db->fetchAll('SELECT DATE_FORMAT(m.date,"%d-%m-%Y") as dateFormat FROM meals as m
                                         INNER JOIN customers as c ON m.customer_id = c.id

@@ -191,7 +191,7 @@ var getMealInfo = function() {
             $.each(meal.food, function(i, food) {
                 var foodLi = '<li class="food"><span class="info">' + food.quantity;
                 if (food.foodcategory === "Dranken") {
-                    foodLi += 'cl ';   
+                    foodLi += 'ml ';   
                 }
                 else {
                     foodLi += 'gr ';    
