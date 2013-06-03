@@ -14,9 +14,9 @@
 {% block subheader %}
     <h1>Welkom {{ customer.name }}</h1>
     <div id="interaction" class="clearfix">
-        <img class="interactionPhoto" src='/img/userfiles/dietician/{{ customerDietician.photo }}' alt="{{ customerDietician.name }}" title="{{ customerDietician.name }}" />
+        <img class="interactionPhoto" src='/img/userfiles/dietician/{{ customerDietician.photo }}' alt="{{ customerDietician.name|raw }}" title="{{ customerDietician.name|raw }}" />
         <p>
-            <span id="dieticianName">{{ customerDietician.name }}:</span><br />
+            <span id="dieticianName">{{ customerDietician.name|raw }}:</span><br />
             <span id="interactionText">"Heb je een vraag of wil je een afspraak maken? Contacteer me!"</span>
         </p>
     </div>
@@ -27,11 +27,11 @@
 {% block consolePageContent %}
 <div id="dashboard">
     <div id="remarks">
-        <h2>{{ customerDietician.name }} zei het volgende op ... datum ...:</h2>
+        <h2>{{ customerDietician.name|raw }} zei het volgende op ... datum ...:</h2>
     </div>
     
     <div id="question">
-        <h2>Stel een vraag aan {{ customerDietician.name }}</h2>
+        <h2>Stel een vraag aan {{ customerDietician.name|raw }}</h2>
 
     </div>
         
@@ -44,7 +44,7 @@
                 <li>Pater Segersstraat 22</li>
                 <li>9100 Sint-Niklaas</li>
                 <li class="phone">03 765 06 64</li>
-                <li class="email">{{ customerDietician.email }}</li>
+                <li class="email">{{ customerDietician.email|raw }}</li>
             </ul>
             <h3>Openingsuren</h3>
             <dl id="hours">

@@ -15,16 +15,16 @@
     <input type="hidden" id="customerId" value="{{ customer.id }}">
     <input type="hidden" id="dieticianId" value="{{ dietician.id }}">
 
-    <h1>{{ customer.name }}</h1>
+    <h1>{{ customer.name|raw }}</h1>
     <p>
         <span id="customerGender" class="{% if customer.gender == "M" %}male{% elseif customer.gender == "F" %}female{% endif %}">&nbsp;</span>
         <span class="age">Leeftijd: {{ customer.age }}</span>
         <span class="birthdate">({{ customer.birthdateFormat }})</span>
     </p>  
     <p> 
-        <span class="email">{{ customer.email }}</span><br />
+        <span class="email">{{ customer.email|raw }}</span><br />
         {% if customer.phone %}
-        <span class="phone">{{ customer.phone }}</span>
+        <span class="phone">{{ customer.phone|raw }}</span>
         {% endif %}
     </p>
     <p class="addedDate">Toegevoegd op {{ customer.dateFormat }}</p>
@@ -40,7 +40,7 @@
 
 {% set breadcrumb = true %}    
 {% block breadcrumb %}
-    <a title="Klanten" href="{{ app.request.baseUrl }}/dietist/klanten">Klanten</a> <span class="current">{{ customer.name }}</span>
+    <a title="Klanten" href="{{ app.request.baseUrl }}/dietist/klanten">Klanten</a> <span class="current">{{ customer.name|raw }}</span>
 {% endblock %}
 
 {% block consolePageContent %}

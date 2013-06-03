@@ -272,7 +272,7 @@ class DieticianController implements ControllerProviderInterface {
             
             if ($request->isMethod('POST')) {
                 $newFood['category_id'] = $_POST['category'];
-                $newFood['name'] = htmlentities($_POST['name']);
+                $newFood['name'] = $_POST['name'];
                 $newFood['calories'] = $_POST['calories'];
                 $newFood['proteins'] = $_POST['proteins'];
                 $newFood['fats'] = $_POST['fats'];

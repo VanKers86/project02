@@ -26,7 +26,7 @@
             {% for customer in customers %}
             <li>
                 <a href="{{ app.request.baseUrl }}/dietist/klanten/{{ customer.id }}">
-                    <span class="customerName">{{ customer.name }}</span>
+                    <span class="customerName">{{ customer.name|raw }}</span>
                 </a>
                     
             </li>

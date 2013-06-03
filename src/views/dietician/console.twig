@@ -11,7 +11,7 @@
 {% set dashboardActive = true %}
 
 {% block subheader %}
-    <h1>Welkom {{ dietician.name }}</h1>
+    <h1>Welkom {{ dietician.name|raw }}</h1>
 {% endblock %}
 
 

@@ -113,7 +113,7 @@ $(function($) {
         $('.categoryDependant').hide();
         $('div#overviewMeal ul').empty();
         $('span#errorFood').empty();
-        $('.initial').show()
+        $('.initial').show();
         resizeHeader();
      });
      
