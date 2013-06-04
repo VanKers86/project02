@@ -43,7 +43,7 @@ class CustomersRepository extends \Knp\Repository {
         
         //Get the consultation values of the meal
         public function getConsultationOfMeal($meal) {
-            return $this->db->fetchColumn('SELECT c.id FROM customer_consultations AS c WHERE c.customer_id = ? AND c.date < ? ORDER BY c.date DESC limit 0,1', array($meal['customer_id'], $meal['date']));
+            return $this->db->fetchColumn('SELECT c.id FROM customer_consultations AS c WHERE c.customer_id = ? AND c.date < ? ORDER BY c.date DESC limit 0,1', array($meal['customer_id'], $meal['date'] . ' 23:59:59'));
         }
         
         //Get food id by its name

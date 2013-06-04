@@ -24,6 +24,7 @@ $app->register(new Silex\Provider\DoctrineServiceProvider(), array(
                 //'port'     => '3306',
 		//'path'     => __DIR__ .  DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'app.db',
 	)
+
 ));
 
 // Use Repository Service Provider — @note: Be sure to install RSP via Composer first!
