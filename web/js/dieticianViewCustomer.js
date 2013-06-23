@@ -299,8 +299,7 @@ var setMealsKcal = function(data) {
     
     var allMax = [Math.round(data.max.kcal), Math.round(data.max.proteins) * 4, Math.round(data.max.fats) * 9, Math.round(data.max.carbohydrates) *4];
     var allTotal = [Math.round(data.total.kcal), Math.round(data.total.proteins) * 4, Math.round(data.total.fats) * 9, Math.round(data.total.carbohydrates) * 4];
-    console.log(allMax);
-    console.log(allTotal);
+
     $('#chartKcalAll').highcharts({
             chart: {
                 type: 'column',

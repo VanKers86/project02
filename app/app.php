@@ -11,9 +11,9 @@ $app->error(function (Exception $e, $code) {
 	}
 });
 
-$app->get('/', function(Silex\Application $app) {
-	return $app->redirect($app['request']->getBaseUrl() . '/');
-});
+//$app->get('/', function(Silex\Application $app) {
+//	return $app->redirect($app['request']->getBaseUrl() . '/');
+//});
 
 // Mount our ControllerProviders
 $app->mount('/', new Ikdoeict\Provider\Controller\HomeController());

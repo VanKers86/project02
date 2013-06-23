@@ -134,13 +134,14 @@ var calculateBMI = function() {
 
 var calculateKcal = function() {
     var age = $('p span.age').html().split('Leeftijd: ')[1];
-    var gender = $('p#customerGender').html();
+    var genderClass = $('span#customerGender').attr('class');
     var weight = $('input#spinnerWeight').val();
     var kcal;
     var pre;
+    
     if ($.isNumeric(age) && $.isNumeric(weight)) {
+        if (genderClass === "male") {
 
-        if (gender === "M") {
             if (age >= 18 && age <= 29) {
                 pre = (15.3 * weight + 679);
             }
@@ -164,7 +165,7 @@ var calculateKcal = function() {
                 kcal = pre * 2.1;
             }
         }
-        else if (gender === "F") {
+        else if (genderClass === "female") {
             if (age >= 18 && age <= 29) {
                 pre = (14.7 * weight + 496);
             }
@@ -188,6 +189,7 @@ var calculateKcal = function() {
                 kcal = pre * 1.82;
             }    
         }
+
         $('#kcalSpan span.value').html(Math.round(kcal));
         $('input[name=kcal]').val(Math.round(kcal));       
         calculateOthers(Math.round(kcal));
